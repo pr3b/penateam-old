@@ -5,19 +5,19 @@ import Work from "./components/Work";
 import Pricing from "./components/Pricing";
 import Contact from "./components/Contact";
 import Navbar from "./components/Navbar";
+import Logo from "./components/Logo";
 
 export default function Home() {
   return (
-    <div>
-      <div className="font-poppins">
-        <Navbar />
-        <Hero />
-        <About />
-        <Service />
-        <Work />
-        <Pricing />
-        <Contact />
-      </div>
+    <div className="component-container">
+      <Navbar />
+      <Hero />
+      <Logo />
+      <About />
+      <Service />
+      <Work />
+      <Pricing />
+      <Contact />
     </div>
   );
 }
