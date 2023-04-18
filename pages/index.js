@@ -6,6 +6,8 @@ import Pricing from "./components/Pricing";
 import Contact from "./components/Contact";
 import Navbar from "./components/Navbar";
 import Logo from "./components/Logo";
+import Passion from "./components/Passion";
+import Testimonials from "./components/Testimonials";
 
 export default function Home() {
   return (
@@ -15,6 +17,8 @@ export default function Home() {
       <Logo />
       <About />
       <Service />
+      <Passion />
+      <Testimonials />
       <Work />
       <Pricing />
       <Contact />
