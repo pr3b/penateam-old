@@ -100,7 +100,7 @@ nav img {
   background-color: #3e69ea;
   width: calc(150px * 20);
   display: flex;
-  animation: scroll 20s linear infinite;
+  animation: scroll 40s linear infinite;
   justify-content: space-between;
 }
 
@@ -394,7 +394,7 @@ nav img {
   justify-content: center;
 }
 
-.testimonials-quote {
+.testimonials-quote img {
   max-width: 300px;
 }
 
@@ -405,13 +405,300 @@ nav img {
 }
 
 .testimonials-text-container h3 {
-  font-size: 2rem;
-  font-weight: 300;
+  font-size: 3rem;
+  font-weight: 700;
   padding: 0 0 2rem 0;
 }
 
 .testimonials-slider {
   padding: 5rem 0 5rem 0;
-  grid-gap: 20px;
+}
+
+.card-slider {
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 250px;
+  border-radius: 20px;
+  background-color: #f3f5f9;
+  padding: 3rem;
+}
+
+.card-slider img {
+  width: 75px;
+  border-radius: 50%;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0 0 0;
+}
+
+.profile-text {
+  padding: 0 0 0 2rem;
+}
+
+.work-container {
+  padding: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.work-container h3 {
+  font-size: 3rem;
+  font-weight: 700;
+  z-index: 1;
+}
+
+.work-container p {
+  z-index: 1;
+}
+
+.work-image-bg {
+  position: absolute;
+  z-index: 0;
+}
+
+.work-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 10rem;
+}
+
+.work-card-container {
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 5rem;
+  padding-bottom: 5rem;
+}
+
+.work-card-container img {
+  width: 500px;
+}
+
+.work-button {
+  background-color: #f39f21;
+  border-radius: 5px;
+  width: 125px;
+  padding: 10px;
+  color: #fff;
+}
+
+.collab-container {
+  padding: 0 5rem 0 5rem;
+  display: flex;
+  background-color: #000000;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.collab-text {
+  z-index: 1;
+}
+
+.collab-container h3 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.collab-container p {
+  padding-top: 2rem;
+}
+
+.collab-container span {
+  color: #f39f21;
+}
+
+.collab-image {
+  position: absolute;
+  width: 300px;
+  margin-top: 15rem;
+  margin-right: 30rem;
+  z-index: 0;
+}
+
+.logos {
+  width: 700px;
+  margin-left: 10rem;
+  z-index: 0;
+}
+
+.pricing-container {
+  padding: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pricing-text {
+  text-align: center;
+  padding-bottom: 5rem;
+}
+
+.pricing-text h3 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.pricing-card-container {
+  display: flex;
+  grid-gap: 5rem;
+}
+
+.pricing-card {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  height: 700px;
+  text-align: center;
+}
+
+.card-bg {
+  background-color: #d2d2d2;
+  border-radius: 0 0 20px 20px;
+  padding: 2rem 1rem 5rem 1rem;
+}
+
+.pricing-title-monthly {
+  display: flex;
+  justify-content: center;
+  background-color: #3e69ea;
+  border-radius: 20px 20px 0 0;
+  padding: 1rem;
+  font-weight: 700;
+  font-size: 20px;
+  color: #fff;
+}
+
+.pricing-title-quarterly {
+  display: flex;
+  justify-content: center;
+  background-color: #f39f21;
+  border-radius: 20px 20px 0 0;
+  padding: 1rem;
+  font-weight: 700;
+  font-size: 20px;
+  color: #fff;
+}
+
+.pricing-title-yearly {
+  display: flex;
+  justify-content: center;
+  background-color: #b82a2e;
+  border-radius: 20px 20px 0 0;
+  padding: 1rem;
+  font-weight: 700;
+  font-size: 20px;
+  color: #fff;
+}
+
+.price-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.price-wrap h5 {
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.price-wrap h6 {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.pricing-shape-monthly {
+  width: 50px;
+  height: 5px;
+  border-radius: 10px;
+  background-color: #3e69ea;
+  margin-bottom: 2rem;
+}
+
+.pricing-shape-quarterly {
+  width: 50px;
+  height: 5px;
+  border-radius: 10px;
+  background-color: #f39f21;
+  margin-bottom: 2rem;
+}
+
+.pricing-shape-yearly {
+  width: 50px;
+  height: 5px;
+  border-radius: 10px;
+  background-color: #b82a2e;
+  margin-bottom: 2rem;
+}
+
+.pricing-price {
+  padding: 0 0 2rem 0;
+}
+
+.pricing-price h3 {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.pricing-price p {
+  color: #878787;
+}
+
+.pricing-button-monthly {
+  background-color: #3e69ea;
+  border-radius: 5px;
+  width: 125px;
+  padding: 10px;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.pricing-button-quarterly {
+  background-color: #f39f21;
+  border-radius: 5px;
+  width: 125px;
+  padding: 10px;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.pricing-button-yearly {
+  background-color: #b82a2e;
+  border-radius: 5px;
+  width: 125px;
+  padding: 10px;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.pricing-divider {
+  width: 90%;
+  height: 2px;
+  border-radius: 10px;
+  background-color: #d2d2d2;
+  margin: 2rem;
+}
+
+.pricing-feature {
+  text-align: left;
+}
+
+/* ul {
+  list-style-type: circle;
+} */
+
+.most-popular {
+  position: absolute;
+  left: 55%;
+  margin-top: 25rem;
+  transform: rotate(15deg);
+  width: 125px;
 }
