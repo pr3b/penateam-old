@@ -702,3 +702,161 @@ nav img {
   transform: rotate(15deg);
   width: 125px;
 }
+
+.referral-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-color: #f39f21;
+  grid-gap: 2rem;
+}
+
+.referral-container img {
+  width: 150px;
+}
+
+.referral-text {
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  padding: 2rem 25rem 2rem 2rem;
+}
+
+.referral-text h4 {
+  font-weight: 600;
+  font-size: 35px;
+}
+
+.referral-button {
+  background-color: #fff;
+  border-radius: 5px;
+  width: 125px;
+  padding: 10px;
+  color: #000000;
+}
+
+.faq-container {
+  padding: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+.faq-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  margin-bottom: 5rem;
+}
+
+.faq-title-container h3 {
+  font-size: 3rem;
+  font-weight: 700;
+  z-index: 1;
+  width: 400px;
+}
+
+.faq-title-container p {
+  margin-left: 15rem;
+}
+
+.faq-title-container img {
+  width: 200px;
+  left: 33%;
+  margin-top: 6rem;
+  position: absolute;
+  z-index: 0;
+}
+
+.css-1elwnq4-MuiPaper-root-MuiAccordion-root {
+  background-color: #f3f5f9;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+.footer-container {
+  background-color: #000;
+  color: #fff;
+}
+
+.footer-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-shape {
+  margin-top: 5rem;
+  margin-bottom: -19rem;
+  position: relative;
+  width: 800px;
+  z-index: 0;
+}
+
+.footer-text {
+  z-index: 1;
+}
+
+.footer-text h3 {
+  margin: 5rem 0 0 0;
+  font-size: 4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-family: "Monument Extended", sans-serif;
+}
+
+.footer-text p {
+  margin: 2rem 0 4rem 0;
+}
+
+.footer-button {
+  background-color: #f39f21;
+  border-radius: 5px;
+  width: 150px;
+  padding: 10px;
+  color: #fff;
+}
+
+.footer-divider {
+  width: 80%;
+  height: 2px;
+  border-radius: 2px;
+  background-color: #272727;
+  margin: 5rem 0 5rem 0;
+}
+
+.footer-info-container {
+  display: flex;
+  grid-gap: 50px;
+  margin-bottom: 5rem;
+}
+
+.footer-info {
+  width: 300px;
+  text-align: left;
+}
+
+.footer-flag {
+  width: 35px;
+  margin-bottom: 1rem;
+}
+
+.footer-info h4 {
+  font-weight: 700;
+}
+
+.footer-copyright {
+  display: flex;
+  background-color: #f39f21;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0 1rem 0;
+}
+
+.footer-copyright img {
+  width: 50px;
+  margin: 0 15px 8px 0;
+}
