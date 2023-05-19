@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
-import Usa from "../../public/assets/images/icons/flag/usa-square.png";
-import Indo from "../../public/assets/images/icons/flag/indo-square.png";
+import California from "../../public/assets/images/icons/california.png";
+import Jakarta from "../../public/assets/images/icons/jakarta.png";
 import Pena from "../../public/assets/images/logo/pena-text-white.png";
 import Shape from "../../public/assets/images/icons/images.png";
 
@@ -27,18 +27,10 @@ function Footer() {
         <div className="footer-info-container">
           <div className="footer-info">
             <div className="footer-flag">
-              <Image src={Indo} alt="Indonesia Flag" />
+              <Image src={California} alt="California State" />
+              <Image src={Jakarta} alt="Jakarta State" />
             </div>
-            <p>
-              AD Premier Office Park, 9th FloorJl. TB Simatupang No.5, South
-              Jakarta City Jakarta, Indonesia
-            </p>
-          </div>
-          <div className="footer-info">
-            <div className="footer-flag">
-              <Image src={Usa} alt="Usa Icon" />
-            </div>
-            <p>223 S Baldwin Ave, Arcadia, CA 91007, USA</p>
+            <p>California | Jakarta</p>
           </div>
           <div className="footer-info">
             <h4>Say hi to us:</h4>

@@ -8,15 +8,13 @@ function Collab() {
     <div className="collab-container">
       <div className="collab-text">
         <h3>
-          <span>40+</span> Global
+          <span>30+</span> Global
           <br /> Collaboration
         </h3>
         <p>
-          We take perplexing technical ideas and turn them
-          <br />
-          into user-friendly documentation. Let us take work off
-          <br /> your plate, so you can focus on running your <br />
-          business.
+          We take perplexing technical ideas and turn them into user-friendly
+          documentation. Let us take work off your plate, so you can focus on
+          running your business.
         </p>
       </div>
       <Image className="collab-image" src={CollabImage} alt="Shape image" />

@@ -15,11 +15,6 @@ function FAQ() {
           Frequently <br /> Asked Questions
         </h3>
         <Image src={Chat} alt="Speaker icon" />
-        <p>
-          We are open and
-          <br />
-          aim for clarity
-        </p>
       </div>
       <Accordion>
         <AccordionSummary

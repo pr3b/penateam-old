@@ -6,10 +6,11 @@ function Pricing() {
   return (
     <div className="pricing-container">
       <div className="pricing-text">
-        <h3>SUBSCRIPTION TO MEET YOUR NEEDS</h3>
+        <h3>Subscription to Meet Your Needs</h3>
+        <br />
         <p>
-          A steady yet flexible subscription to help keep your <br />{" "}
-          documentation on track.
+          A steady yet flexible subscription to help keep your documentation on
+          track.
         </p>
       </div>
       <div className="pricing-card-container">
