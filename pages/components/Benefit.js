@@ -17,8 +17,8 @@ function Benefit() {
         <div className="benefit-typography">
           <h3>Member Benefits</h3>
           <p>
-            Perks so good you&rsquo;ll never need to go <br /> anywhere else for
-            your design. Seriously.
+            Perks so good you&rsquo;ll never need to go anywhere else for your
+            design. Seriously.
           </p>
           <button className="benefit-button">See Plans</button>
           {/* <Image className="benefit-shape" src={BenefitShape} alt="Dots shape" /> */}

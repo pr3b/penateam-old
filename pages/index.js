@@ -19,8 +19,8 @@ export default function Home() {
   return (
     <>
       <div className="component-container">
-        <Navbar />
-        {/* <Navbar2 /> */}
+        {/* <Navbar /> */}
+        <Navbar2 />
         <Hero />
         <Logo />
         {/* <About /> */}

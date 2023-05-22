@@ -28,6 +28,7 @@ function Footer() {
         </div>
         <div className="footer-divider"></div>
         <div className="footer-info-container">
+          <Image className="footer-logo" src={Pena} alt="Pena Logo" />
           <div className="footer-info">
             <div className="footer-flag">
               <Image src={California} alt="California State" />
@@ -42,7 +43,6 @@ function Footer() {
         </div>
       </div>
       <div className="footer-copyright">
-        <Image src={Pena} alt="Indonesia Flag" />
         <p>All rights reserved 2023 © Pena</p>
       </div>
     </div>
