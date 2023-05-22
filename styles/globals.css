@@ -41,6 +41,10 @@ body h3 {
   background: #f3f5f9;
 }
 
+.container {
+  max-width: 100%;
+}
+
 .nav {
   display: flex;
   align-items: center;
