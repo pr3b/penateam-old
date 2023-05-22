@@ -1,18 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import ImageText from "../../public/assets/images/icons/image-star.png";
 import Logo from "../../public/assets/images/logo/pena-text.png";
-import { getTopNav } from "./topNav";
 
 const Navbar2 = () => {
-  const [navItems, setNavItems] = useState([]);
   const [collapse, setCollapse] = useState("nav__menu");
   const [toggleIcon, setToggleIcon] = useState("toggler__icon");
-
-  useEffect(() => {
-    setNavItems(getTopNav());
-  }, []);
 
   const onToggle = () => {
     collapse === "nav__menu"
