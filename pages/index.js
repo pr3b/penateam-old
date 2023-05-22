@@ -5,7 +5,6 @@ import Work from "./components/Work";
 import Pricing from "./components/Pricing";
 import Navbar from "./components/Navbar";
 import Logo from "./components/Logo";
-// import Testimonials from "./components/Testimonials";
 import Collab from "./components/Collab";
 import Referral from "./components/Referral";
 import FAQ from "./components/FAQ";
@@ -32,7 +31,6 @@ export default function Home() {
         <Benefit />
         <Work />
         <Collab />
-        {/* <Testimonials /> */}
         <Pricing />
         <Referral />
         <FAQ />
