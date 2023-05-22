@@ -32,13 +32,31 @@ const Navbar2 = () => {
             <Image src={Logo} alt="Pena logo" />
           </a>
           <ul className={collapse}>
-            {navItems.map((item) => (
-              <li key={item.id} className="nav__item">
-                <a href={item.href} className="nav__link">
-                  {item.label}
-                </a>
-              </li>
-            ))}
+            <li className="nav__item">
+              <Link className="nav__link" href={"#home"}>
+                Home
+              </Link>
+            </li>
+            <li className="nav__item">
+              <Link className="nav__link" href={"#benefit"}>
+                Benefit
+              </Link>
+            </li>
+            <li className="nav__item">
+              <Link className="nav__link" href={"#work"}>
+                Work
+              </Link>
+            </li>
+            <li className="nav__item">
+              <Link className="nav__link" href={"#pricing"}>
+                Pricing
+              </Link>
+            </li>
+            <li className="nav__item">
+              <Link className="nav__link" href={"#referral"}>
+                Referral
+              </Link>
+            </li>
           </ul>
           <div className={toggleIcon} onClick={onToggle}>
             <div className="line__1"></div>
