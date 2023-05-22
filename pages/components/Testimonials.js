@@ -3,7 +3,7 @@ import React from "react";
 import Roxanne from "../../public/assets/images/client/microsoft.png";
 import Carousel from "react-grid-carousel";
 
-function Testimonials() {
+const Testimonials = () => {
   return (
     <div className="testimonials-container">
       <div className="testimonials-info-container">
@@ -66,6 +66,6 @@ function Testimonials() {
       </div>
     </div>
   );
-}
+};
 
 export default Testimonials;
