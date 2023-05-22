@@ -10,22 +10,23 @@ import Vonigo from "../../public/assets/images/portfolio/vonigo.png";
 
 function Work() {
   return (
-    <div className="work-container">
-      <div className="work-text">
-        <h3>
-          Our <span style={{ color: "#f39f21" }}> Masterpiece </span>
-        </h3>
-        <Image className="work-image-bg" src={ImageText} alt="Shape icon" />
+    <div id="work">
+      <div className="work-container">
+        <div className="work-text">
+          <h3>
+            Our <span style={{ color: "#f39f21" }}> Masterpiece </span>
+          </h3>
+        </div>
+        <div className="work-card-container">
+          <Image src={Oxla} alt="Oxla portfolio" />
+          <Image src={Babylon} alt="Babylon portfolio" />
+          <Image src={Mojito} alt="Mojito portfolio" />
+          <Image src={Opster} alt="Opster portfolio" />
+          <Image src={Phinisi} alt="Phinisi portfolio" />
+          <Image src={Vonigo} alt="Vonigo portfolio" />
+        </div>
+        <button className="work-button">View More</button>
       </div>
-      <div className="work-card-container">
-        <Image src={Oxla} alt="Oxla portfolio" />
-        <Image src={Babylon} alt="Babylon portfolio" />
-        <Image src={Mojito} alt="Mojito portfolio" />
-        <Image src={Opster} alt="Opster portfolio" />
-        <Image src={Phinisi} alt="Phinisi portfolio" />
-        <Image src={Vonigo} alt="Vonigo portfolio" />
-      </div>
-      <button className="work-button">View More</button>
     </div>
   );
 }

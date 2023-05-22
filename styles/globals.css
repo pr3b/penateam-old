@@ -17,7 +17,19 @@
       format("svg");
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,500;1,700&display=swap");
+
+body p {
+  font-family: "Poppins", sans-serif;
+}
+
+body h2 {
+  font-family: "Poppins", sans-serif;
+}
+
+body h3 {
+  font-family: "Poppins", sans-serif;
+}
 
 .nav-container {
   padding: 2rem 5rem 2rem 5rem;
@@ -48,7 +60,7 @@ nav img {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5rem 5rem 0 5rem;
+  padding: 0 5rem 0 5rem;
 }
 
 .home-title {
@@ -62,12 +74,12 @@ nav img {
 .hero-typography {
   display: flex;
   flex-direction: column;
-  width: 70%;
 }
 
 .hero-typography p {
-  width: 70%;
+  font-size: 20px;
   margin-top: 1rem;
+  width: 70%;
 }
 
 .hero-button {
@@ -86,21 +98,45 @@ nav img {
 }
 
 .hero1 {
-  width: 300px;
-  margin-left: -5rem;
+  width: 30vh;
+  margin-left: -5vw;
   position: absolute;
   z-index: 2;
 }
 .hero2 {
-  width: 250px;
+  width: 25vh;
+  margin-left: 3vw;
   position: absolute;
   z-index: 1;
 }
 
 .hero-shape {
-  width: 400px;
+  width: 30vw;
   height: 600px;
   background-color: #f39f21;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .slider {
@@ -270,19 +306,24 @@ nav img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10rem;
+  padding: 10rem 5rem 5rem 5rem;
 }
 
 .developing-container h3 {
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 700;
   margin-bottom: 2rem;
+}
+
+.developing-desc {
+  font-size: 1.2rem;
 }
 
 .developing-typography {
   position: relative;
   z-index: 1;
   text-align: center;
+  width: 80%;
   padding: 0 0 5rem 0;
 }
 
@@ -329,7 +370,7 @@ nav img {
 }
 
 .brand-container h3 {
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 700;
   margin-bottom: 2rem;
 }
@@ -338,7 +379,12 @@ nav img {
   position: relative;
   z-index: 1;
   text-align: center;
+  width: 80%;
   padding: 0 0 5rem 0;
+}
+
+.brand-desc {
+  font-size: 1.2rem;
 }
 
 .brand-card-container {
@@ -418,7 +464,7 @@ nav img {
 }
 
 .certification-container h3 {
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 700;
   margin-bottom: 2rem;
 }
@@ -492,7 +538,7 @@ nav img {
 }
 
 .benefit-typography h3 {
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 700;
   margin-bottom: 2rem;
   position: relative;
@@ -500,6 +546,7 @@ nav img {
 }
 
 .benefit-typography p {
+  font-size: 1.2rem;
   margin-bottom: 3rem;
   position: relative;
   z-index: 1;
@@ -537,7 +584,10 @@ nav img {
 
 .benefit-card {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
+  align-items: center;
+  text-align: center;
+  font-weight: 700;
   justify-content: space-around;
   width: 250px;
   height: 250px;
@@ -547,6 +597,7 @@ nav img {
 }
 
 .benefit-card h4 {
+  font-size: 1.2rem;
   margin-bottom: 2rem;
 }
 
@@ -830,7 +881,7 @@ nav img {
   display: flex;
   background-color: #000000;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   color: #fff;
 }
 
@@ -877,8 +928,12 @@ nav img {
 }
 
 .pricing-text h3 {
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 700;
+}
+
+.pricing-text p {
+  font-size: 1.2rem;
 }
 
 .pricing-card-container {
@@ -903,12 +958,12 @@ nav img {
 .pricing-title-monthly {
   display: flex;
   justify-content: center;
-  background-color: #3e69ea;
+  background-color: #e8edf5;
   border-radius: 20px 20px 0 0;
   padding: 1rem;
   font-weight: 700;
   font-size: 20px;
-  color: #fff;
+  color: #000;
 }
 
 .pricing-title-quarterly {
@@ -925,12 +980,12 @@ nav img {
 .pricing-title-yearly {
   display: flex;
   justify-content: center;
-  background-color: #b82a2e;
+  background-color: #e8edf5;
   border-radius: 20px 20px 0 0;
   padding: 1rem;
   font-weight: 700;
   font-size: 20px;
-  color: #fff;
+  color: #000;
 }
 
 .price-wrap {
@@ -954,7 +1009,7 @@ nav img {
   width: 50px;
   height: 5px;
   border-radius: 10px;
-  background-color: #3e69ea;
+  background-color: #e8edf5;
   margin-bottom: 2rem;
 }
 
@@ -962,7 +1017,7 @@ nav img {
   width: 50px;
   height: 5px;
   border-radius: 10px;
-  background-color: #f39f21;
+  background-color: #e8edf5;
   margin-bottom: 2rem;
 }
 
@@ -970,7 +1025,7 @@ nav img {
   width: 50px;
   height: 5px;
   border-radius: 10px;
-  background-color: #b82a2e;
+  background-color: #e8edf5;
   margin-bottom: 2rem;
 }
 
@@ -988,11 +1043,11 @@ nav img {
 }
 
 .pricing-button-monthly {
-  background-color: #3e69ea;
+  background-color: #e8edf5;
   border-radius: 5px;
   width: 125px;
   padding: 10px;
-  color: #fff;
+  color: #000;
   margin-bottom: 1rem;
 }
 
@@ -1006,11 +1061,11 @@ nav img {
 }
 
 .pricing-button-yearly {
-  background-color: #b82a2e;
+  background-color: #e8edf5;
   border-radius: 5px;
   width: 125px;
   padding: 10px;
-  color: #fff;
+  color: #000;
   margin-bottom: 1rem;
 }
 
@@ -1042,7 +1097,7 @@ nav img {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  padding: 2rem 5rem 2rem 5rem;
   background-color: #f39f21;
   grid-gap: 2rem;
 }
@@ -1072,7 +1127,7 @@ nav img {
 }
 
 .faq-container {
-  padding: 10rem;
+  padding: 5rem;
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -1089,7 +1144,6 @@ nav img {
   font-size: 3rem;
   font-weight: 700;
   z-index: 1;
-  width: 400px;
 }
 
 .faq-title-container p {

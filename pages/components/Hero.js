@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import HeroImage from "../../public/assets/images/icons/hero1.png";
 import HeroImage2 from "../../public/assets/images/icons/hero2.png";
+import Link from "next/link";
 
 function Hero() {
   return (
@@ -24,7 +25,9 @@ function Hero() {
             Quickly scale your technical documentation with our affordable
             subscription service.
           </p>
-          <button className="hero-button">Work with us</button>
+          <Link href="#pricing">
+            <button className="hero-button">Work with us</button>
+          </Link>
           <p>
             Trusted by{" "}
             <span style={{ color: "#f39f21", fontWeight: "700" }}> 30+ </span>{" "}

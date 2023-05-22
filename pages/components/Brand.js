@@ -14,12 +14,11 @@ function Brand() {
           We wrote for fastest growing startups and big enterprises{" "}
           <span style={{ color: "#f39f21" }}> across the globe </span>
         </h3>
-        <p>
+        <p className="brand-desc">
           Some are bootstrapped, others venture-backed-all work with Pena to
           develop their documentation.
         </p>
       </div>
-      <Image className="brand-image-bg" src={ImageText} alt="Shape icon" />
       <div className="brand-card-container">
         <div className="card">
           <div className="card-title">

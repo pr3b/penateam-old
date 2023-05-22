@@ -4,6 +4,7 @@ import California from "../../public/assets/images/icons/california.png";
 import Jakarta from "../../public/assets/images/icons/jakarta.png";
 import Pena from "../../public/assets/images/logo/pena-text-white.png";
 import Shape from "../../public/assets/images/icons/images.png";
+import Link from "next/link";
 
 function Footer() {
   return (
@@ -21,7 +22,9 @@ function Footer() {
           </h3>
 
           <p>Drop us a message. You&rsquo;re one step away!</p>
-          <button className="footer-button">Get Started</button>
+          <Link href="#pricing">
+            <button className="footer-button">Get Started</button>
+          </Link>
         </div>
         <div className="footer-divider"></div>
         <div className="footer-info-container">

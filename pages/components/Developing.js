@@ -13,7 +13,7 @@ function Developing() {
           <span style={{ color: "#f39f21" }}> Developing</span> and maintaining
           technical documentation is a hassle
         </h3>
-        <p>
+        <p className="developing-desc">
           Pena provides a solution for businesses struggling to hire
           high-quality technical writers for short-term projects. Say goodbye to
           unreliable freelancers and expensive commitments by subscribing to
@@ -23,7 +23,6 @@ function Developing() {
           matters - creating great products.
         </p>
       </div>
-      <Image className="brand-image-bg" src={ImageText} alt="Shape icon" />
       <div className="developing-card-container">
         <div className="developing-card">
           <Image className="developing-gif" src={Search} alt="Search icon" />

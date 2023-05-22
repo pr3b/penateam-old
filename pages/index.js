@@ -14,6 +14,7 @@ import Webflow from "./components/Webflow";
 import Benefit from "./components/Benefit";
 import Developing from "./components/Developing";
 import Navbar2 from "./components/Navbar2";
+// import Testimonials from "./components/Testimonials";
 
 export default function Home() {
   return (
@@ -31,6 +32,7 @@ export default function Home() {
         <Benefit />
         <Work />
         <Collab />
+        {/* <Testimonials /> */}
         <Pricing />
         <Referral />
         <FAQ />
