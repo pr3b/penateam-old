@@ -22,7 +22,7 @@ function Footer() {
           </h3>
 
           <p>Drop us a message. You&rsquo;re one step away!</p>
-          <Link href="#pricing">
+          <Link href="#pricing" scroll={false}>
             <button className="footer-button">Get Started</button>
           </Link>
         </div>

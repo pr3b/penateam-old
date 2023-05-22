@@ -9,6 +9,7 @@ import Professional from "../../public/assets/images/icons/professional.png";
 import Blogs from "../../public/assets/images/icons/blogs.png";
 import Diagrams from "../../public/assets/images/icons/diagrams.png";
 import Web from "../../public/assets/images/icons/web.png";
+import Link from "next/link";
 
 function Benefit() {
   return (
@@ -20,7 +21,9 @@ function Benefit() {
             Perks so good you&rsquo;ll never need to go anywhere else for your
             design. Seriously.
           </p>
-          <button className="benefit-button">See Plans</button>
+          <Link href="#pricing" scroll={false}>
+            <button className="benefit-button">See Plans</button>
+          </Link>
           {/* <Image className="benefit-shape" src={BenefitShape} alt="Dots shape" /> */}
         </div>
         <div className="benefit-card-container">

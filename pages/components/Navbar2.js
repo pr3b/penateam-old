@@ -26,27 +26,27 @@ const Navbar2 = () => {
           </a>
           <ul className={collapse}>
             <li className="nav__item">
-              <Link className="nav__link" href={"#home"}>
+              <Link className="nav__link" href={"#home"} scroll={false}>
                 Home
               </Link>
             </li>
             <li className="nav__item">
-              <Link className="nav__link" href={"#benefit"}>
+              <Link className="nav__link" href={"#benefit"} scroll={false}>
                 Benefit
               </Link>
             </li>
             <li className="nav__item">
-              <Link className="nav__link" href={"#work"}>
+              <Link className="nav__link" href={"#work"} scroll={false}>
                 Work
               </Link>
             </li>
             <li className="nav__item">
-              <Link className="nav__link" href={"#pricing"}>
+              <Link className="nav__link" href={"#pricing"} scroll={false}>
                 Pricing
               </Link>
             </li>
             <li className="nav__item">
-              <Link className="nav__link" href={"#referral"}>
+              <Link className="nav__link" href={"#referral"} scroll={false}>
                 Referral
               </Link>
             </li>

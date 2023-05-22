@@ -25,7 +25,7 @@ function Hero() {
             Quickly scale your technical documentation with our affordable
             subscription service.
           </p>
-          <Link href="#pricing">
+          <Link href="#pricing" scroll={false}>
             <button className="hero-button">Work with us</button>
           </Link>
           <p>
