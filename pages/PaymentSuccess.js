@@ -13,7 +13,6 @@ const PaymentSuccessX = ({ id }) => {
       try {
         const response = await axios.get(`/api/checkout_sessions/${session_id}`);
         const session = response.data;
-        console.log(session, "data yang didapat dari Stripe return successful payment")
         setEmail(session.customer_details.email);
         setLoading(false);
       } catch (error) {
