@@ -1,7 +1,8 @@
 import Image from "next/image";
 import React from "react";
 import Popular from "../../public/assets/images/icons/popular.png";
-import { checkout } from "./lib/checkout";
+// import { checkout } from "./lib/checkout";
+import { checkout } from "@/utils/checkout";
 // import 
 
 function Pricing() {
