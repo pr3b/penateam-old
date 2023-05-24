@@ -1382,6 +1382,10 @@ body h3 {
   height: 40px;
 }
 
+.css-1elwnq4-MuiPaper-root-MuiAccordion-root:before {
+  opacity: 0;
+}
+
 @media only screen and (max-width: 1200px) {
   .nav {
     padding: 1rem 2rem 1rem 2rem;
