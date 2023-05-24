@@ -7,6 +7,7 @@ import Mojito from "../../public/assets/images/portfolio/mojito.png";
 import Opster from "../../public/assets/images/portfolio/opster.png";
 import Phinisi from "../../public/assets/images/portfolio/phinisi.png";
 import Vonigo from "../../public/assets/images/portfolio/vonigo.png";
+import Link from "next/link";
 
 function Work() {
   return (
@@ -25,7 +26,9 @@ function Work() {
           <Image src={Phinisi} alt="Phinisi portfolio" />
           <Image src={Vonigo} alt="Vonigo portfolio" />
         </div>
-        <button className="work-button">View More</button>
+        <Link href="/work">
+          <button className="work-button">View More</button>
+        </Link>
       </div>
     </div>
   );
