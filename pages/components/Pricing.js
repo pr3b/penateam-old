@@ -1,10 +1,27 @@
 import Image from "next/image";
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Popular from "../../public/assets/images/icons/popular.png";
-import { checkout } from "@/utils/checkout";
+import { checkout, getProductQuantity } from "@/utils/stripe";
 import Link from "next/link";
 
 function Pricing() {
+  const [productQuantity, setProductQuantity] = useState(null);
+
+  useEffect(() => {
+    async function fetchProductQuantity() {
+      try {
+        // const quantity = 10;
+        const quantity = await getProductQuantity("prod_Nx1uVW1AZu2qKu");
+        // console.log(quantity, "product quantity 1")
+        setProductQuantity(quantity);
+      } catch (error) {
+        console.error("Error fetching product quantity:", error);
+      }
+    }
+
+    fetchProductQuantity();
+  }, []);
+
   return (
     <div id="pricing">
       <div className="pricing-container">
@@ -29,15 +46,15 @@ function Pricing() {
               <div className="price-wrap">
                 <div className="pricing-shape-monthly"></div>
                 <div className="pricing-price">
-                  <h3>$4,995/month</h3>
+                  <h3>$3,000/month</h3>
                   <p>Pause or cancel anytime</p>
                 </div>
                 <button 
                   className="pricing-button-monthly" 
                   onClick={(() => {checkout(
-                    {lineItems: [{price: "price_1NAdekAEioNEOHotFFcFpUSj", quantity: 1}]}
+                    {lineItems: [{price: "price_1NB7oEAEioNEOHotyEOXyMz6", quantity: 1}]}
                   )})}
-                >Choose Plan</button>    
+                >Choose Plan</button>
                 <Link href="http://calendly.com/cahyosubroto">
                   <h5>Book a Call</h5>
                 </Link>
@@ -62,6 +79,9 @@ function Pricing() {
                     </li>
                   </ul>
                 </div>
+                <h5 style={{marginTop:"1vw"}}>
+                  {/* {productQuantity !== null ? `${productQuantity} Products left` : "Loading..."} */}
+                </h5>
               </div>
             </div>
           </div>
@@ -78,13 +98,13 @@ function Pricing() {
               <div className="price-wrap">
                 <div className="pricing-shape-quarterly"></div>
                 <div className="pricing-price">
-                  <h3>$4,995/month</h3>
+                  <h3>$2,500/mont</h3>
                   <p>Pause or cancel anytime</p>
                 </div>
                 <button 
                   className="pricing-button-quarterly"
                   onClick={(() => {checkout(
-                    {lineItems: [{price: "price_1NAlMPAEioNEOHotlG7TzgF2", quantity: 1}]}
+                    {lineItems: [{price: "price_1NB7piAEioNEOHotkmpv3g0a", quantity: 1}]}
                   )})}
                 >
                   Choose Plan
@@ -129,13 +149,13 @@ function Pricing() {
               <div className="price-wrap">
                 <div className="pricing-shape-yearly"></div>
                 <div className="pricing-price">
-                  <h3>$4,995/month</h3>
+                  <h3>$2,000/month</h3>
                   <p>Pause or cancel anytime</p>
                 </div>
                 <button 
                   className="pricing-button-yearly"
                   onClick={(() => {checkout(
-                    {lineItems: [{price: "price_1NAlP7AEioNEOHotHKm3ZEC2", quantity: 1}]}
+                    {lineItems: [{price: "price_1NB7qbAEioNEOHotvwkIc3bh", quantity: 1}]}
                   )})}
                 >Choose Plan</button>
                 <Link href="http://calendly.com/cahyosubroto">
