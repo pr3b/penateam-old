@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import Popular from "../../public/assets/images/icons/popular.png";
+import { checkout } from "@/utils/checkout";
 import Link from "next/link";
 
 function Pricing() {
@@ -31,7 +32,12 @@ function Pricing() {
                   <h3>$4,995/month</h3>
                   <p>Pause or cancel anytime</p>
                 </div>
-                <button className="pricing-button-monthly">Choose Plan</button>
+                <button 
+                  className="pricing-button-monthly" 
+                  onClick={(() => {checkout(
+                    {lineItems: [{price: "price_1NAdekAEioNEOHotFFcFpUSj", quantity: 1}]}
+                  )})}
+                >Choose Plan</button>              
                 <Link href="http://calendly.com/cahyosubroto">
                   <h5>Book a Call</h5>
                 </Link>
@@ -75,7 +81,12 @@ function Pricing() {
                   <h3>$4,995/month</h3>
                   <p>Pause or cancel anytime</p>
                 </div>
-                <button className="pricing-button-quarterly">
+                <button 
+                  className="pricing-button-quarterly"
+                  onClick={(() => {checkout(
+                    {lineItems: [{price: "price_1NAlMPAEioNEOHotlG7TzgF2", quantity: 1}]}
+                  )})}
+                >
                   Choose Plan
                 </button>
                 <Link href="http://calendly.com/cahyosubroto">
@@ -121,7 +132,12 @@ function Pricing() {
                   <h3>$4,995/month</h3>
                   <p>Pause or cancel anytime</p>
                 </div>
-                <button className="pricing-button-yearly">Choose Plan</button>
+                <button 
+                  className="pricing-button-yearly"
+                  onClick={(() => {checkout(
+                    {lineItems: [{price: "price_1NAlP7AEioNEOHotHKm3ZEC2", quantity: 1}]}
+                  )})}
+                >Choose Plan</button>
                 <Link href="http://calendly.com/cahyosubroto">
                   <h5>Book a Call</h5>
                 </Link>
