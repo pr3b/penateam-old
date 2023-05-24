@@ -1797,4 +1797,8 @@ nav {
     height: auto;
     width: 300px;
   }
+
+  .pagination {
+    grid-gap: 20px;
+  }
 }

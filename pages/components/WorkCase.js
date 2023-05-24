@@ -47,36 +47,39 @@ function WorkCase() {
   ].slice(startIndex, endIndex);
 
   return (
-    <div className="workcase-container">
-      <div className="workcase-card-container">
-        {visibleCards.map((card, index) => (
-          <div className="workcase-card" key={index}>
-            <Image src={card.image} alt={`${card.title} Logo`} />
-            <div className="text-arrow">
-              <p>{card.title}</p>
-              <Image src={Arrow} alt="Arrow shape" />
+    <div id="workcase">
+      <div className="workcase-container">
+        <div className="workcase-card-container">
+          {visibleCards.map((card, index) => (
+            <div className="workcase-card" key={index}>
+              <Image src={card.image} alt={`${card.title} Logo`} />
+              <div className="text-arrow">
+                <p>{card.title}</p>
+                <Image src={Arrow} alt="Arrow shape" />
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
-      <div className="pagination">
-        <button
-          className="previous-button"
-          onClick={handlePreviousPage}
-          disabled={currentPage === 1}
-        >
-          Previous
-        </button>
-        <span className="page-number">
-          Page {currentPage} of {totalPages}
-        </span>
-        <button
-          className="next-button"
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages}
-        >
-          Next
-        </button>
+          ))}
+        </div>
+        <div className="pagination">
+          <button
+            href="#workcase"
+            className="previous-button"
+            onClick={handlePreviousPage}
+            disabled={currentPage === 1}
+          >
+            <a href="#workcase">Previous</a>
+          </button>
+          <span className="page-number">
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            className="next-button"
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+          >
+            <a href="#workcase">Next</a>
+          </button>
+        </div>
       </div>
     </div>
   );
