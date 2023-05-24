@@ -56,6 +56,7 @@ function Pricing() {
                     </li>
                   </ul>
                 </div>
+                <p className="limited-spot">Only 20 spots left this month</p>
               </div>
             </div>
           </div>
@@ -102,6 +103,7 @@ function Pricing() {
                     </li>
                   </ul>
                 </div>
+                <p className="limited-spot">Only 10 spots left this month</p>
               </div>
             </div>
           </div>
@@ -146,6 +148,7 @@ function Pricing() {
                     </li>
                   </ul>
                 </div>
+                <p className="limited-spot">Only 10 spots left this month</p>
               </div>
             </div>
           </div>
