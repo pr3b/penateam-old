@@ -9,18 +9,7 @@ function Hero() {
     <div id="home">
       <div className="home-container">
         <div className="hero-typography">
-          <h1 className="home-title">
-            Your Go-to documentation partner{" "}
-            <span
-              style={{
-                color: "#f39f21",
-                marginLeft: "10rem",
-                fontFamily: "Comfortaa, cursive",
-              }}
-            >
-              -
-            </span>
-          </h1>
+          <h1 className="home-title">Your Go-to documentation partner</h1>
           <p>
             Quickly scale your technical documentation with our affordable
             subscription service.
