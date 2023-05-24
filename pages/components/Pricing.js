@@ -1,7 +1,6 @@
 import Image from "next/image";
 import React, {useState, useEffect} from "react";
 import Popular from "../../public/assets/images/icons/popular.png";
-// import { checkout } from "./lib/checkout";
 import { checkout, getProductQuantity } from "@/utils/stripe";
 import Link from "next/link";
 
@@ -144,7 +143,7 @@ function Pricing() {
             </div>
             <div className="card-bg yearly">
               <p style={{ padding: "20px 0 10px 0" }}>
-                Commit for 1 year. <br />
+                Commit for 12 months. <br />
                 Paid monthly
               </p>
               <div className="price-wrap">
