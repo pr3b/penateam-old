@@ -1028,7 +1028,7 @@ nav {
 .card-bg {
   background-color: #d2d2d2;
   border-radius: 0 0 20px 20px;
-  padding: 2rem 1rem 5rem 1rem;
+  padding: 2rem 1rem 2rem 1rem;
 }
 
 .monthly {
@@ -1181,8 +1181,8 @@ nav {
 
 .most-popular {
   position: absolute;
-  left: 24%;
-  margin-top: 28rem;
+  left: 26%;
+  margin-top: 26rem;
   transform: rotate(15deg);
   width: 125px;
 }
@@ -1262,16 +1262,23 @@ nav {
 .workhero-container {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 5rem;
 }
 
 .workhero-typography h3 {
-  font-size: 3rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 3.5rem;
+  font-weight: 500;
+  line-height: 70px;
+  width: 70%;
   margin-bottom: 2rem;
 }
 
 .workhero-typography p {
+  font-size: 20px;
+  margin-top: 1rem;
+  width: 70%;
   margin-bottom: 2rem;
 }
 
@@ -1397,6 +1404,10 @@ nav {
 
 .css-1elwnq4-MuiPaper-root-MuiAccordion-root:before {
   opacity: 0;
+}
+
+.limited-spot {
+  margin-top: 2rem;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -1759,5 +1770,31 @@ nav {
   .footer-info-container {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .workhero-typography h3 {
+    font-size: 40px;
+    font-weight: 500;
+    width: 100%;
+    margin-top: 2rem;
+  }
+
+  .workhero-typography p {
+    font-size: 25px;
+    width: 100%;
+  }
+
+  .workhero-container {
+    flex-direction: column-reverse;
+    padding: 2rem;
+  }
+
+  .workcase-card-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .workcase-card {
+    height: auto;
+    width: 300px;
   }
 }
