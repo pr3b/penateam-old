@@ -18,24 +18,20 @@ import Navbar2 from "./components/Navbar2";
 export default function Home() {
   return (
     <>
-      <div className="component-container">
-        {/* <Navbar /> */}
-        <Navbar2 />
-        <Hero />
-        <Logo />
-        {/* <About /> */}
-        <Developing />
-        <Brand />
-        <Certification />
-        <Webflow />
-        <Benefit />
-        <Work />
-        <Collab />
-        <Pricing />
-        <Referral />
-        <FAQ />
-        <Footer />
-      </div>
+      <Navbar2 />
+      <Hero />
+      <Logo />
+      <Developing />
+      <Brand />
+      <Certification />
+      <Webflow />
+      <Benefit />
+      <Work />
+      <Collab />
+      <Pricing />
+      <Referral />
+      <FAQ />
+      <Footer />
     </>
   );
 }

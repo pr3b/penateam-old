@@ -148,7 +148,7 @@ body h3 {
 .hero-button {
   width: 200px;
   background-color: #f39f21;
-  border-radius: 5px;
+  border-radius: 25px;
   padding: 10px;
   color: #fff;
   margin: 3rem 0 3rem 0;
@@ -253,6 +253,7 @@ body h3 {
 
 .slide {
   width: 100px;
+  margin: 1rem;
   display: grid;
   place-items: center;
   transition: 0.5s;
@@ -483,7 +484,7 @@ body h3 {
 
 .brand-button {
   background-color: #f39f21;
-  border-radius: 5px;
+  border-radius: 25px;
   width: 100%;
   padding: 10px;
   color: #fff;
@@ -629,7 +630,7 @@ body h3 {
 
 .benefit-button {
   background-color: #f39f21;
-  border-radius: 5px;
+  border-radius: 25px;
   width: 125px;
   padding: 10px;
   color: #fff;
@@ -934,7 +935,7 @@ body h3 {
 
 .work-button {
   background-color: #f39f21;
-  border-radius: 5px;
+  border-radius: 25px;
   width: 125px;
   padding: 10px;
   color: #fff;
@@ -1019,6 +1020,21 @@ body h3 {
   padding: 2rem 1rem 5rem 1rem;
 }
 
+.monthly {
+  color: #000;
+  background-color: #e8edf5;
+}
+
+.quarterly {
+  color: #000;
+  background-color: #f39f21;
+}
+
+.yearly {
+  color: #fff;
+  background-color: #282828;
+}
+
 .pricing-title-monthly {
   display: flex;
   justify-content: center;
@@ -1038,18 +1054,18 @@ body h3 {
   padding: 1rem;
   font-weight: 700;
   font-size: 20px;
-  color: #fff;
+  color: #000;
 }
 
 .pricing-title-yearly {
   display: flex;
   justify-content: center;
-  background-color: #e8edf5;
+  background-color: #282828;
   border-radius: 20px 20px 0 0;
   padding: 1rem;
   font-weight: 700;
   font-size: 20px;
-  color: #000;
+  color: #fff;
 }
 
 .price-wrap {
@@ -1073,7 +1089,8 @@ body h3 {
   width: 50px;
   height: 5px;
   border-radius: 10px;
-  background-color: #e8edf5;
+  background-color: #adadad;
+  opacity: 0.5;
   margin-bottom: 2rem;
 }
 
@@ -1081,6 +1098,7 @@ body h3 {
   width: 50px;
   height: 5px;
   border-radius: 10px;
+  opacity: 0.5;
   background-color: #e8edf5;
   margin-bottom: 2rem;
 }
@@ -1089,6 +1107,7 @@ body h3 {
   width: 50px;
   height: 5px;
   border-radius: 10px;
+  opacity: 0.5;
   background-color: #e8edf5;
   margin-bottom: 2rem;
 }
@@ -1107,27 +1126,27 @@ body h3 {
 }
 
 .pricing-button-monthly {
-  background-color: #e8edf5;
-  border-radius: 5px;
-  width: 125px;
+  background-color: #fff;
+  border-radius: 25px;
+  width: 250px;
   padding: 10px;
   color: #000;
   margin-bottom: 1rem;
 }
 
 .pricing-button-quarterly {
-  background-color: #f39f21;
-  border-radius: 5px;
-  width: 125px;
+  background-color: #000;
+  border-radius: 25px;
+  width: 250px;
   padding: 10px;
   color: #fff;
   margin-bottom: 1rem;
 }
 
 .pricing-button-yearly {
-  background-color: #e8edf5;
-  border-radius: 5px;
-  width: 125px;
+  background-color: #fff;
+  border-radius: 25px;
+  width: 250px;
   padding: 10px;
   color: #000;
   margin-bottom: 1rem;
@@ -1151,8 +1170,8 @@ body h3 {
 
 .most-popular {
   position: absolute;
-  left: 55%;
-  margin-top: 25rem;
+  left: 24%;
+  margin-top: 28rem;
   transform: rotate(15deg);
   width: 125px;
 }
@@ -1184,7 +1203,7 @@ body h3 {
 
 .referral-button {
   background-color: #fff;
-  border-radius: 5px;
+  border-radius: 25px;
   width: 125px;
   padding: 10px;
   color: #000000;
@@ -1229,6 +1248,53 @@ body h3 {
   box-shadow: none;
 }
 
+.workhero-container {
+  display: flex;
+  padding: 5rem;
+}
+
+.workhero h3 {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+
+.workhero p {
+  margin-bottom: 2rem;
+}
+
+.workcase-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f3f5f9;
+  padding: 5rem;
+}
+
+.workcase-card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 50px;
+}
+
+.workcase-card {
+  width: 350px;
+  height: 450px;
+  background-color: #fff;
+  border-radius: 20px;
+  padding-bottom: 2rem;
+}
+
+.pagination {
+  display: flex;
+  margin-top: 5rem;
+}
+
+.text-arrow {
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
 .footer-container {
   background-color: #000;
   color: #fff;
@@ -1267,7 +1333,7 @@ body h3 {
 
 .footer-button {
   background-color: #f39f21;
-  border-radius: 5px;
+  border-radius: 25px;
   width: 150px;
   padding: 10px;
   color: #fff;
@@ -1537,7 +1603,8 @@ body h3 {
   }
 
   .most-popular {
-    margin-top: 72rem;
+    margin-top: 25rem;
+    left: 55%;
   }
 
   .pricing-container {
@@ -1582,6 +1649,10 @@ body h3 {
 
   .faq-title-container h3 {
     width: 100%;
+  }
+
+  .css-1elwnq4-MuiPaper-root-MuiAccordion-root:before {
+    opacity: 0;
   }
 
   .footer-text h3 {

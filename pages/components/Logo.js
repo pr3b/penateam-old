@@ -48,9 +48,6 @@ function Logo() {
             <Image src={Ficx} width={60} alt="Ficx icon" />
           </div>
           <div className="slide">
-            <Image src={Ludeo} width={50} alt="Ludeo icon" />
-          </div>
-          <div className="slide">
             <Image src={Mojito} alt="Mojito icon" />
           </div>
           <div className="slide">
@@ -97,6 +94,9 @@ function Logo() {
           </div>
           <div className="slide">
             <Image src={Wia} width={50} alt="Wia icon" />
+          </div>
+          <div className="slide">
+            <Image src={Ludeo} width={50} alt="Ludeo icon" />
           </div>
         </div>
       </div>
