@@ -51,6 +51,7 @@ const PaymentSuccessX = ({ id }) => {
             padding: 20px;
             background-color: #f5f5f5;
             border-radius: 10px;
+            margin: 10%;
           }
           .dialog h1 {
             font-size: 32px;

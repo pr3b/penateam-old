@@ -26,7 +26,7 @@ export default function Home() {
       <div className="component-container">
         {/* <Navbar /> */}
         <Navbar2 />
-        <div style={{margin:"10%"}}>
+        <div>
           {isPaymentSuccess ? (
             <PaymentSuccessX id={isPaymentSuccess} />
           ):(
