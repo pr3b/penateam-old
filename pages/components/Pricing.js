@@ -86,54 +86,6 @@ function Pricing() {
               </div>
             </div>
           </div>
-          <div className="pricing-card">
-            <div className="pricing-title-quarterly">
-              <h4>Quarterly</h4>
-            </div>
-            <div className="card-bg">
-              <p style={{ padding: "20px 0 10px 0" }}>
-                Commit for 3 months. <br />
-                Paid monthly
-              </p>
-              <div className="price-wrap">
-                <div className="pricing-shape-quarterly"></div>
-                <div className="pricing-price">
-                  <h3>$2,500/month</h3>
-                  <p>Pause or cancel anytime</p>
-                </div>
-                <button 
-                  className="pricing-button-quarterly"
-                  onClick={(() => {checkout(
-                    {lineItems: [{price: "price_1NB7piAEioNEOHotkmpv3g0a", quantity: 1}]}
-                  )})}
-                >
-                  Choose Plan
-                </button>
-                <h5>Book a Call</h5>
-                <div className="pricing-divider"></div>
-                <div className="pricing-feature">
-                  <ul className="feature-list">
-                    <h6>What&rsquo;s included:</h6>
-                    <li>
-                      <p>- Unlimited requests</p>
-                    </li>
-                    <li>
-                      <p>- Unlimited brands</p>
-                    </li>
-                    <li>
-                      <p>- Unlimited users</p>
-                    </li>
-                    <li>
-                      <p>- Unlimited stock photos via Shutterstock</p>
-                    </li>
-                    <li>
-                      <p>- Pause or cancel anytime</p>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
           <Image className="most-popular" src={Popular} alt="Thumbs up icon" />
           <div className="pricing-card">
             <div className="pricing-title-quarterly">
@@ -147,13 +99,13 @@ function Pricing() {
               <div className="price-wrap">
                 <div className="pricing-shape-quarterly"></div>
                 <div className="pricing-price">
-                  <h3>$4,995/month</h3>
+                  <h3>$2,500/mont</h3>
                   <p>Pause or cancel anytime</p>
                 </div>
                 <button 
                   className="pricing-button-quarterly"
                   onClick={(() => {checkout(
-                    {lineItems: [{price: "price_1NAlMPAEioNEOHotlG7TzgF2", quantity: 1}]}
+                    {lineItems: [{price: "price_1NB7piAEioNEOHotkmpv3g0a", quantity: 1}]}
                   )})}
                 >
                   Choose Plan
