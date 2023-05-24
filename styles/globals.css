@@ -37,100 +37,105 @@ body h3 {
 
 /* Navbar */
 
-.nav__wrapper {
-  background: #f3f5f9;
-}
-
-.container {
-  max-width: 100%;
-}
-
-.nav {
+header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 80px;
   padding: 2rem 5rem 2rem 5rem;
 }
 
-.nav__brand {
-  font-size: 30px;
-  font-weight: 700;
-  color: #ddd;
+nav a {
+  margin: 0 1rem;
+  color: var(--textColor);
+  text-decoration: none;
 }
 
-.nav__brand img {
+nav a:hover {
+  color: var(--secondaryColor);
+}
+
+header .nav-btn {
+  padding: 5px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--textColor);
+  visibility: hidden;
+  opacity: 0;
+  font-size: 1.8rem;
+}
+
+header div,
+nav {
+  display: flex;
+  align-items: center;
+}
+
+@media only screen and (max-width: 1024px) {
+  header .nav-btn {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  header nav {
+    position: fixed;
+    top: -100vh;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    background-color: var(--mainColor);
+    transition: 1s;
+  }
+
+  header .responsive_nav {
+    transform: translateY(100vh);
+    background-color: #fff;
+    color: #000;
+    z-index: 99;
+  }
+
+  nav .nav-close-btn {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+  }
+
+  nav a {
+    font-size: 1.5rem;
+  }
+}
+
+.nav-logo {
   width: 100px;
 }
 
-.nav__menu {
+.nav-menu {
+  width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
-  gap: 3rem;
-}
-
-.nav__link {
-  color: #000;
-}
-
-.toggler__icon {
-  cursor: pointer;
-  display: none;
-}
-
-.toggler__icon div {
-  width: 25px;
-  height: 2px;
-  background: #ddd;
-  margin: 5px 0px;
-  transition: 0.3s ease;
-}
-
-@media screen and (max-width: 768px) {
-  .toggler__icon {
-    display: block;
-  }
-  .nav__menu {
-    position: fixed;
-    background: #f3f5f9;
-    flex-direction: column;
-    z-index: 10;
-    top: 10vh;
-    width: 50%;
-    height: 90vh;
-    right: 0;
-    transform: translateX(100%);
-    transition: 0.5s ease;
-  }
-}
-
-.nav__collapse {
-  transform: translateX(0%);
-}
-
-/* Toggle Icon Animation */
-.toggle .line__1 {
-  transform: translate(-5px, 7px) rotate(-45deg);
-}
-.toggle .line__2 {
-  opacity: 0;
-}
-.toggle .line__3 {
-  transform: translate(-5px, -7px) rotate(45deg);
+  justify-content: center;
+  padding: 1rem;
+  transition: 0.5s ease-in-out;
 }
 
 .home-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 5rem 0 5rem;
+  padding: 5rem;
 }
 
 .home-title {
-  font-family: "Monument Extended";
+  font-family: "Poppins", sans-serif;
   font-size: 3.5rem;
-  text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 500;
+  line-height: 70px;
   width: 70%;
 }
 
@@ -380,7 +385,7 @@ body h3 {
 }
 
 .developing-desc {
-  font-size: 1.2rem;
+  font-size: 25px;
 }
 
 .developing-typography {
@@ -448,7 +453,7 @@ body h3 {
 }
 
 .brand-desc {
-  font-size: 1.2rem;
+  font-size: 25px;
 }
 
 .brand-card-container {
@@ -946,7 +951,7 @@ body h3 {
   display: flex;
   background-color: #000000;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   color: #fff;
 }
 
@@ -981,7 +986,7 @@ body h3 {
 }
 
 .pricing-container {
-  padding: 10rem;
+  padding: 5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1003,15 +1008,21 @@ body h3 {
 
 .pricing-card-container {
   display: flex;
-  grid-gap: 5rem;
+  grid-gap: 2rem;
 }
 
 .pricing-card {
+  cursor: pointer;
   display: flex;
   flex-direction: column;
-  width: 350px;
-  height: 700px;
+  height: 100%;
   text-align: center;
+  opacity: 0.8;
+  transition: 0.5s ease-in-out;
+}
+
+.pricing-card:hover {
+  opacity: 1;
 }
 
 .card-bg {
@@ -1250,15 +1261,17 @@ body h3 {
 
 .workhero-container {
   display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 5rem;
 }
 
-.workhero h3 {
+.workhero-typography h3 {
   font-size: 3rem;
   margin-bottom: 2rem;
 }
 
-.workhero p {
+.workhero-typography p {
   margin-bottom: 2rem;
 }
 
@@ -1287,6 +1300,7 @@ body h3 {
 .pagination {
   display: flex;
   margin-top: 5rem;
+  grid-gap: 50px;
 }
 
 .text-arrow {
@@ -1322,9 +1336,8 @@ body h3 {
 .footer-text h3 {
   margin: 5rem 0 0 0;
   font-size: 4rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  font-family: "Monument Extended", sans-serif;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
 }
 
 .footer-text p {
@@ -1387,18 +1400,27 @@ body h3 {
 }
 
 @media only screen and (max-width: 1200px) {
+  header {
+    padding: 2rem;
+  }
+
   .nav {
     padding: 1rem 2rem 1rem 2rem;
+  }
+
+  .nav-menu:hover {
+    background-color: #f39f21;
   }
 
   .home-container {
     position: relative;
     z-index: 0;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
     padding: 2rem;
     margin-bottom: 2rem;
+    margin-top: 2rem;
   }
 
   .hero-typography {
@@ -1408,16 +1430,16 @@ body h3 {
   }
 
   .hero-typography p {
-    width: 100%;
-  }
-
-  .home-title {
     font-size: 25px;
     width: 100%;
   }
 
-  .home-title span {
-    display: none;
+  .home-title {
+    font-size: 40px;
+    line-height: 55px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    width: 100%;
   }
 
   .hero-button {
@@ -1464,12 +1486,39 @@ body h3 {
   }
 
   .brand-typography h3 {
-    font-size: 1.5rem;
+    font-size: 40px;
+    font-weight: 500;
     text-align: left;
   }
 
+  .brand-content {
+    height: auto;
+  }
+
+  .card {
+    height: auto !important;
+  }
+
   .certification-logo-container {
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 45px;
+  }
+
+  .certification-logo-cism {
+    width: 75px;
+  }
+  .certification-logo-itil {
+    width: 125px;
+  }
+  .certification-logo-pmp {
+    width: 75px;
+  }
+  .certification-logo-webflow {
+    width: 125px;
+  }
+  .certification-logo-gseasondocs {
+    width: 125px;
   }
 
   .certification-container {
@@ -1478,10 +1527,6 @@ body h3 {
 
   .certification-container h3 {
     margin-bottom: 5rem;
-  }
-
-  .certification-logo-container {
-    grid-gap: 50px;
   }
 
   .card {
@@ -1503,7 +1548,7 @@ body h3 {
 
   .benefit-card-container {
     padding: 2rem;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .benefit-typography {
@@ -1511,11 +1556,23 @@ body h3 {
   }
 
   .benefit-typography h3 {
-    font-size: 2rem;
+    font-size: 40px;
+    font-weight: 500;
   }
 
   .benefit-typography p {
-    font-size: 1.2rem;
+    font-size: 25px;
+  }
+
+  .benefit-card {
+    padding: 25px;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .benefit-card h4 {
+    font-size: 13px;
   }
 
   .webflow-container {
@@ -1529,7 +1586,8 @@ body h3 {
   }
 
   .developing-typography h3 {
-    font-size: 1.5rem;
+    font-size: 40px;
+    font-weight: 500;
     text-align: left;
   }
 
@@ -1546,7 +1604,13 @@ body h3 {
   }
 
   .developing-card {
+    text-align: center;
+    flex-direction: column;
     width: 300px;
+  }
+
+  .developing-gif {
+    margin: 0 0 2rem 0;
   }
 
   .collab-image {
@@ -1561,7 +1625,12 @@ body h3 {
   }
 
   .collab-text h3 {
-    font-size: 2.5rem;
+    font-weight: 500;
+    font-size: 40px;
+  }
+
+  .collab-text p {
+    font-size: 25px;
   }
 
   .collab-container {
@@ -1590,11 +1659,25 @@ body h3 {
   }
 
   .work-text h3 {
-    font-size: 2rem;
+    font-size: 40px;
+    font-weight: 500;
+  }
+
+  .work-container {
+    padding: 2rem;
+  }
+
+  .work-card-container {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .pricing-text h3 {
-    font-size: 2rem;
+    font-size: 40px;
+    font-weight: 500;
+  }
+
+  .pricing-text p {
+    font-size: 25px;
   }
 
   .pricing-card {
@@ -1635,11 +1718,12 @@ body h3 {
 
   .referral-text h4 {
     margin-bottom: 2rem;
-    font-size: 2rem;
+    font-weight: 500;
+    font-size: 40px;
   }
 
   .referral-text p {
-    font-size: 1.2rem;
+    font-size: 25px;
   }
 
   .faq-container {
@@ -1648,7 +1732,8 @@ body h3 {
   }
 
   .faq-container h3 {
-    font-size: 2rem;
+    font-size: 40px;
+    font-weight: 500;
   }
 
   .faq-title-container h3 {
@@ -1660,11 +1745,11 @@ body h3 {
   }
 
   .footer-text h3 {
-    font-size: 2rem;
+    font-size: 40px;
   }
 
   .footer-text p {
-    font-size: 1.2rem;
+    font-size: 25px;
   }
 
   .footer-shape {

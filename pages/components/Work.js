@@ -14,9 +14,7 @@ function Work() {
     <div id="work">
       <div className="work-container">
         <div className="work-text">
-          <h3>
-            Our <span style={{ color: "#f39f21" }}> Masterpiece </span>
-          </h3>
+          <h3>Our Masterpiece</h3>
         </div>
         <div className="work-card-container">
           <Image src={Oxla} alt="Oxla portfolio" />
