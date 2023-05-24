@@ -5,6 +5,7 @@ import Lowercost from "../../public/assets/images/icons/lowercost.png";
 import Fasthiring from "../../public/assets/images/icons/fasthiring.png";
 import Check from "../../public/assets/images/icons/check.png";
 import ImageText from "../../public/assets/images/icons/image-star.png";
+import Link from "next/link";
 
 function Brand() {
   return (
@@ -53,7 +54,9 @@ function Brand() {
               <p>Plus we hire each role uniquely based on your needs</p>
             </div>
           </div>
-          <button className="brand-button">Get Started</button>
+          <Link href={"#pricing"} scroll={false}>
+            <button className="brand-button">Get Started</button>
+          </Link>
         </div>
         <div className="card">
           <div className="card-title">
@@ -70,7 +73,9 @@ function Brand() {
               <p>Simple pricing: most roles are just $3,000 per month</p>
             </div>
           </div>
-          <button className="brand-button">Get Started</button>
+          <Link href={"#pricing"} scroll={false}>
+            <button className="brand-button">Get Started</button>
+          </Link>
         </div>
         <div className="card">
           <div className="card-title">
@@ -90,7 +95,9 @@ function Brand() {
               </p>
             </div>
           </div>
-          <button className="brand-button">Get Started</button>
+          <Link href={"#pricing"} scroll={false}>
+            <button className="brand-button">Get Started</button>
+          </Link>
         </div>
       </div>
     </div>
