@@ -1,19 +1,24 @@
 import Image from "next/image";
 import React, {useState, useEffect} from "react";
 import Popular from "../../public/assets/images/icons/popular.png";
-import { checkout, getProductQuantity } from "@/utils/stripe";
+import { checkout, displayProductQuantity } from "@/utils/stripe";
 import Link from "next/link";
 
 function Pricing() {
-  const [productQuantity, setProductQuantity] = useState(null);
+  const [productQuantityMonthly, setproductQuantityMonthly] = useState(null);
+  const [productQuantityQuarterly, setproductQuantityQuarterly] = useState(null);
+  const [productQuantityYearly, setproductQuantityYearly] = useState(null);
 
   useEffect(() => {
     async function fetchProductQuantity() {
       try {
-        // const quantity = 10;
-        const quantity = await getProductQuantity("prod_Nx1uVW1AZu2qKu");
-        // console.log(quantity, "product quantity 1")
-        setProductQuantity(quantity);
+        
+        const quantityMonth = await displayProductQuantity("prod_Nx1rngjF99Wgf1");
+        const quantityQuarterly = await displayProductQuantity("prod_Nx1t07LFmKsEaD");
+        const quantityYearly = await displayProductQuantity("prod_Nx1uVW1AZu2qKu");
+        setproductQuantityMonthly(quantityMonth)
+        setproductQuantityQuarterly(quantityQuarterly)
+        setproductQuantityYearly(quantityYearly);
       } catch (error) {
         console.error("Error fetching product quantity:", error);
       }
@@ -80,8 +85,7 @@ function Pricing() {
                   </ul>
                 </div>
                 <p className="limited-spot">
-                  {/* {productQuantity !== null ? `${productQuantity} Products left` : "Loading..."} */}
-                  Only 20 spots left this month
+                  {productQuantityMonthly !== null ? `Only ${productQuantityMonthly} spots left this month` : "Loading..."}
                 </p>
               </div>
             </div>
@@ -134,7 +138,9 @@ function Pricing() {
                     </li>
                   </ul>
                 </div>
-                <p className="limited-spot">Only 10 spots left this month</p>
+                <p className="limited-spot">
+                  {productQuantityQuarterly !== null ? `Only ${productQuantityQuarterly} spots left this month` : "Loading..."}
+                </p>
               </div>
             </div>
           </div>
@@ -184,7 +190,9 @@ function Pricing() {
                     </li>
                   </ul>
                 </div>
-                <p className="limited-spot">Only 10 spots left this month</p>
+                <p className="limited-spot">
+                  {productQuantityYearly !== null ? `Only ${productQuantityYearly} spots left this month` : "Loading..."}
+                </p>
               </div>
             </div>
           </div>
