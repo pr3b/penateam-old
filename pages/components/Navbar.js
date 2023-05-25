@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { useRouter } from "next/router";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
@@ -6,6 +7,7 @@ import Logo from "../../public/assets/images/logo/pena-text.png";
 
 function Navbar() {
   const navRef = useRef();
+  const { session_id } = useRouter().query;
 
   const showNavbar = () => {
     navRef.current.classList.toggle("responsive_nav");
@@ -63,6 +65,15 @@ function Navbar() {
         >
           Referral
         </Link>
+        {session_id && (
+          <Link
+            className="success"
+            href={`/payment-success?session_id=${session_id}`}
+            scroll={false}
+          >
+            .
+          </Link>
+        )}
         <button className="nav-btn nav-close-btn" onClick={showNavbar}>
           <FaTimes />
         </button>

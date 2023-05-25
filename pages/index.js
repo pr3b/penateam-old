@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Brand from "./components/Brand";
@@ -13,26 +14,34 @@ import Certification from "./components/Certification";
 import Webflow from "./components/Webflow";
 import Benefit from "./components/Benefit";
 import Developing from "./components/Developing";
-import Navbar2 from "./components/Navbar2";
+import PaymentSuccessX from "./PaymentSuccess";
 
 export default function Home() {
+  const router = useRouter();
+  const isPaymentSuccess = router.query.session_id != null;
+
   return (
     <>
       <Navbar />
-      {/* <Navbar2 /> */}
-      <Hero />
-      <Logo />
-      <Developing />
-      <Brand />
-      <Certification />
-      <Webflow />
-      <Benefit />
-      <Work />
-      <Collab />
-      <Pricing />
-      <Referral />
-      <FAQ />
-      <Footer />
+      {isPaymentSuccess ? (
+        <PaymentSuccessX id={isPaymentSuccess} />
+      ):(
+        <>
+          <Hero />
+          <Logo />
+          <Developing />
+          <Brand />
+          <Certification />
+          <Webflow />
+          <Benefit />
+          <Work />
+          <Collab />
+          <Pricing />
+          <Referral />
+          <FAQ />
+          <Footer />
+        </>
+      )}
     </>
   );
 }
