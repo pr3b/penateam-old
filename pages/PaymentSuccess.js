@@ -1,25 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import LoadingComponent from './components/utils/Loading';
 
 const PaymentSuccessX = ({ id }) => {
   const router = useRouter();
   const { session_id } = router.query;
   const [loading, setLoading] = useState(true);
   const [email, setEmail] = useState('');
+  const [amount, setAmount] = useState('')
+  const [userName, setUsername] = useState('')
+  const [invoice, setInvoice] = useState('')
+  const [date, setDate] = useState()
+  
+  const formatAmount = (data) => {
+    return (data / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+  }
+
+  const formatDate = (timestamp) => {
+    const date = new Date(timestamp * 1000);
+    const formattedDate = date.toLocaleDateString();
+    return formattedDate;
+  };
+
+  console.log(date, "format date")
 
   useEffect(() => {
     if (session_id && email) {
-      sendConfirmationEmail(email, session_id);
+      sendConfirmationEmail(email, session_id, amount, userName, invoice, date);
     }
-  }, [session_id, email]);
+  }, [session_id, email, amount, userName, invoice, date]);
 
   useEffect(() => {
     const fetchSession = async () => {
       try {
         const response = await axios.get(`/api/checkout_sessions/${session_id}`);
         const session = response.data;
+        console.log(session, "data session")
+        setUsername(session.customer_details.name)
         setEmail(session.customer_details.email);
+        setAmount(formatAmount(session.amount_total))
+        setInvoice(session.invoice)
+        setDate(formatDate(session.created))
         setLoading(false);
       } catch (error) {
         console.error('Error fetching session:', error);
@@ -31,9 +53,9 @@ const PaymentSuccessX = ({ id }) => {
     }
   }, [session_id]);
 
-  const sendConfirmationEmail = async (email, session_id) => {
+  const sendConfirmationEmail = async (email, session_id, amount, userName, invoice, date) => {
     try {
-      await axios.post("/api/mail", { email, session_id });
+      await axios.post("/api/mail", { email, session_id, amount, userName, invoice, date });
       console.log("Email sent");
     } catch (error) {
       console.error("Error sending email:", error);
@@ -45,7 +67,7 @@ const PaymentSuccessX = ({ id }) => {
   };
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <LoadingComponent />;
   }
 
   if (id) {
