@@ -23,31 +23,29 @@ export default function Home() {
 
   return (
     <>
-      <div className="component-container">
-        {/* <Navbar /> */}
-        <Navbar2 />
-        <div>
-          {isPaymentSuccess ? (
-            <PaymentSuccessX id={isPaymentSuccess} />
-          ):(
-            <>
-              <Hero />
-              <Logo />
-              {/* <About /> */}
-              <Developing />
-              <Brand />
-              <Certification />
-              <Webflow />
-              <Benefit />
-              <Work />
-              <Collab />
-              <Pricing />
-              <Referral />
-              <FAQ />
-              <Footer />
-            </>
-          )}
-        </div>
+      <Navbar />
+      {/* <Navbar2 /> */}
+      <div>
+        {isPaymentSuccess ? (
+          <PaymentSuccessX id={isPaymentSuccess} />
+        ) : (
+          <>
+            <Hero />
+            <Logo />
+            {/* <About /> */}
+            <Developing />
+            <Brand />
+            <Certification />
+            <Webflow />
+            <Benefit />
+            <Work />
+            <Collab />
+            <Pricing />
+            <Referral />
+            <FAQ />
+            <Footer />
+          </>
+        )}
       </div>
     </>
   );
