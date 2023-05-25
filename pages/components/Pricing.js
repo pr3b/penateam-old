@@ -79,9 +79,10 @@ function Pricing() {
                     </li>
                   </ul>
                 </div>
-                <h5 style={{marginTop:"1vw"}}>
+                <p className="limited-spot">
                   {/* {productQuantity !== null ? `${productQuantity} Products left` : "Loading..."} */}
-                </h5>
+                  Only 20 spots left this month
+                </p>
               </div>
             </div>
           </div>
@@ -98,7 +99,7 @@ function Pricing() {
               <div className="price-wrap">
                 <div className="pricing-shape-quarterly"></div>
                 <div className="pricing-price">
-                  <h3>$2,500/mont</h3>
+                  <h3>$2,500/month</h3>
                   <p>Pause or cancel anytime</p>
                 </div>
                 <button 
@@ -133,6 +134,7 @@ function Pricing() {
                     </li>
                   </ul>
                 </div>
+                <p className="limited-spot">Only 10 spots left this month</p>
               </div>
             </div>
           </div>
@@ -182,6 +184,7 @@ function Pricing() {
                     </li>
                   </ul>
                 </div>
+                <p className="limited-spot">Only 10 spots left this month</p>
               </div>
             </div>
           </div>
