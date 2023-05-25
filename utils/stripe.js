@@ -1,7 +1,6 @@
 import { loadStripe } from "@stripe/stripe-js";
 
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-// console.log(stripeKey, "stripe key")
+const stripeKey = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const getStripe = async () => {
   let stripePromis = null;
   if(!stripePromis){
@@ -12,7 +11,6 @@ const getStripe = async () => {
 
 export async function checkout({lineItems}){
   const stripe = await getStripe();
-  console.log(stripe, "stripe key 2")
   await stripe.redirectToCheckout({
     mode: "subscription",
     lineItems,
@@ -21,11 +19,10 @@ export async function checkout({lineItems}){
   })
 }
 
-export async function getProductQuantity(productId) {
+async function getProductQuantity(productId) {
   try {
-    const product = await stripe.products.retrieve(productId);
+    const product = await stripeKey.products.retrieve(productId);
     const quantityLimit = product.metadata.quantity;
-    console.log(quantityLimit, "quantity limit")
     return quantityLimit;
   } catch (error) {
     console.error('Error retrieving product quantity:', error);
@@ -34,11 +31,10 @@ export async function getProductQuantity(productId) {
 }
 
 
-// export async function displayProductQuantity(productId) {
-//   const quantity = await getProductQuantity(productId);
-//   if (quantity) {
-//     console.log('Product quantity:', quantity);
-//     // Update the UI with the quantity information
-//     return quantity;
-//   }
-// }
+export async function displayProductQuantity(productId) {
+  const quantity = await getProductQuantity(productId);
+  if (quantity) {
+    // Update the UI with the quantity information
+    return quantity;
+  }
+}
