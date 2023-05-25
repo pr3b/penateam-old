@@ -1,6 +1,6 @@
 import { loadStripe } from "@stripe/stripe-js";
 
-const stripeKey = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const stripeKey = require("stripe")(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
 const getStripe = async () => {
   let stripePromis = null;
   if(!stripePromis){
