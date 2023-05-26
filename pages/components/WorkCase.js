@@ -13,6 +13,7 @@ import Dock from "../../public/assets/images/portfolio/workcase/dock.png";
 import Canvas from "../../public/assets/images/portfolio/workcase/canvas.png";
 import Windward from "../../public/assets/images/portfolio/workcase/windward.png";
 import Polisiair from "../../public/assets/images/portfolio/workcase/polisiair.png";
+import Link from "next/link";
 
 function WorkCase() {
   const cardsPerPage = 6;
@@ -47,36 +48,42 @@ function WorkCase() {
   ].slice(startIndex, endIndex);
 
   return (
-    <div className="workcase-container">
-      <div className="workcase-card-container">
-        {visibleCards.map((card, index) => (
-          <div className="workcase-card" key={index}>
-            <Image src={card.image} alt={`${card.title} Logo`} />
-            <div className="text-arrow">
-              <p>{card.title}</p>
-              <Image src={Arrow} alt="Arrow shape" />
+    <div id="workcase">
+      <div className="workcase-container">
+        <div className="workcase-card-container">
+          {visibleCards.map((card, index) => (
+            <div className="workcase-card" key={index}>
+              <Image src={card.image} alt={`${card.title} Logo`} />
+              <div className="text-arrow">
+                <p>{card.title}</p>
+                <Image src={Arrow} alt="Arrow shape" />
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
-      <div className="pagination">
-        <button
-          className="previous-button"
-          onClick={handlePreviousPage}
-          disabled={currentPage === 1}
-        >
-          Previous
-        </button>
-        <span className="page-number">
-          Page {currentPage} of {totalPages}
-        </span>
-        <button
-          className="next-button"
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages}
-        >
-          Next
-        </button>
+          ))}
+        </div>
+        <div className="pagination">
+          <button
+            className="previous-button"
+            onClick={handlePreviousPage}
+            disabled={currentPage === 1}
+          >
+            <Link href="#workcase" scroll={false}>
+              Previous
+            </Link>
+          </button>
+          <span className="page-number">
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            className="next-button"
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+          >
+            <Link href="#workcase" scroll={false}>
+              Next
+            </Link>
+          </button>
+        </div>
       </div>
     </div>
   );
