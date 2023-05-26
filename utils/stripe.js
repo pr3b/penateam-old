@@ -10,19 +10,13 @@ const getStripe = async () => {
 }
 
 export async function checkout({lineItems}, idProduct){
-  try {
-    const stripe = await getStripe();
-    const success = await stripe.redirectToCheckout({
+  const stripe = await getStripe();
+    await stripe.redirectToCheckout({
       mode: "subscription",
       lineItems,
-      successUrl: `${window.location.origin}?session_id={CHECKOUT_SESSION_ID}`,
+      successUrl: `${window.location.origin}?session_id={CHECKOUT_SESSION_ID}&&product_id=${idProduct}`,
       cancelUrl: window.location.origin,
     })
-    return success;
-  } catch (error) {
-    console.error('Error to processing checkout:', error);
-    return null;
-  }
 }
 
 async function getProductQuantity(productId) {
