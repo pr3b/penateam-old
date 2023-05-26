@@ -15,7 +15,7 @@ export async function checkout({lineItems}, idProduct){
     const success = await stripe.redirectToCheckout({
       mode: "subscription",
       lineItems,
-      successUrl: `${window.location.origin}?session_id={CHECKOUT_SESSION_ID}&&product_id=${idProduct}`,
+      successUrl: `${window.location.origin}?session_id={CHECKOUT_SESSION_ID}`,
       cancelUrl: window.location.origin,
     })
     return success;
