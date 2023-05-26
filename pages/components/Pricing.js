@@ -8,14 +8,20 @@ function Pricing() {
   const [productQuantityMonthly, setproductQuantityMonthly] = useState(null);
   const [productQuantityQuarterly, setproductQuantityQuarterly] = useState(null);
   const [productQuantityYearly, setproductQuantityYearly] = useState(null);
+  const monthly = "prod_Nx1rngjF99Wgf1";
+  const quarterly = "prod_Nx1t07LFmKsEaD";
+  const yearly = "prod_Nx1uVW1AZu2qKu"
+
+  const handleClick = (idPrice, idProduct) => {
+    checkout({lineItems: [{price: idPrice, quantity: 1}]}, idProduct);
+  }
 
   useEffect(() => {
     async function fetchProductQuantity() {
       try {
-        
-        const quantityMonth = await displayProductQuantity("prod_Nx1rngjF99Wgf1");
-        const quantityQuarterly = await displayProductQuantity("prod_Nx1t07LFmKsEaD");
-        const quantityYearly = await displayProductQuantity("prod_Nx1uVW1AZu2qKu");
+        const quantityMonth = await displayProductQuantity(monthly);
+        const quantityQuarterly = await displayProductQuantity(quarterly);
+        const quantityYearly = await displayProductQuantity(yearly);
         setproductQuantityMonthly(quantityMonth)
         setproductQuantityQuarterly(quantityQuarterly)
         setproductQuantityYearly(quantityYearly);
@@ -56,9 +62,7 @@ function Pricing() {
                 </div>
                 <button 
                   className="pricing-button-monthly" 
-                  onClick={(() => {checkout(
-                    {lineItems: [{price: "price_1NB7oEAEioNEOHotyEOXyMz6", quantity: 1}]}
-                  )})}
+                  onClick={() => handleClick("price_1NB7oEAEioNEOHotyEOXyMz6", monthly)}
                 >Choose Plan</button>
                 <Link href="http://calendly.com/cahyosubroto">
                   <h5>Book a Call</h5>
@@ -108,9 +112,7 @@ function Pricing() {
                 </div>
                 <button 
                   className="pricing-button-quarterly"
-                  onClick={(() => {checkout(
-                    {lineItems: [{price: "price_1NB7piAEioNEOHotkmpv3g0a", quantity: 1}]}
-                  )})}
+                  onClick={() => handleClick("price_1NB7piAEioNEOHotkmpv3g0a", quarterly)}
                 >
                   Choose Plan
                 </button>
@@ -162,9 +164,7 @@ function Pricing() {
                 </div>
                 <button 
                   className="pricing-button-yearly"
-                  onClick={(() => {checkout(
-                    {lineItems: [{price: "price_1NB7qbAEioNEOHotvwkIc3bh", quantity: 1}]}
-                  )})}
+                  onClick={() => handleClick("price_1NB7qbAEioNEOHotvwkIc3bh", yearly)}
                 >Choose Plan</button>
                 <Link href="http://calendly.com/cahyosubroto">
                   <h5>Book a Call</h5>

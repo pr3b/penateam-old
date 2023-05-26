@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import LoadingComponent from './components/utils/Loading';
+import { soldTracker } from '@/utils/stripe';
 
 const PaymentSuccessX = ({ id }) => {
   const router = useRouter();
-  const { session_id } = router.query;
+  const { session_id, product_id } = router.query;
   const [loading, setLoading] = useState(true);
   const [email, setEmail] = useState('');
   const [amount, setAmount] = useState('')
@@ -23,8 +24,6 @@ const PaymentSuccessX = ({ id }) => {
     return formattedDate;
   };
 
-  console.log(date, "format date")
-
   useEffect(() => {
     if (session_id && email) {
       sendConfirmationEmail(email, session_id, amount, userName, invoice, date);
@@ -36,7 +35,7 @@ const PaymentSuccessX = ({ id }) => {
       try {
         const response = await axios.get(`/api/checkout_sessions/${session_id}`);
         const session = response.data;
-        console.log(session, "data session")
+        soldTracker(product_id, 1);
         setUsername(session.customer_details.name)
         setEmail(session.customer_details.email);
         setAmount(formatAmount(session.amount_total))
@@ -51,12 +50,11 @@ const PaymentSuccessX = ({ id }) => {
     if (session_id) {
       fetchSession();
     }
-  }, [session_id]);
+  }, [session_id, product_id]);
 
   const sendConfirmationEmail = async (email, session_id, amount, userName, invoice, date) => {
     try {
       await axios.post("/api/mail", { email, session_id, amount, userName, invoice, date });
-      console.log("Email sent");
     } catch (error) {
       console.error("Error sending email:", error);
     }
