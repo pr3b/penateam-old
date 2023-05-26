@@ -32,25 +32,25 @@ function Brand() {
           <div className="brand-content">
             <p>We cover full documentation service include</p>
             <div className="brand-card-list">
-              <Image src={Check} alt="Check icon" />
+              <Image className="check-icon" src={Check} alt="Check icon" />
               <p>Project Management</p>
             </div>
             <div className="brand-card-list">
-              <Image src={Check} alt="Checklist" />
+              <Image className="check-icon" src={Check} alt="Check icon" />
               <p>Content Development</p>
             </div>
             <div className="brand-card-list">
-              <Image src={Check} alt="Checklist" />
+              <Image className="check-icon" src={Check} alt="Check icon" />
               <p>Graphic design for technical diagrams</p>
             </div>
             <div className="brand-card-list">
-              <Image src={Check} alt="Checklist" />
+              <Image className="check-icon" src={Check} alt="Check icon" />
               <p>
                 All the front-end works to deploy the technical documentation
               </p>
             </div>
             <div className="brand-card-list">
-              <Image src={Check} alt="Checklist" />
+              <Image className="check-icon" src={Check} alt="Check icon" />
               <p>Plus we hire each role uniquely based on your needs</p>
             </div>
           </div>
@@ -69,7 +69,7 @@ function Brand() {
           <div className="brand-content">
             <p>Work with Pena compared to entry-level US talent</p>
             <div className="brand-card-list">
-              <Image src={Check} alt="Check icon" />
+              <Image className="check-icon" src={Check} alt="Check icon" />
               <p>Simple pricing: most roles are just $3,000 per month</p>
             </div>
           </div>
@@ -88,7 +88,7 @@ function Brand() {
           <div className="brand-content">
             <p>Subscribe now for immediate assistance from our team</p>
             <div className="brand-card-list">
-              <Image src={Check} alt="Check icon" />
+              <Image className="check-icon" src={Check} alt="Check icon" />
               <p>
                 All of the sourcing, interviewing and vetting process is done
                 for you

@@ -27,76 +27,230 @@ import Buildify from "../../public/assets/images/logo/client-logo/logo-white/bui
 function Logo() {
   return (
     <>
-      <div className="slider">
-        <div className="slide-track">
-          <div className="slide">
-            <Image src={ChainEngine} alt="ChainEngine icon" />
+      <div className="marquee-container">
+        <div className="trusted">
+          <p>
+            Trusted by <span style={{ fontWeight: "700" }}> 30+</span> companies
+            across the globe
+          </p>
+        </div>
+        <div className="slider">
+          <div className="slide-track">
+            <div className="slide">
+              <Image src={ChainEngine} alt="ChainEngine icon" />
+            </div>
+            <div className="slide">
+              <Image src={Cymbio} alt="Cymbio icon" />
+            </div>
+            <div className="slide">
+              <Image src={Dialog} alt="Dialog icon" />
+            </div>
+            <div className="slide">
+              <Image src={Dock} alt="Dock icon" />
+            </div>
+            <div className="slide">
+              <Image src={Draftbit} alt="Draftbit icon" />
+            </div>
+            <div className="slide">
+              <Image src={Ficx} width={60} alt="Ficx icon" />
+            </div>
+            <div className="slide">
+              <Image src={Mojito} alt="Mojito icon" />
+            </div>
+            <div className="slide">
+              <Image src={Ocr} alt="Ocr icon" />
+            </div>
+            <div className="slide">
+              <Image src={Oxla} alt="Oxla icon" />
+            </div>
+            <div className="slide">
+              <Image src={Polisiair} alt="Polisiair icon" />
+            </div>
+            <div className="slide">
+              <Image src={Prepr} alt="Prepr icon" />
+            </div>
+            <div className="slide">
+              <Image src={Rms} alt="Rms icon" />
+            </div>
+            <div className="slide">
+              <Image src={Rpa} width={60} alt="Rpa icon" />
+            </div>
+            <div className="slide">
+              <Image src={Skype} width={50} alt="Skype icon" />
+            </div>
+            <div className="slide">
+              <Image src={Tetsuyu} width={40} alt="Tetsuyu icon" />
+            </div>
+            <div className="slide">
+              <Image src={Vonigo} alt="Vonigo icon" />
+            </div>
+            <div className="slide">
+              <Image src={Windward} alt="Windward icon" />
+            </div>
+            <div className="slide">
+              <Image src={Babylon} alt="Babylon icon" />
+            </div>
+            <div className="slide">
+              <Image src={Buildify} alt="Buildify icon" />
+            </div>
+            <div className="slide">
+              <Image src={Microsoft} alt="Microsoft icon" />
+            </div>
+            <div className="slide">
+              <Image src={Rippey} alt="Rippey icon" />
+            </div>
+            <div className="slide">
+              <Image src={Wia} width={50} alt="Wia icon" />
+            </div>
+            <div className="slide">
+              <Image src={Ludeo} width={50} alt="Ludeo icon" />
+            </div>
           </div>
-          <div className="slide">
-            <Image src={Cymbio} alt="Cymbio icon" />
+        </div>
+        <div className="slider-mobile-1">
+          <div className="slide-track-mobile-1">
+            <div className="slide">
+              <Image src={ChainEngine} alt="ChainEngine icon" />
+            </div>
+            <div className="slide">
+              <Image src={Cymbio} alt="Cymbio icon" />
+            </div>
+            <div className="slide">
+              <Image src={Dialog} alt="Dialog icon" />
+            </div>
+            <div className="slide">
+              <Image src={Dock} alt="Dock icon" />
+            </div>
+            <div className="slide">
+              <Image src={Draftbit} alt="Draftbit icon" />
+            </div>
+            <div className="slide">
+              <Image src={Ficx} width={60} alt="Ficx icon" />
+            </div>
+            <div className="slide">
+              <Image src={Mojito} alt="Mojito icon" />
+            </div>
+            <div className="slide">
+              <Image src={Ocr} alt="Ocr icon" />
+            </div>
+            <div className="slide">
+              <Image src={Oxla} alt="Oxla icon" />
+            </div>
+            <div className="slide">
+              <Image src={Polisiair} alt="Polisiair icon" />
+            </div>
+            <div className="slide">
+              <Image src={Prepr} alt="Prepr icon" />
+            </div>
+            <div className="slide">
+              <Image src={Rms} alt="Rms icon" />
+            </div>
+            <div className="slide">
+              <Image src={Rpa} width={60} alt="Rpa icon" />
+            </div>
+            <div className="slide">
+              <Image src={Skype} width={50} alt="Skype icon" />
+            </div>
+            <div className="slide">
+              <Image src={Tetsuyu} width={40} alt="Tetsuyu icon" />
+            </div>
+            <div className="slide">
+              <Image src={Vonigo} alt="Vonigo icon" />
+            </div>
+            <div className="slide">
+              <Image src={Windward} alt="Windward icon" />
+            </div>
+            <div className="slide">
+              <Image src={Babylon} alt="Babylon icon" />
+            </div>
+            <div className="slide">
+              <Image src={Buildify} alt="Buildify icon" />
+            </div>
+            <div className="slide">
+              <Image src={Microsoft} alt="Microsoft icon" />
+            </div>
+            <div className="slide">
+              <Image src={Rippey} alt="Rippey icon" />
+            </div>
+            <div className="slide">
+              <Image src={Wia} width={50} alt="Wia icon" />
+            </div>
+            <div className="slide">
+              <Image src={Ludeo} width={50} alt="Ludeo icon" />
+            </div>
           </div>
-          <div className="slide">
-            <Image src={Dialog} alt="Dialog icon" />
-          </div>
-          <div className="slide">
-            <Image src={Dock} alt="Dock icon" />
-          </div>
-          <div className="slide">
-            <Image src={Draftbit} alt="Draftbit icon" />
-          </div>
-          <div className="slide">
-            <Image src={Ficx} width={60} alt="Ficx icon" />
-          </div>
-          <div className="slide">
-            <Image src={Mojito} alt="Mojito icon" />
-          </div>
-          <div className="slide">
-            <Image src={Ocr} alt="Ocr icon" />
-          </div>
-          <div className="slide">
-            <Image src={Oxla} alt="Oxla icon" />
-          </div>
-          <div className="slide">
-            <Image src={Polisiair} alt="Polisiair icon" />
-          </div>
-          <div className="slide">
-            <Image src={Prepr} alt="Prepr icon" />
-          </div>
-          <div className="slide">
-            <Image src={Rms} alt="Rms icon" />
-          </div>
-          <div className="slide">
-            <Image src={Rpa} width={60} alt="Rpa icon" />
-          </div>
-          <div className="slide">
-            <Image src={Skype} width={50} alt="Skype icon" />
-          </div>
-          <div className="slide">
-            <Image src={Tetsuyu} width={40} alt="Tetsuyu icon" />
-          </div>
-          <div className="slide">
-            <Image src={Vonigo} alt="Vonigo icon" />
-          </div>
-          <div className="slide">
-            <Image src={Windward} alt="Windward icon" />
-          </div>
-          <div className="slide">
-            <Image src={Babylon} alt="Babylon icon" />
-          </div>
-          <div className="slide">
-            <Image src={Buildify} alt="Buildify icon" />
-          </div>
-          <div className="slide">
-            <Image src={Microsoft} alt="Microsoft icon" />
-          </div>
-          <div className="slide">
-            <Image src={Rippey} alt="Rippey icon" />
-          </div>
-          <div className="slide">
-            <Image src={Wia} width={50} alt="Wia icon" />
-          </div>
-          <div className="slide">
-            <Image src={Ludeo} width={50} alt="Ludeo icon" />
+        </div>
+        <div className="slider-mobile-2">
+          <div className="slide-track">
+            <div className="slide">
+              <Image src={ChainEngine} alt="ChainEngine icon" />
+            </div>
+            <div className="slide">
+              <Image src={Cymbio} alt="Cymbio icon" />
+            </div>
+            <div className="slide">
+              <Image src={Dialog} alt="Dialog icon" />
+            </div>
+            <div className="slide">
+              <Image src={Dock} alt="Dock icon" />
+            </div>
+            <div className="slide">
+              <Image src={Draftbit} alt="Draftbit icon" />
+            </div>
+            <div className="slide">
+              <Image src={Ficx} width={60} alt="Ficx icon" />
+            </div>
+            <div className="slide">
+              <Image src={Mojito} alt="Mojito icon" />
+            </div>
+            <div className="slide">
+              <Image src={Ocr} alt="Ocr icon" />
+            </div>
+            <div className="slide">
+              <Image src={Oxla} alt="Oxla icon" />
+            </div>
+            <div className="slide">
+              <Image src={Polisiair} alt="Polisiair icon" />
+            </div>
+            <div className="slide">
+              <Image src={Prepr} alt="Prepr icon" />
+            </div>
+            <div className="slide">
+              <Image src={Rms} alt="Rms icon" />
+            </div>
+            <div className="slide">
+              <Image src={Rpa} width={60} alt="Rpa icon" />
+            </div>
+            <div className="slide">
+              <Image src={Skype} width={50} alt="Skype icon" />
+            </div>
+            <div className="slide">
+              <Image src={Tetsuyu} width={40} alt="Tetsuyu icon" />
+            </div>
+            <div className="slide">
+              <Image src={Vonigo} alt="Vonigo icon" />
+            </div>
+            <div className="slide">
+              <Image src={Windward} alt="Windward icon" />
+            </div>
+            <div className="slide">
+              <Image src={Babylon} alt="Babylon icon" />
+            </div>
+            <div className="slide">
+              <Image src={Buildify} alt="Buildify icon" />
+            </div>
+            <div className="slide">
+              <Image src={Microsoft} alt="Microsoft icon" />
+            </div>
+            <div className="slide">
+              <Image src={Rippey} alt="Rippey icon" />
+            </div>
+            <div className="slide">
+              <Image src={Wia} width={50} alt="Wia icon" />
+            </div>
+            <div className="slide">
+              <Image src={Ludeo} width={50} alt="Ludeo icon" />
+            </div>
           </div>
         </div>
       </div>
