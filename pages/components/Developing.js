@@ -15,7 +15,12 @@ function Developing() {
         </h3>
         <p className="developing-desc">
           Pena provides a solution for businesses struggling to hire
-          high-quality technical writers for short-term projects.
+          high-quality technical writers for short-term projects. Say goodbye to
+          unreliable freelancers and expensive commitments by subscribing to
+          Pena for a monthly fee. Our team of expert technical writers can be
+          onboarded quickly and deliver excellent technical documentation at
+          lightning speed, allowing your developers to focus on what really
+          matters - creating great products.
         </p>
       </div>
       <div className="developing-card-container">

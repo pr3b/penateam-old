@@ -23,25 +23,29 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      {isPaymentSuccess ? (
-        <PaymentSuccessX id={isPaymentSuccess} />
-      ):(
-        <>
-          <Hero />
-          <Logo />
-          <Developing />
-          <Brand />
-          <Certification />
-          <Webflow />
-          <Benefit />
-          <Work />
-          <Collab />
-          <Pricing />
-          <Referral />
-          <FAQ />
-          <Footer />
-        </>
-      )}
+      {/* <Navbar2 /> */}
+      <div>
+        {isPaymentSuccess ? (
+          <PaymentSuccessX id={isPaymentSuccess} />
+        ) : (
+          <>
+            <Hero />
+            <Logo />
+            {/* <About /> */}
+            <Developing />
+            <Brand />
+            <Certification />
+            <Webflow />
+            <Benefit />
+            <Work />
+            <Collab />
+            <Pricing />
+            <Referral />
+            <FAQ />
+            <Footer />
+          </>
+        )}
+      </div>
     </>
   );
 }
