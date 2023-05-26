@@ -14,7 +14,6 @@ import Certification from "./components/Certification";
 import Webflow from "./components/Webflow";
 import Benefit from "./components/Benefit";
 import Developing from "./components/Developing";
-import Navbar2 from "./components/Navbar2";
 import PaymentSuccessX from "./PaymentSuccess";
 
 export default function Home() {
