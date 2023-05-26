@@ -9,12 +9,6 @@ const PaymentSuccessX = ({ id }) => {
   const [email, setEmail] = useState('');
 
   useEffect(() => {
-    if (session_id && email) {
-      sendConfirmationEmail(email, session_id);
-    }
-  }, [session_id, email]);
-
-  useEffect(() => {
     const fetchSession = async () => {
       try {
         const response = await axios.get(`/api/checkout_sessions/${session_id}`);
@@ -31,15 +25,6 @@ const PaymentSuccessX = ({ id }) => {
     }
   }, [session_id]);
 
-  const sendConfirmationEmail = async (email, session_id) => {
-    try {
-      await axios.post("/api/mail", { email, session_id });
-      console.log("Email sent");
-    } catch (error) {
-      console.error("Error sending email:", error);
-    }
-  };
-
   const handleGoHome = () => {
     router.push('/');
   };
@@ -53,7 +38,7 @@ const PaymentSuccessX = ({ id }) => {
       <div className="dialog">
         <h1>Payment Successful!</h1>
         <p>You can go to check your Email!</p>
-        <p>Email Registered: {email}</p>
+        <p>Email: {email}</p>
         <p>Session ID: {session_id.slice(0, 20) + `...`}</p>
         <button onClick={handleGoHome}>Go to Homepage</button>
 

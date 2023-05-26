@@ -28,11 +28,13 @@ function Logo() {
   return (
     <>
       <div className="marquee-container">
-        <div className="trusted">
-          <p>
-            Trusted by <span style={{ fontWeight: "700" }}> 30+</span> companies
-            across the globe
-          </p>
+        <div data-aos="fade-up">
+          <div className="trusted">
+            <p>
+              Trusted by <span style={{ fontWeight: "700" }}> 30+</span>{" "}
+              companies across the globe
+            </p>
+          </div>
         </div>
         <div className="slider">
           <div className="slide-track">
