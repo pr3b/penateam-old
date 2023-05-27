@@ -11,9 +11,10 @@ function Pricing() {
   const monthly = "prod_Nx1rngjF99Wgf1";
   const quarterly = "prod_Nx1t07LFmKsEaD";
   const yearly = "prod_Nx1uVW1AZu2qKu"
+  const yearlyCoupon = "H2AlML2r"
 
-  const handleClick = (idPrice, idProduct) => {
-    checkout({lineItems: [{price: idPrice, quantity: 1}]}, idProduct);
+  const handleClick = (idPrice, idProduct, propsCoupon) => {
+    checkout({lineItems: [{price: idPrice, quantity: 1}], discounts: [{coupon: propsCoupon,}]}, idProduct);
   }
 
   useEffect(() => {
@@ -163,9 +164,9 @@ function Pricing() {
                   <p>Pause or cancel anytime</p>
                 </div>
                 <button 
-                  className="pricing-button-yearly"
-                  onClick={() => handleClick("price_1NB7qbAEioNEOHotvwkIc3bh", yearly)}
-                >Choose Plan</button>
+                    className="pricing-button-yearly"
+                    onClick={() => handleClick("price_1NB7qbAEioNEOHotvwkIc3bh", yearly, yearlyCoupon)}
+                  >Choose Plan</button>
                 <Link href="http://calendly.com/cahyosubroto">
                   <h5>Book a Call</h5>
                 </Link>
