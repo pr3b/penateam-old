@@ -9,14 +9,29 @@ const getStripe = async () => {
   return stripePromis;
 }
 
-export async function checkout({lineItems}, idProduct){
+export async function checkout({lineItems, discounts}, idProduct){
   const stripe = await getStripe();
-    await stripe.redirectToCheckout({
+  const sessionId = await getCheckoutSessionCreated({lineItems, discounts}, idProduct)
+  await stripe.redirectToCheckout({
+   sessionId: sessionId
+  })
+}
+
+async function getCheckoutSessionCreated({lineItems, discounts}, idProduct){
+  try {
+    const session = await stripePublic.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: lineItems,
       mode: "subscription",
-      lineItems,
-      successUrl: `${window.location.origin}?session_id={CHECKOUT_SESSION_ID}&&product_id=${idProduct}`,
-      cancelUrl: window.location.origin,
+      discounts: discounts,
+      success_url: `${window.location.origin}?session_id={CHECKOUT_SESSION_ID}&&product_id=${idProduct}`,
+      cancel_url: window.location.origin,
     })
+    return session.id;
+  } catch (error) {
+    console.error('Error creating checkout session:', error);
+    return null;
+  }
 }
 
 async function getProductQuantity(productId) {
