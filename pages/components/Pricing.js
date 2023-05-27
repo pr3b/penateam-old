@@ -163,10 +163,17 @@ function Pricing() {
                   <h3>$2,000/month</h3>
                   <p>Pause or cancel anytime</p>
                 </div>
-                <button 
+                {productQuantityYearly !== 0? (
+                  <button 
                     className="pricing-button-yearly"
                     onClick={() => handleClick("price_1NB7qbAEioNEOHotvwkIc3bh", yearly, yearlyCoupon)}
                   >Choose Plan</button>
+                ):(
+                  <button 
+                    className="pricing-button-yearly"
+                    disabled
+                  >Product Sold</button>
+                )}
                 <Link href="http://calendly.com/cahyosubroto">
                   <h5>Book a Call</h5>
                 </Link>
