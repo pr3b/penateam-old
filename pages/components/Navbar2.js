@@ -4,8 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "../../public/assets/images/logo/pena-text.png";
 
-import { useRouter } from "next/router";
-
 const Navbar2 = () => {
   const [collapse, setCollapse] = useState("nav__menu");
   const [toggleIcon, setToggleIcon] = useState("toggler__icon");

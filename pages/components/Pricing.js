@@ -95,6 +95,7 @@ function Pricing() {
                   </div>
                   <p className="limited-spot">
                     {productQuantityMonthly !== null ? `Only ${productQuantityMonthly} spots left this month` : "Loading..."}
+                  </p>
                 </div>
               </div>
             </div>
