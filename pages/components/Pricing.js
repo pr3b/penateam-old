@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Popular from "../../public/assets/images/icons/popular.png";
 import { checkout, displayProductQuantity } from "@/utils/stripe";
 import Link from "next/link";
@@ -65,10 +65,12 @@ function Pricing() {
                     <h3>$3,000/month</h3>
                     <p>Pause or cancel anytime</p>
                   </div>
-                  <button 
-                    className="pricing-button-monthly" 
+                  <button
+                    className="pricing-button-monthly"
                     onClick={() => handleClick("price_1NB7oEAEioNEOHotyEOXyMz6", monthly)}
-                  >Choose Plan</button>
+                  >
+                    Choose Plan
+                  </button>
                   <Link href="http://calendly.com/cahyosubroto">
                     <h5>Book a Call</h5>
                   </Link>
@@ -95,6 +97,7 @@ function Pricing() {
                   </div>
                   <p className="limited-spot">
                     {productQuantityMonthly !== null ? `Only ${productQuantityMonthly} spots left this month` : "Loading..."}
+                  </p>
                 </div>
               </div>
             </div>
@@ -109,7 +112,7 @@ function Pricing() {
             </div>
           </div>
           <div data-aos="fade-up">
-           <div className="pricing-card">
+            <div className="pricing-card">
               <div className="pricing-title-quarterly">
                 <h4>Quarterly</h4>
               </div>
@@ -124,7 +127,7 @@ function Pricing() {
                     <h3>$2,500/month</h3>
                     <p>Pause or cancel anytime</p>
                   </div>
-                  <button 
+                  <button
                     className="pricing-button-quarterly"
                     onClick={() => handleClick("price_1NB7piAEioNEOHotkmpv3g0a", quarterly)}
                   >
@@ -174,7 +177,7 @@ function Pricing() {
                 <div className="price-wrap">
                   <div className="pricing-shape-yearly"></div>
                   <div className="pricing-price">
-                    <h3>$2,000/month</h3>
+                    <h3>$4,995/month</h3>
                     <p>Pause or cancel anytime</p>
                   </div>
                   {productQuantityYearly !== 0? (
