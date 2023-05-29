@@ -1,7 +1,6 @@
 import { loadStripe } from "@stripe/stripe-js";
 
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-// console.log(stripeKey, "stripe key")
+const stripePublic = require("stripe")(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
 const getStripe = async () => {
   let stripePromis = null;
   if(!stripePromis){
@@ -10,22 +9,35 @@ const getStripe = async () => {
   return stripePromis;
 }
 
-export async function checkout({lineItems}){
+export async function checkout({lineItems, discounts}, idProduct){
   const stripe = await getStripe();
-  console.log(stripe, "stripe key 2")
+  const sessionId = await getCheckoutSessionCreated({lineItems, discounts}, idProduct)
   await stripe.redirectToCheckout({
-    mode: "subscription",
-    lineItems,
-    successUrl: `${window.location.origin}?session_id={CHECKOUT_SESSION_ID}`,
-    cancelUrl: window.location.origin,
+   sessionId: sessionId
   })
 }
 
-export async function getProductQuantity(productId) {
+async function getCheckoutSessionCreated({lineItems, discounts}, idProduct){
   try {
-    const product = await stripe.products.retrieve(productId);
+    const session = await stripePublic.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: lineItems,
+      mode: "subscription",
+      discounts: discounts,
+      success_url: `${window.location.origin}?session_id={CHECKOUT_SESSION_ID}&&product_id=${idProduct}`,
+      cancel_url: window.location.origin,
+    })
+    return session.id;
+  } catch (error) {
+    console.error('Error creating checkout session:', error);
+    return null;
+  }
+}
+
+async function getProductQuantity(productId) {
+  try {
+    const product = await stripePublic.products.retrieve(productId);
     const quantityLimit = product.metadata.quantity;
-    console.log(quantityLimit, "quantity limit")
     return quantityLimit;
   } catch (error) {
     console.error('Error retrieving product quantity:', error);
@@ -34,11 +46,26 @@ export async function getProductQuantity(productId) {
 }
 
 
-// export async function displayProductQuantity(productId) {
-//   const quantity = await getProductQuantity(productId);
-//   if (quantity) {
-//     console.log('Product quantity:', quantity);
-//     // Update the UI with the quantity information
-//     return quantity;
-//   }
-// }
+export async function displayProductQuantity(productId) {
+  const quantity = await getProductQuantity(productId);
+  if (quantity) {
+    // Update the UI with the quantity information
+    return quantity;
+  }
+}
+
+export async function soldTracker(productId, decreaseAmount) {
+  try {
+    const product = await stripePublic.products.retrieve(productId);
+    let currentQuantity = parseInt(product.metadata.quantity);
+    currentQuantity -= decreaseAmount;
+    product.metadata.quantity = currentQuantity.toString();
+    await stripePublic.products.update(productId, {
+      metadata: product.metadata,
+    });
+
+    console.log(`Product quantity decreased by ${decreaseAmount}`);
+  } catch (error) {
+    console.error('Error decreasing product quantity:', error);
+  }
+}

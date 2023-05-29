@@ -1,10 +1,39 @@
 import Image from "next/image";
 import React from "react";
 import Popular from "../../public/assets/images/icons/popular.png";
-import { checkout } from "@/utils/checkout";
+import { checkout, displayProductQuantity } from "@/utils/stripe";
 import Link from "next/link";
 
 function Pricing() {
+  const [productQuantityMonthly, setproductQuantityMonthly] = useState(null);
+  const [productQuantityQuarterly, setproductQuantityQuarterly] = useState(null);
+  const [productQuantityYearly, setproductQuantityYearly] = useState(null);
+  const monthly = "prod_Nx1rngjF99Wgf1";
+  const quarterly = "prod_Nx1t07LFmKsEaD";
+  const yearly = "prod_Nx1uVW1AZu2qKu"
+  const yearlyCoupon = "H2AlML2r"
+
+  const handleClick = (idPrice, idProduct, propsCoupon) => {
+    checkout({lineItems: [{price: idPrice, quantity: 1}], discounts: [{coupon: propsCoupon,}]}, idProduct);
+  }
+
+  useEffect(() => {
+    async function fetchProductQuantity() {
+      try {
+        const quantityMonth = await displayProductQuantity(monthly);
+        const quantityQuarterly = await displayProductQuantity(quarterly);
+        const quantityYearly = await displayProductQuantity(yearly);
+        setproductQuantityMonthly(quantityMonth)
+        setproductQuantityQuarterly(quantityQuarterly)
+        setproductQuantityYearly(quantityYearly);
+      } catch (error) {
+        console.error("Error fetching product quantity:", error);
+      }
+    }
+
+    fetchProductQuantity();
+  }, []);
+
   return (
     <div id="pricing">
       <div className="pricing-container">
@@ -33,24 +62,13 @@ function Pricing() {
                 <div className="price-wrap">
                   <div className="pricing-shape-monthly"></div>
                   <div className="pricing-price">
-                    <h3>$4,995/month</h3>
+                    <h3>$3,000/month</h3>
                     <p>Pause or cancel anytime</p>
                   </div>
-                  <button
-                    className="pricing-button-monthly"
-                    onClick={() => {
-                      checkout({
-                        lineItems: [
-                          {
-                            price: "price_1NAdekAEioNEOHotFFcFpUSj",
-                            quantity: 1,
-                          },
-                        ],
-                      });
-                    }}
-                  >
-                    Choose Plan
-                  </button>
+                  <button 
+                    className="pricing-button-monthly" 
+                    onClick={() => handleClick("price_1NB7oEAEioNEOHotyEOXyMz6", monthly)}
+                  >Choose Plan</button>
                   <Link href="http://calendly.com/cahyosubroto">
                     <h5>Book a Call</h5>
                   </Link>
@@ -75,7 +93,8 @@ function Pricing() {
                       </li>
                     </ul>
                   </div>
-                  <p className="limited-spot">Only 20 spots left this month</p>
+                  <p className="limited-spot">
+                    {productQuantityMonthly !== null ? `Only ${productQuantityMonthly} spots left this month` : "Loading..."}
                 </div>
               </div>
             </div>
@@ -90,7 +109,7 @@ function Pricing() {
             </div>
           </div>
           <div data-aos="fade-up">
-            <div className="pricing-card">
+           <div className="pricing-card">
               <div className="pricing-title-quarterly">
                 <h4>Quarterly</h4>
               </div>
@@ -102,21 +121,12 @@ function Pricing() {
                 <div className="price-wrap">
                   <div className="pricing-shape-quarterly"></div>
                   <div className="pricing-price">
-                    <h3>$4,995/month</h3>
+                    <h3>$2,500/month</h3>
                     <p>Pause or cancel anytime</p>
                   </div>
-                  <button
+                  <button 
                     className="pricing-button-quarterly"
-                    onClick={() => {
-                      checkout({
-                        lineItems: [
-                          {
-                            price: "price_1NAlMPAEioNEOHotlG7TzgF2",
-                            quantity: 1,
-                          },
-                        ],
-                      });
-                    }}
+                    onClick={() => handleClick("price_1NB7piAEioNEOHotkmpv3g0a", quarterly)}
                   >
                     Choose Plan
                   </button>
@@ -144,7 +154,9 @@ function Pricing() {
                       </li>
                     </ul>
                   </div>
-                  <p className="limited-spot">Only 10 spots left this month</p>
+                  <p className="limited-spot">
+                    {productQuantityQuarterly !== null ? `Only ${productQuantityQuarterly} spots left this month` : "Loading..."}
+                  </p>
                 </div>
               </div>
             </div>
@@ -162,24 +174,20 @@ function Pricing() {
                 <div className="price-wrap">
                   <div className="pricing-shape-yearly"></div>
                   <div className="pricing-price">
-                    <h3>$4,995/month</h3>
+                    <h3>$2,000/month</h3>
                     <p>Pause or cancel anytime</p>
                   </div>
-                  <button
-                    className="pricing-button-yearly"
-                    onClick={() => {
-                      checkout({
-                        lineItems: [
-                          {
-                            price: "price_1NAlP7AEioNEOHotHKm3ZEC2",
-                            quantity: 1,
-                          },
-                        ],
-                      });
-                    }}
-                  >
-                    Choose Plan
-                  </button>
+                  {productQuantityYearly !== 0? (
+                    <button 
+                      className="pricing-button-yearly"
+                      onClick={() => handleClick("price_1NB7qbAEioNEOHotvwkIc3bh", yearly, yearlyCoupon)}
+                    >Choose Plan</button>
+                  ):(
+                    <button 
+                      className="pricing-button-yearly"
+                      disabled
+                    >Product Sold</button>
+                  )}
                   <Link href="http://calendly.com/cahyosubroto">
                     <h5>Book a Call</h5>
                   </Link>
@@ -204,7 +212,9 @@ function Pricing() {
                       </li>
                     </ul>
                   </div>
-                  <p className="limited-spot">Only 10 spots left this month</p>
+                  <p className="limited-spot">
+                    {productQuantityYearly !== null ? `Only ${productQuantityYearly} spots left this month` : "Loading..."}
+                  </p>
                 </div>
               </div>
             </div>
