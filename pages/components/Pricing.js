@@ -3,7 +3,7 @@ import React, {useState, useEffect} from "react";
 import Popular from "../../public/assets/images/icons/popular.png";
 import { checkout, displayProductQuantity } from "@/utils/stripe";
 import Link from "next/link";
-import { CouponModal } from "./utils/Modal";
+import CouponModal from "./utils/Modal";
 
 function Pricing() {
   const [productQuantityMonthly, setproductQuantityMonthly] = useState(null);

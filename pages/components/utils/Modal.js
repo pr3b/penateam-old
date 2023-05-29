@@ -18,7 +18,7 @@ const customStyles = {
 };
 
 // Modal component
-export const CouponModal = ({ isOpen, onClose, clickHandler }) => {
+const CouponModal = ({ isOpen, onClose, clickHandler }) => {
   const [couponCode, setCouponCode] = useState('');
 
   const handleSubmit = (e) => {
@@ -49,3 +49,5 @@ export const CouponModal = ({ isOpen, onClose, clickHandler }) => {
     </Modal>
   );
 };
+
+export default CouponModal
