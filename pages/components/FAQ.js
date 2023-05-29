@@ -1,98 +1,149 @@
-import React from "react";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import React, { useState } from "react";
 import Image from "next/image";
-import Chat from "../../public/assets/images/icons/chat.png";
+import Arrow from "../../public/assets/images/icons/arrowaccordion.svg";
 
 function FAQ() {
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const toggleAnswerVisibility = (index) => {
+    setActiveIndex(index === activeIndex ? null : index);
+  };
   return (
     <div className="faq-container">
-      <div data-aos="fade-out">
-        <div className="faq-title-container">
-          <h3>Frequently Asked Questions</h3>
-          <Image src={Chat} alt="Speaker icon" />
+      <div id="faq" className="section white p-t-150">
+        <div className="container">
+          <h3 className="faq-font">FAQs</h3>
+          <div className="faq__list-wrapper">
+            <div className="faq__row">
+              <div className="faq__left">
+                <div
+                  className="faq__title"
+                  onClick={() => toggleAnswerVisibility(0)}
+                >
+                  How do pricing and subscriptions work?
+                </div>
+                <div
+                  style={{
+                    display: activeIndex === 0 ? "block" : "none",
+                  }}
+                  className="faq__answer"
+                >
+                  Getting started with Pena is easy-breezy. When you subscribe
+                  to Pena, you choose monthly, quarterly, or yearly term. Each
+                  term has monthly billing, you will be billed on the date you
+                  subscribe and each month thereafter, on the date you
+                  subscribed. This subscription pricing will streamline and keep
+                  your documentation up to date. P.s. We&rsquo;ll also give you
+                  a great deal if you choose a longer term.
+                </div>
+              </div>
+              <Image
+                src={Arrow}
+                alt=""
+                className={`faq__arrow ${activeIndex === 0 ? "rotated" : ""}`}
+                onClick={() => toggleAnswerVisibility(0)}
+                width={16}
+                height={16}
+              />
+            </div>
+            <div className="faq__row">
+              <div className="faq__left">
+                <div
+                  className="faq__title"
+                  onClick={() => toggleAnswerVisibility(1)}
+                >
+                  Why is Pena using a subscription service?
+                </div>
+                <div
+                  style={{
+                    display: activeIndex === 1 ? "block" : "none",
+                  }}
+                  className="faq__answer"
+                >
+                  Getting started with Pena is easy-breezy. When you subscribe
+                  to Pena, you choose monthly, quarterly, or yearly term. Each
+                  term has monthly billing, you will be billed on the date you
+                  subscribe and each month thereafter, on the date you
+                  subscribed. This subscription pricing will streamline and keep
+                  your documentation up to date. P.s. We&rsquo;ll also give you
+                  a great deal if you choose a longer term.
+                </div>
+              </div>
+              <Image
+                src={Arrow}
+                alt=""
+                className={`faq__arrow ${activeIndex === 1 ? "rotated" : ""}`}
+                onClick={() => toggleAnswerVisibility(1)}
+                width={16}
+                height={16}
+              />
+            </div>
+            <div className="faq__row">
+              <div className="faq__left">
+                <div
+                  className="faq__title"
+                  onClick={() => toggleAnswerVisibility(2)}
+                >
+                  How do you understand what I want with my documentation?
+                </div>
+                <div
+                  style={{
+                    display: activeIndex === 2 ? "block" : "none",
+                  }}
+                  className="faq__answer"
+                >
+                  Getting started with Pena is easy-breezy. When you subscribe
+                  to Pena, you choose monthly, quarterly, or yearly term. Each
+                  term has monthly billing, you will be billed on the date you
+                  subscribe and each month thereafter, on the date you
+                  subscribed. This subscription pricing will streamline and keep
+                  your documentation up to date. P.s. We&rsquo;ll also give you
+                  a great deal if you choose a longer term.
+                </div>
+              </div>
+              <Image
+                src={Arrow}
+                alt=""
+                className={`faq__arrow ${activeIndex === 2 ? "rotated" : ""}`}
+                onClick={() => toggleAnswerVisibility(2)}
+                width={16}
+                height={16}
+              />
+            </div>
+            <div className="faq__row">
+              <div className="faq__left">
+                <div
+                  className="faq__title"
+                  onClick={() => toggleAnswerVisibility(3)}
+                >
+                  What makes your writers better?
+                </div>
+                <div
+                  style={{
+                    display: activeIndex === 3 ? "block" : "none",
+                  }}
+                  className="faq__answer"
+                >
+                  Getting started with Pena is easy-breezy. When you subscribe
+                  to Pena, you choose monthly, quarterly, or yearly term. Each
+                  term has monthly billing, you will be billed on the date you
+                  subscribe and each month thereafter, on the date you
+                  subscribed. This subscription pricing will streamline and keep
+                  your documentation up to date. P.s. We&rsquo;ll also give you
+                  a great deal if you choose a longer term.
+                </div>
+              </div>
+              <Image
+                src={Arrow}
+                alt=""
+                className={`faq__arrow ${activeIndex === 3 ? "rotated" : ""}`}
+                onClick={() => toggleAnswerVisibility(3)}
+                width={16}
+                height={16}
+              />
+            </div>
+          </div>
         </div>
-      </div>
-      <div data-aos="fade-out">
-        <Accordion>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-            <Typography>How do pricing and subscriptions work?</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography>
-              Getting started with Pena is easy-breezy. When you subscribe to
-              Pena, you choose monthly, quarterly, or yearly term. Each term has
-              monthly billing, you will be billed on the date you subscribe and
-              each month thereafter, on the date you subscribed. This
-              subscription pricing will streamline and keep your documentation
-              up to date. P.s. We&rsquo;ll also give you a great deal if you
-              choose a longer terms.
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-      </div>
-      <div data-aos="fade-out">
-        <Accordion>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2a-content"
-            id="panel2a-header"
-          >
-            <Typography>
-              How do you understand what I want with my documentation?
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-      </div>
-      <div data-aos="fade-out">
-        <Accordion>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2a-content"
-            id="panel2a-header"
-          >
-            <Typography>Why is Pena using a subscription service?</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-      </div>
-      <div data-aos="fade-out">
-        <Accordion>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2a-content"
-            id="panel2a-header"
-          >
-            <Typography>What makes your writers better?</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
       </div>
     </div>
   );
