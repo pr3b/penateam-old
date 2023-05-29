@@ -37,7 +37,7 @@ body h3 {
 
 /* Navbar */
 
-header {
+/* header {
   position: fixed;
   display: flex;
   align-items: center;
@@ -127,13 +127,91 @@ nav {
   justify-content: center;
   padding: 1rem;
   transition: 0.5s ease-in-out;
+} */
+
+/* navbar fix bottom */
+
+.floating-nav {
+  z-index: 100;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 29px;
+  display: inline-block;
+  position: fixed;
+  top: auto;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+}
+
+.floating-nav a {
+  font-size: 17px;
+}
+
+.div-block-17 {
+  justify-content: center;
+  display: flex;
+}
+.navbar-2 {
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  background-color: #000;
+  border-radius: 100px;
+}
+.floating-nav__link {
+  color: #fff;
+  cursor: pointer;
+  padding: 1rem;
+  font-family: "Poppins", sans-serif;
+  transition: all 0.2s;
+}
+.floating-nav__link:hover {
+  color: #000;
+  background-color: #fff;
+  border-radius: 50px;
+}
+.floating-nav__link.w--current {
+  color: #000;
+  background-color: #fff;
+  border-radius: 60px;
+}
+.floating-nav__link.arrow {
+  background-color: #2c2c2c;
+  background-image: url(https://assets.website-files.com/5837424ae11409586f837994/624322b0c806026f5689d841_Group%2012569.svg);
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: auto 22px;
+  border-radius: 90px;
+  padding: 0 38px 0 38px;
+}
+.floating-nav__link.arrow:hover {
+  background-color: #424242;
+  background-image: url(https://assets.website-files.com/5837424ae11409586f837994/624322b0c806026f5689d841_Group%2012569.svg);
+  background-repeat: no-repeat;
+  background-size: auto 22px;
+}
+.floating-nav__link.login {
+  background-color: #2c2c2c;
+  border-radius: 70px;
+}
+.floating-nav__link.login:hover {
+  color: #fff;
+  background-color: #424242;
+}
+
+.nav-menu-2 {
+  border: 1px solid rgba(255, 255, 255, 0.17);
+  border-radius: 100vw;
+  align-items: stretch;
+  padding: 6px;
+  display: flex;
 }
 
 .home-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 7rem 5rem 5rem 5rem;
+  padding: 5rem;
 }
 
 .home-title {
@@ -1375,7 +1453,6 @@ nav {
 .card-bg {
   background-color: #d2d2d2;
   border-radius: 0 0 20px 20px;
-  padding: 2rem 1rem 2rem 1rem;
 }
 
 .monthly {
@@ -1520,6 +1597,7 @@ nav {
 
 .pricing-feature {
   text-align: left;
+  padding: 2rem;
 }
 
 /* ul {
@@ -1783,6 +1861,9 @@ nav {
 
 .limited-spot {
   margin-top: 2rem;
+  padding: 2rem;
+  width: 100%;
+  background-color: #fff;
 }
 
 .fade-up-class {
@@ -1813,7 +1894,7 @@ nav {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
-    padding: 5rem 2rem 2rem 2rem;
+    padding: 2rem;
     margin-bottom: 2rem;
   }
 
@@ -2319,5 +2400,17 @@ nav {
   .aos-init {
     display: flex;
     flex-direction: column;
+  }
+
+  .floating-nav a {
+    font-size: 9px;
+  }
+
+  .floating-nav__link {
+    padding: 0.5rem;
+  }
+
+  .floating-nav__link.arrow {
+    padding: 0 20px 0 20px;
   }
 }

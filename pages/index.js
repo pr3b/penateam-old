@@ -19,6 +19,7 @@ import PaymentSuccessX from "./PaymentSuccess";
 import AOS from "aos";
 import "aos/dist/aos.css"; // You can also use <link> for styles
 import { useEffect } from "react";
+import FloatingNav from "./components/FloatingNav";
 
 export default function Home() {
   const router = useRouter();
@@ -30,8 +31,9 @@ export default function Home() {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       {/* <Navbar2 /> */}
+      <FloatingNav />
       <div>
         {isPaymentSuccess ? (
           <PaymentSuccessX id={isPaymentSuccess} />
