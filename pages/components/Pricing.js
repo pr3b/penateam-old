@@ -3,6 +3,7 @@ import React, {useState, useEffect} from "react";
 import Popular from "../../public/assets/images/icons/popular.png";
 import { checkout, displayProductQuantity } from "@/utils/stripe";
 import Link from "next/link";
+import { CouponModal } from "./utils/Modal";
 
 function Pricing() {
   const [productQuantityMonthly, setproductQuantityMonthly] = useState(null);
@@ -12,6 +13,15 @@ function Pricing() {
   const quarterly = "prod_Nx1t07LFmKsEaD";
   const yearly = "prod_Nx1uVW1AZu2qKu"
   const yearlyCoupon = "H2AlML2r"
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleProductClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   const handleClick = (idPrice, idProduct, propsCoupon) => {
     checkout({lineItems: [{price: idPrice, quantity: 1}], discounts: [{coupon: propsCoupon,}]}, idProduct);
@@ -67,10 +77,12 @@ function Pricing() {
                   </div>
                   <button
                     className="pricing-button-monthly"
-                    onClick={() => handleClick("price_1NB7oEAEioNEOHotyEOXyMz6", monthly)}
+                    // onClick={() => handleClick("price_1NB7oEAEioNEOHotyEOXyMz6", monthly)}
+                    onClick={handleProductClick}
                   >
                     Choose Plan
                   </button>
+                  <CouponModal isOpen={isModalOpen} onClose={handleCloseModal} />
                   <Link href="http://calendly.com/cahyosubroto">
                     <h5>Book a Call</h5>
                   </Link>
