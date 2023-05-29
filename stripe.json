@@ -1,0 +1,77 @@
+{
+  "id": "cs_test_a1HGVGvNEwDh3dua8EHixn8PEHm0LRLJB3uNxKpkflizYVsGnFWHTDhRdz",
+  "object": "checkout.session",
+  "after_expiration": null,
+  "allow_promotion_codes": null,
+  "amount_subtotal": 499500,
+  "amount_total": 499500,
+  "automatic_tax": {
+      "enabled": false,
+      "status": null
+  },
+  "billing_address_collection": null,
+  "cancel_url": "http://localhost:3000",
+  "client_reference_id": null,
+  "consent": null,
+  "consent_collection": null,
+  "created": 1684818034,
+  "currency": "usd",
+  "currency_conversion": null,
+  "custom_fields": [],
+  "custom_text": {
+      "shipping_address": null,
+      "submit": null
+  },
+  "customer": "cus_NwgiM80w98LDS6",
+  "customer_creation": null,
+  "customer_details": {
+      "address": {
+          "city": null,
+          "country": "ID",
+          "line1": null,
+          "line2": null,
+          "postal_code": null,
+          "state": null
+      },
+      "email": "yudi@mail.com",
+      "name": "Yudian",
+      "phone": null,
+      "tax_exempt": "none",
+      "tax_ids": []
+  },
+  "customer_email": null,
+  "expires_at": 1684904434,
+  "invoice": "in_1NAnLHAEioNEOHotygIXqwtI",
+  "invoice_creation": null,
+  "livemode": false,
+  "locale": null,
+  "metadata": {},
+  "mode": "subscription",
+  "payment_intent": null,
+  "payment_link": null,
+  "payment_method_collection": null,
+  "payment_method_options": null,
+  "payment_method_types": [
+      "card"
+  ],
+  "payment_status": "paid",
+  "phone_number_collection": {
+      "enabled": false
+  },
+  "recovered_from": null,
+  "setup_intent": null,
+  "shipping_address_collection": null,
+  "shipping_cost": null,
+  "shipping_details": null,
+  "shipping_options": [],
+  "status": "complete",
+  "submit_type": null,
+  "subscription": "sub_1NAnLHAEioNEOHotvwmSOWo6",
+  "success_url": "http://localhost:3000?session_id={CHECKOUT_SESSION_ID}",
+  "total_details": {
+      "amount_discount": 0,
+      "amount_shipping": 0,
+      "amount_tax": 0
+  },
+  "url": null
+}
