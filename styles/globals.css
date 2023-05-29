@@ -37,12 +37,17 @@ body h3 {
 
 /* Navbar */
 
-header {
+/* header {
+  position: fixed;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 80px;
   padding: 2rem 5rem 2rem 5rem;
+  width: 100%;
+  z-index: 10000;
+  background-color: #fff;
+  border-bottom: 1px solid #9e9e9e;
 }
 
 nav a {
@@ -83,13 +88,12 @@ nav {
     position: fixed;
     top: -100vh;
     left: 0;
-    height: 100%;
+    height: 65%;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1.5rem;
     background-color: var(--mainColor);
     transition: 1s;
   }
@@ -98,6 +102,7 @@ nav {
     transform: translateY(100vh);
     background-color: #fff;
     color: #000;
+    padding: 7rem 0 3rem 0;
     z-index: 99;
   }
 
@@ -122,6 +127,84 @@ nav {
   justify-content: center;
   padding: 1rem;
   transition: 0.5s ease-in-out;
+} */
+
+/* navbar fix bottom */
+
+.floating-nav {
+  z-index: 100;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 29px;
+  display: inline-block;
+  position: fixed;
+  top: auto;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+}
+
+.floating-nav a {
+  font-size: 17px;
+}
+
+.div-block-17 {
+  justify-content: center;
+  display: flex;
+}
+.navbar-2 {
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  background-color: #000;
+  border-radius: 100px;
+}
+.floating-nav__link {
+  color: #fff;
+  cursor: pointer;
+  padding: 1rem;
+  font-family: "Poppins", sans-serif;
+  transition: all 0.2s;
+}
+.floating-nav__link:hover {
+  color: #000;
+  background-color: #fff;
+  border-radius: 50px;
+}
+.floating-nav__link.w--current {
+  color: #000;
+  background-color: #fff;
+  border-radius: 60px;
+}
+.floating-nav__link.arrow {
+  background-color: #2c2c2c;
+  background-image: url(https://assets.website-files.com/5837424ae11409586f837994/624322b0c806026f5689d841_Group%2012569.svg);
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: auto 22px;
+  border-radius: 90px;
+  padding: 0 38px 0 38px;
+}
+.floating-nav__link.arrow:hover {
+  background-color: #424242;
+  background-image: url(https://assets.website-files.com/5837424ae11409586f837994/624322b0c806026f5689d841_Group%2012569.svg);
+  background-repeat: no-repeat;
+  background-size: auto 22px;
+}
+.floating-nav__link.login {
+  background-color: #2c2c2c;
+  border-radius: 70px;
+}
+.floating-nav__link.login:hover {
+  color: #fff;
+  background-color: #424242;
+}
+
+.nav-menu-2 {
+  border: 1px solid rgba(255, 255, 255, 0.17);
+  border-radius: 100vw;
+  align-items: stretch;
+  padding: 6px;
+  display: flex;
 }
 
 .home-container {
@@ -134,7 +217,7 @@ nav {
 .home-title {
   font-family: "Poppins", sans-serif;
   font-size: 3.5rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 70px;
   margin-bottom: 2rem;
 }
@@ -690,7 +773,7 @@ nav {
 }
 
 .developing-desc {
-  font-size: 25px;
+  font-size: 14px;
 }
 
 .developing-typography {
@@ -711,9 +794,11 @@ nav {
   display: flex;
   align-items: center;
   width: 400px;
+  height: 200px;
   background-color: #f3f5f9;
   border-radius: 20px;
   padding: 25px;
+  margin: 1rem;
 }
 
 .developing-gif {
@@ -758,7 +843,7 @@ nav {
 }
 
 .brand-desc {
-  font-size: 25px;
+  font-size: 14px;
 }
 
 .brand-card-container {
@@ -890,6 +975,8 @@ nav {
   font-size: 2rem;
   text-align: center;
   margin-bottom: 5rem;
+  z-index: 1;
+  position: relative;
 }
 
 .webflow-bg {
@@ -908,12 +995,17 @@ nav {
   position: absolute;
 }
 
+.webflow-dots-mobile {
+  position: absolute;
+  display: none;
+}
+
 .benefit-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 5rem 0 5rem 0;
+  padding: 4rem 0 5rem 0;
 }
 
 .benefit-typography {
@@ -1270,7 +1362,8 @@ nav {
 }
 
 .collab-text {
-  z-index: 2;
+  position: relative;
+  z-index: 9999;
 }
 
 .collab-container h3 {
@@ -1288,15 +1381,35 @@ nav {
 
 .collab-image {
   position: absolute;
-  width: 300px;
-  margin-right: 30rem;
+  width: 200px;
+  margin-right: 15rem;
   z-index: 0;
+}
+
+.collab-image-mobile {
+  position: absolute;
+  display: none;
+  width: 100%;
 }
 
 .logos {
   width: 700px;
   margin-left: 10rem;
   z-index: 0;
+}
+
+.logos-mobile {
+  display: none;
+  position: relative;
+  z-index: 5;
+}
+
+.pricing-section-divider {
+  margin: 2rem 0 2rem 0;
+  width: 80%;
+  height: 2px;
+  background-color: #d2d2d2;
+  border-radius: 2px;
 }
 
 .pricing-container {
@@ -1331,18 +1444,15 @@ nav {
   flex-direction: column;
   height: 100%;
   text-align: center;
-  opacity: 0.8;
   transition: 0.5s ease-in-out;
 }
 
 .pricing-card:hover {
-  opacity: 1;
 }
 
 .card-bg {
   background-color: #d2d2d2;
   border-radius: 0 0 20px 20px;
-  padding: 2rem 1rem 2rem 1rem;
 }
 
 .monthly {
@@ -1487,6 +1597,7 @@ nav {
 
 .pricing-feature {
   text-align: left;
+  padding: 2rem;
 }
 
 /* ul {
@@ -1583,7 +1694,7 @@ nav {
 .workhero-typography h3 {
   font-family: "Poppins", sans-serif;
   font-size: 3.5rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 70px;
   width: 70%;
   margin-bottom: 2rem;
@@ -1658,7 +1769,7 @@ nav {
 .footer-text h3 {
   margin: 5rem 0 0 0;
   font-size: 4rem;
-  font-weight: 500;
+  font-weight: 600;
   font-family: "Poppins", sans-serif;
 }
 
@@ -1679,7 +1790,7 @@ nav {
   height: 2px;
   border-radius: 2px;
   background-color: #272727;
-  margin: 5rem 0 5rem 0;
+  margin: 3rem 0 3rem 0;
 }
 
 .footer-info-container {
@@ -1750,11 +1861,23 @@ nav {
 
 .limited-spot {
   margin-top: 2rem;
+  padding: 2rem;
+  width: 100%;
+  background-color: #fff;
+}
+
+.fade-up-class {
+  display: flex;
+  justify-content: center;
 }
 
 @media only screen and (max-width: 1200px) {
   header {
     padding: 2rem;
+  }
+
+  .nav-logo {
+    width: 75px;
   }
 
   .nav {
@@ -1782,7 +1905,7 @@ nav {
   }
 
   .hero-typography p {
-    font-size: 25px;
+    font-size: 14px;
     width: 100%;
   }
 
@@ -1796,6 +1919,7 @@ nav {
 
   .hero-button {
     margin: 2rem 0 1rem 0;
+    padding: 15px;
   }
 
   .hero-image {
@@ -1820,8 +1944,8 @@ nav {
   }
 
   .brand-container {
-    padding: 2rem;
-    margin-bottom: 5rem;
+    padding: 0 2rem 2rem 2rem;
+    margin-bottom: 2rem;
   }
 
   .brand-card-container {
@@ -1830,16 +1954,14 @@ nav {
 
   .brand-typography {
     width: 100%;
-    margin-top: 3rem;
+    margin-top: 1rem;
+    padding-bottom: 4rem;
     text-align: center;
   }
 
-  .brand-typography p {
-  }
-
   .brand-typography h3 {
-    font-size: 40px;
-    font-weight: 500;
+    font-size: 21px;
+    font-weight: 600;
   }
 
   .brand-content {
@@ -1872,11 +1994,11 @@ nav {
   }
 
   .certification-container {
-    padding: 5rem 0 10rem 0;
+    padding: 3rem 0 3rem 0;
   }
 
   .certification-container h3 {
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
   }
 
   .card {
@@ -1885,7 +2007,8 @@ nav {
   }
 
   .certification-container h3 {
-    font-size: 2rem;
+    font-size: 21px;
+    font-weight: 600;
   }
 
   .brand-button {
@@ -1899,7 +2022,7 @@ nav {
   .benefit-card-container {
     display: flex;
     flex-direction: column;
-    padding: 2rem;
+    padding: 0;
   }
 
   .benefit-typography {
@@ -1907,18 +2030,18 @@ nav {
   }
 
   .benefit-typography h3 {
-    font-size: 40px;
-    font-weight: 500;
+    font-size: 21px;
+    font-weight: 600;
   }
 
   .benefit-typography p {
-    font-size: 25px;
+    font-size: 14px;
   }
 
   .benefit-card {
     display: flex;
     flex-direction: row-reverse;
-    width: 300px;
+    width: 250px;
     height: 100%;
     justify-content: flex-end;
   }
@@ -1942,11 +2065,12 @@ nav {
   .developing-typography {
     margin-top: 5rem;
     width: 100%;
+    padding-bottom: 3rem;
   }
 
   .developing-typography h3 {
-    font-size: 40px;
-    font-weight: 500;
+    font-size: 21px;
+    font-weight: 600;
   }
 
   .developing-container {
@@ -1962,35 +2086,60 @@ nav {
     text-align: center;
     flex-direction: column;
     width: 300px;
+    height: 100%;
+  }
+
+  .developing-card p {
+    font-size: 14px;
+  }
+
+  .developing-divider {
+    margin-top: 3rem;
   }
 
   .developing-gif {
     margin: 0 0 2rem 0;
   }
 
-  .collab-image {
-    margin: 0;
-    width: 50%;
-    z-index: 1;
-  }
-
   .collab-text {
+    position: relative;
+    z-index: 999 !important;
     font-size: 1.2rem;
-    margin: 5rem 0 5rem 0;
+    margin: 3rem 0 5rem 0;
   }
 
   .collab-text h3 {
-    font-weight: 500;
-    font-size: 40px;
+    position: relative;
+    z-index: 999 !important;
+    font-weight: 600;
+    font-size: 21px;
   }
 
   .collab-text p {
-    font-size: 25px;
+    position: relative;
+    z-index: 999 !important;
+    font-size: 14px;
   }
 
   .collab-container {
-    padding: 2rem;
-    margin-bottom: 5rem;
+    text-align: center;
+    flex-direction: column;
+    padding: 0 2rem 0 2rem;
+  }
+
+  .collab-image {
+    display: none;
+  }
+
+  .collab-image-mobile {
+    display: block;
+    margin-top: 15rem;
+    z-index: 1;
+  }
+
+  .logos-mobile {
+    display: block;
+    z-index: 5;
   }
 
   .work-card-container {
@@ -2010,12 +2159,13 @@ nav {
   }
 
   .work-text {
-    padding-bottom: 5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 
   .work-text h3 {
-    font-size: 40px;
-    font-weight: 500;
+    font-size: 21px;
+    font-weight: 600;
   }
 
   .work-container {
@@ -2024,15 +2174,20 @@ nav {
 
   .work-card-container {
     grid-template-columns: repeat(1, 1fr);
+    padding-bottom: 2rem;
+  }
+
+  .pricing-text {
+    padding-bottom: 3rem;
   }
 
   .pricing-text h3 {
-    font-size: 40px;
-    font-weight: 500;
+    font-size: 21px;
+    font-weight: 600;
   }
 
   .pricing-text p {
-    font-size: 25px;
+    font-size: 14px;
   }
 
   .pricing-card {
@@ -2045,13 +2200,12 @@ nav {
   }
 
   .most-popular {
-    margin-top: 25rem;
-    left: 55%;
+    margin-top: -24rem;
+    left: 60%;
   }
 
   .pricing-container {
     padding: 2rem;
-    margin-bottom: 5rem;
   }
 
   .pricing-card-container {
@@ -2066,6 +2220,10 @@ nav {
     padding: 2rem;
   }
 
+  .referral-container img {
+    width: 100px;
+  }
+
   .referral-text {
     padding: 0;
     text-align: center;
@@ -2073,30 +2231,46 @@ nav {
 
   .referral-text h4 {
     margin-bottom: 2rem;
-    font-weight: 500;
-    font-size: 40px;
+    font-weight: 600;
+    font-size: 21px;
   }
 
   .referral-text p {
-    font-size: 25px;
+    font-size: 14px;
   }
 
   .faq-container {
-    padding: 2rem;
-    margin-bottom: 5rem;
+    padding: 0 2rem 2rem 2rem;
   }
 
   .faq-container h3 {
     font-size: 40px;
-    font-weight: 500;
+    font-weight: 600;
+  }
+
+  .faq-title-container {
+    margin-bottom: 3rem;
   }
 
   .faq-title-container h3 {
-    width: 100%;
+    text-align: center;
+    font-size: 21px;
+    font-weight: 600;
+    width: 90%;
+  }
+
+  .faq-title-container img {
+    width: 150px;
+    margin-top: 4rem;
+    left: 50%;
   }
 
   .css-1elwnq4-MuiPaper-root-MuiAccordion-root:before {
     opacity: 0;
+  }
+
+  .footer-text {
+    padding: 0 2rem 0 2rem;
   }
 
   .footer-text h3 {
@@ -2104,11 +2278,11 @@ nav {
   }
 
   .footer-text p {
-    font-size: 25px;
+    font-size: 14px;
   }
 
   .footer-shape {
-    margin-bottom: -12rem;
+    margin-bottom: -15rem;
   }
 
   .footer-info-container {
@@ -2118,7 +2292,7 @@ nav {
 
   .workhero-typography h3 {
     font-size: 40px;
-    font-weight: 500;
+    font-weight: 600;
     width: 100%;
     margin-top: 2rem;
   }
@@ -2153,8 +2327,8 @@ nav {
   }
 
   .trusted {
-    width: 300px;
-    font-size: 10px;
+    width: 350px;
+    font-size: 13px;
   }
 
   .footer-scribble {
@@ -2194,7 +2368,7 @@ nav {
   }
 
   .footer-info p {
-    font-size: 15px;
+    font-size: 10px;
   }
 
   .slider-mobile-1 {
@@ -2207,5 +2381,36 @@ nav {
 
   .hero-typography {
     text-align: center;
+  }
+
+  .webflow-container h3 {
+    font-size: 25px;
+  }
+
+  .webflow-dots {
+    display: none;
+  }
+
+  .webflow-dots-mobile {
+    width: 250px;
+    display: block;
+    z-index: 0;
+  }
+
+  .aos-init {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .floating-nav a {
+    font-size: 9px;
+  }
+
+  .floating-nav__link {
+    padding: 0.5rem;
+  }
+
+  .floating-nav__link.arrow {
+    padding: 0 20px 0 20px;
   }
 }

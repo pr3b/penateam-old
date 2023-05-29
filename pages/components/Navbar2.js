@@ -3,9 +3,12 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "../../public/assets/images/logo/pena-text.png";
 
+import { useRouter } from "next/router";
+
 const Navbar2 = () => {
   const [collapse, setCollapse] = useState("nav__menu");
   const [toggleIcon, setToggleIcon] = useState("toggler__icon");
+  const { session_id } = useRouter().query;
 
   const onToggle = () => {
     collapse === "nav__menu"
@@ -50,6 +53,17 @@ const Navbar2 = () => {
                 Referral
               </Link>
             </li>
+            {session_id && (
+              <li className="nav__item">
+                <Link
+                  className="nav__link"
+                  href={`/payment-success?session_id=${session_id}`}
+                  scroll={false}
+                >
+                  Payment Success
+                </Link>
+              </li>
+            )}
           </ul>
           <div className={toggleIcon} onClick={onToggle}>
             <div className="line__1"></div>
