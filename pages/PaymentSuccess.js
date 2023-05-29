@@ -73,7 +73,7 @@ const PaymentSuccessX = ({ id }) => {
       <div className="dialog">
         <h1>Payment Successful!</h1>
         <p>You can go to check your Email!</p>
-        <p>Email Registered: {email}</p>
+        <p>Email: {email}</p>
         <p>Session ID: {session_id.slice(0, 20) + `...`}</p>
         <button onClick={handleGoHome}>Go to Homepage</button>
 
