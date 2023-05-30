@@ -215,7 +215,7 @@ nav {
 }
 
 .home-title {
-  font-family: "Poppins", sans-serif;
+  font-family: "Monument Extended", sans-serif;
   font-size: 3.5rem;
   font-weight: 600;
   line-height: 70px;
@@ -259,6 +259,7 @@ nav {
 }
 
 .collaborate {
+  font-family: "Monument Extended", sans-serif;
   display: flex;
   align-items: center;
 }
@@ -283,6 +284,7 @@ nav {
 }
 
 .lets {
+  font-family: "Monument Extended", sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -767,9 +769,10 @@ nav {
 }
 
 .developing-container h3 {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 700;
   margin-bottom: 2rem;
+  font-family: "Monument Extended", sans-serif;
 }
 
 .developing-desc {
@@ -829,7 +832,8 @@ nav {
 }
 
 .brand-container h3 {
-  font-size: 3rem;
+  font-family: "Monument Extended", sans-serif;
+  font-size: 2rem;
   font-weight: 700;
   margin-bottom: 2rem;
 }
@@ -932,7 +936,8 @@ nav {
 }
 
 .certification-container h3 {
-  font-size: 3rem;
+  font-family: "Monument Extended", sans-serif;
+  font-size: 2rem;
   font-weight: 700;
   margin-bottom: 2rem;
 }
@@ -1014,7 +1019,8 @@ nav {
 }
 
 .benefit-typography h3 {
-  font-size: 3rem;
+  font-family: "Monument Extended", sans-serif;
+  font-size: 2rem;
   font-weight: 700;
   margin-bottom: 2rem;
   position: relative;
@@ -1310,6 +1316,7 @@ nav {
 }
 
 .work-container h3 {
+  font-family: "Monument Extended", sans-serif;
   font-size: 3rem;
   font-weight: 700;
   z-index: 1;
@@ -1330,6 +1337,10 @@ nav {
   align-items: center;
   text-align: center;
   padding-bottom: 10rem;
+}
+
+.work-text h3 {
+  font-size: 2rem;
 }
 
 .work-card-container {
@@ -1425,7 +1436,8 @@ nav {
 }
 
 .pricing-text h3 {
-  font-size: 3rem;
+  font-family: "Monument Extended", sans-serif;
+  font-size: 2rem;
   font-weight: 700;
 }
 
@@ -1633,8 +1645,9 @@ nav {
 }
 
 .referral-text h4 {
+  font-family: "Monument Extended", sans-serif;
   font-weight: 600;
-  font-size: 35px;
+  font-size: 2rem;
 }
 
 .referral-button {
@@ -1666,7 +1679,8 @@ nav {
 }
 
 .faq-font {
-  font-size: 3rem;
+  font-family: "Monument Extended", sans-serif;
+  font-size: 2rem;
   font-weight: 700;
   z-index: 1;
 }
@@ -1978,8 +1992,8 @@ nav {
   }
 
   .home-title {
-    font-size: 40px;
-    line-height: 55px;
+    font-size: 30px;
+    line-height: 45px;
     margin-top: 2rem;
     margin-bottom: 2rem;
     width: 100%;
@@ -2028,8 +2042,13 @@ nav {
   }
 
   .brand-typography h3 {
+    text-align: left;
     font-size: 21px;
     font-weight: 600;
+  }
+
+  .brand-desc {
+    text-align: left;
   }
 
   .brand-content {
@@ -2131,6 +2150,7 @@ nav {
   }
 
   .developing-typography {
+    text-align: left;
     margin-top: 5rem;
     width: 100%;
     padding-bottom: 3rem;
@@ -2177,6 +2197,7 @@ nav {
   }
 
   .collab-text h3 {
+    font-family: "Monument Extended", sans-serif;
     position: relative;
     z-index: 999 !important;
     font-weight: 600;
@@ -2246,6 +2267,7 @@ nav {
   }
 
   .pricing-text {
+    text-align: left;
     padding-bottom: 3rem;
   }
 
@@ -2480,5 +2502,17 @@ nav {
 
   .floating-nav__link.arrow {
     padding: 0 20px 0 20px;
+  }
+
+  .lets {
+    font-size: 30px;
+  }
+
+  .collaborate {
+    font-size: 30px;
+  }
+
+  .footer-shape {
+    width: 350px;
   }
 }
