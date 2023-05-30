@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import Modal from 'react-modal';
 import Image from 'next/image';
+import PenaLogoText from "../../../public/assets/images/logo/pena-text.png";
 import 'react-toastify/dist/ReactToastify.css';
 
 // Modal component
@@ -16,7 +17,6 @@ const CouponModal = ({ isOpen, onClose, checkout, idPrice, idProduct, propsCoupo
       propsCoupon = couponCode
       checkout({lineItems: [{price: idPrice, quantity: 1}], discounts: [{coupon: propsCoupon,}]}, idProduct);
       setCouponCode("")
-      // Close the modal
       setIsLoadingState()
       setTimeout(() => {
         toast.error('Invalid discount code. Please try again.');
@@ -47,7 +47,7 @@ const CouponModal = ({ isOpen, onClose, checkout, idPrice, idProduct, propsCoupo
       <div className="main">
           <div className="co-img">
             <Image
-              src="https://drive.google.com/uc?export=view&id=1weC8vFQhpBLCcLQYfiouM5dcW5YdQ_TN"
+              src={PenaLogoText}
               alt=""
               width={120}
               height={80}
