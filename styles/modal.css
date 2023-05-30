@@ -16,10 +16,11 @@
   padding: 10px 10px;
   position: fixed;
   margin: 15% 35%;
+  z-index: 9999;
 }
 
 @media (max-width: 768px) {
-  .card {
+  .cardModal {
     width: 90%;
     margin: 15% 5%;
   }
