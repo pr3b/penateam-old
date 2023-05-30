@@ -1,10 +1,8 @@
 import { useRouter } from "next/router";
 import Hero from "./components/Hero";
-import About from "./components/About";
 import Brand from "./components/Brand";
 import Work from "./components/Work";
 import Pricing from "./components/Pricing";
-import Navbar from "./components/Navbar";
 import Logo from "./components/Logo";
 import Collab from "./components/Collab";
 import Referral from "./components/Referral";
@@ -14,12 +12,13 @@ import Certification from "./components/Certification";
 import Webflow from "./components/Webflow";
 import Benefit from "./components/Benefit";
 import Developing from "./components/Developing";
-import Navbar2 from "./components/Navbar2";
 import PaymentSuccessX from "./PaymentSuccess";
 import AOS from "aos";
 import "aos/dist/aos.css"; // You can also use <link> for styles
 import { useEffect } from "react";
 import FloatingNav from "./components/FloatingNav";
+import CustomCursor from "./components/CustomCursor";
+import CursorSVG from "../public/assets/images/icons/cursor-pena-01.svg";
 
 export default function Home() {
   const router = useRouter();
@@ -31,14 +30,13 @@ export default function Home() {
 
   return (
     <>
-      {/* <Navbar /> */}
-      {/* <Navbar2 /> */}
       <FloatingNav />
       <div>
         {isPaymentSuccess ? (
           <PaymentSuccessX id={isPaymentSuccess} />
         ) : (
           <>
+            <CustomCursor customCursor={CursorSVG} />
             <Hero />
             <Logo />
             {/* <About /> */}

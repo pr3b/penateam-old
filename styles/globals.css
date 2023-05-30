@@ -21,6 +21,7 @@
 
 html {
   scroll-behavior: smooth;
+  cursor: none;
 }
 
 body p {
@@ -33,6 +34,18 @@ body h2 {
 
 body h3 {
   font-family: "Poppins", sans-serif;
+}
+
+a {
+  cursor: none;
+}
+
+button {
+  cursor: none;
+}
+
+img {
+  cursor: none;
 }
 
 /* Navbar */
@@ -62,7 +75,7 @@ nav a:hover {
 
 header .nav-btn {
   padding: 5px;
-  cursor: pointer;
+  cursor: none;
   background: transparent;
   border: none;
   outline: none;
@@ -160,7 +173,7 @@ nav {
 }
 .floating-nav__link {
   color: #fff;
-  cursor: pointer;
+  cursor: none;
   padding: 1rem;
   font-family: "Poppins", sans-serif;
   transition: all 0.2s;
@@ -216,7 +229,7 @@ nav {
 
 .home-title {
   font-family: "Monument Extended", sans-serif;
-  font-size: 3.5rem;
+  font-size: 4rem;
   font-weight: 600;
   line-height: 70px;
   margin-bottom: 2rem;
@@ -228,6 +241,158 @@ nav {
 
 .hero-img {
   display: block;
+}
+
+.hero-spin-img {
+  position: absolute;
+  z-index: -1;
+  left: -15rem;
+  margin-top: 5rem;
+  width: 500px;
+  opacity: 0.1;
+  animation-name: hero-spin-img;
+  animation-duration: 50000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes hero-spin-img {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.brand-spin-img {
+  position: absolute;
+  z-index: -1;
+  width: 200px;
+  margin-top: 5rem;
+  left: -5rem;
+  animation-name: brand-spin-img;
+  animation-duration: 50000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes brand-spin-img {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.work-spin-img-1 {
+  position: absolute;
+  width: 300px;
+  margin-top: 5rem;
+  left: -6rem;
+  animation-name: work-spin-img-1;
+  animation-duration: 50000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes work-spin-img-1 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.work-spin-img-2 {
+  position: absolute;
+  margin-top: 50rem;
+  width: 200px; /* Adjust the width as per your requirement */
+  right: 10%; /* Position it 5% from the right edge of the screen */
+  transform: translateY(-50%); /* Center it vertically */
+  animation-name: work-spin-img-2;
+  animation-duration: 50000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes work-spin-img-2 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.work-spin-img-3 {
+  position: absolute;
+  width: 300px;
+  margin-top: 80rem;
+  left: 5%;
+  animation-name: work-spin-img-3;
+  animation-duration: 50000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes work-spin-img-3 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rounded-text {
+  width: 25.625rem;
+  height: 25.625rem;
+  text-transform: uppercase;
+  transform: rotate(-103deg);
+  color: #fff;
+  font-weight: bold;
+  z-index: -1;
+  font-family: Raleway;
+}
+.white {
+  fill: #fff;
+}
+.yellow {
+  fill: #ffda2a;
+}
+.green {
+  fill: #00d3b9;
+}
+@keyframes rotating {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+.rotating {
+  animation: rotating 12s linear infinite;
+}
+@keyframes coloring {
+  0% {
+    fill: #fff;
+  }
+  35% {
+    fill: #ffda2a;
+  }
+  75% {
+    fill: #00d3b9;
+  }
+  100% {
+    fill: #fff;
+  }
+}
+.coloring {
+  animation: coloring 12s linear infinite;
 }
 
 .yourgoto {
@@ -296,12 +461,13 @@ nav {
 }
 
 .hero-typography p {
-  font-size: 20px;
+  font-size: 25px;
   margin-top: 1rem;
   width: 70%;
 }
 
 .hero-button {
+  cursor: none;
   width: 200px;
   background-color: #f39f21;
   border-radius: 25px;
@@ -429,7 +595,7 @@ nav {
   display: grid;
   place-items: center;
   transition: 0.5s;
-  cursor: pointer;
+  cursor: none;
 }
 .slide:hover {
   transform: scale(0.8);
@@ -541,7 +707,7 @@ nav {
   display: grid;
   place-items: center;
   transition: 0.5s;
-  cursor: pointer;
+  cursor: none;
 }
 .slide-mobile-1:hover {
   transform: scale(0.8);
@@ -653,7 +819,7 @@ nav {
   display: grid;
   place-items: center;
   transition: 0.5s;
-  cursor: pointer;
+  cursor: none;
 }
 .slide-mobile-2:hover {
   transform: scale(0.8);
@@ -776,7 +942,7 @@ nav {
 }
 
 .developing-desc {
-  font-size: 14px;
+  font-size: 25px;
 }
 
 .developing-typography {
@@ -847,7 +1013,7 @@ nav {
 }
 
 .brand-desc {
-  font-size: 14px;
+  font-size: 25px;
 }
 
 .brand-card-container {
@@ -1028,7 +1194,7 @@ nav {
 }
 
 .benefit-typography p {
-  font-size: 1.2rem;
+  font-size: 25px;
   margin-bottom: 3rem;
   position: relative;
   z-index: 1;
@@ -1133,7 +1299,7 @@ nav {
   padding: 2rem;
   width: 300px;
   height: 500px;
-  cursor: pointer;
+  cursor: none;
   transition: 0.3s ease-in-out;
 }
 
@@ -1370,6 +1536,8 @@ nav {
   align-items: center;
   justify-content: center;
   color: #fff;
+  position: relative;
+  z-index: 0;
 }
 
 .collab-text {
@@ -1378,11 +1546,13 @@ nav {
 }
 
 .collab-container h3 {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 700;
 }
 
 .collab-container p {
+  position: relative;
+  font-size: 20px;
   padding-top: 2rem;
 }
 
@@ -1394,7 +1564,7 @@ nav {
   position: absolute;
   width: 200px;
   margin-right: 15rem;
-  z-index: 0;
+  z-index: -1;
 }
 
 .collab-image-mobile {
@@ -1442,7 +1612,7 @@ nav {
 }
 
 .pricing-text p {
-  font-size: 1.2rem;
+  font-size: 25px;
 }
 
 .pricing-card-container {
@@ -1451,15 +1621,12 @@ nav {
 }
 
 .pricing-card {
-  cursor: pointer;
+  cursor: none;
   display: flex;
   flex-direction: column;
   height: 100%;
   text-align: center;
   transition: 0.5s ease-in-out;
-}
-
-.pricing-card:hover {
 }
 
 .card-bg {
@@ -1642,6 +1809,10 @@ nav {
   flex-direction: column;
   color: #fff;
   padding: 2rem 25rem 2rem 2rem;
+}
+
+.referral-text p {
+  font-size: 20px;
 }
 
 .referral-text h4 {
@@ -1916,7 +2087,7 @@ nav {
 }
 .faq__row {
   text-align: left;
-  cursor: pointer;
+  cursor: none;
   border-bottom: 1px solid #000;
   justify-content: space-between;
   align-items: flex-start;
@@ -1987,7 +2158,7 @@ nav {
   }
 
   .hero-typography p {
-    font-size: 14px;
+    font-size: 25px;
     width: 100%;
   }
 
@@ -2043,7 +2214,7 @@ nav {
 
   .brand-typography h3 {
     text-align: left;
-    font-size: 21px;
+    font-size: 30px;
     font-weight: 600;
   }
 
@@ -2117,12 +2288,12 @@ nav {
   }
 
   .benefit-typography h3 {
-    font-size: 21px;
+    font-size: 30px;
     font-weight: 600;
   }
 
   .benefit-typography p {
-    font-size: 14px;
+    font-size: 25px;
   }
 
   .benefit-card {
@@ -2157,7 +2328,7 @@ nav {
   }
 
   .developing-typography h3 {
-    font-size: 21px;
+    font-size: 30px;
     font-weight: 600;
   }
 
@@ -2253,7 +2424,7 @@ nav {
   }
 
   .work-text h3 {
-    font-size: 21px;
+    font-size: 30px;
     font-weight: 600;
   }
 
@@ -2272,12 +2443,12 @@ nav {
   }
 
   .pricing-text h3 {
-    font-size: 21px;
+    font-size: 30px;
     font-weight: 600;
   }
 
   .pricing-text p {
-    font-size: 14px;
+    font-size: 25px;
   }
 
   .pricing-card {
@@ -2322,11 +2493,11 @@ nav {
   .referral-text h4 {
     margin-bottom: 2rem;
     font-weight: 600;
-    font-size: 21px;
+    font-size: 30px;
   }
 
   .referral-text p {
-    font-size: 14px;
+    font-size: 25px;
   }
 
   .faq-container {
@@ -2473,6 +2644,10 @@ nav {
     text-align: center;
   }
 
+  .hero-typography p {
+    text-align: left;
+  }
+
   .webflow-container h3 {
     font-size: 25px;
   }
@@ -2514,5 +2689,34 @@ nav {
 
   .footer-shape {
     width: 350px;
+  }
+
+  .faq-container h3 {
+    font-size: 30px;
+  }
+
+  .yourgoto {
+    font-size: 35px;
+  }
+
+  .documentation {
+    font-size: 35px;
+  }
+
+  .partner {
+    font-size: 35px;
+  }
+
+  .work-spin-img-1 {
+    display: none;
+  }
+
+  .work-spin-img-2 {
+    display: none;
+  }
+
+  .work-spin-img-3 {
+    margin-top: 140rem;
+    left: -4rem;
   }
 }
