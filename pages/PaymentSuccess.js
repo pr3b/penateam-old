@@ -65,7 +65,7 @@ const PaymentSuccessX = ({ id }) => {
   };
 
   if (loading) {
-    return <LoadingComponent />;
+    return <LoadingComponent string={"Payment"}/>;
   }
 
   if (id) {
