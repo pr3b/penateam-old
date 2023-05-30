@@ -68,7 +68,7 @@ function Pricing() {
   return (
     <div id="pricing">
       {isLoading === true ? (
-        <LoadingComponent string={"Coupon Applied"}/>
+        <LoadingComponent string={"Coupon Applied"} status={"checking"}/>
       ):(
         <div className="pricing-container">
         <div className="pricing-section-divider"></div>

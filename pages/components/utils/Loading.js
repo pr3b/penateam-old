@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LoadingComponent = ({string}) => {
+const LoadingComponent = ({string, status}) => {
   return (
     <div style={{ textAlign: 'center', height:"80vh", padding:"25%"}}>
       <div id='outer-loading'>
@@ -8,7 +8,7 @@ const LoadingComponent = ({string}) => {
           <div id='inner-loading'></div>
         </div>
       </div>
-      <h1 style={{ marginTop: '20px', fontWeight: 'bold' }}>{`${string} is processing, Please wait!`}</h1>
+      <h1 style={{ marginTop: '20px', fontWeight: 'bold' }}>{`${string} is ${status}, Please wait!`}</h1>
     </div>
   );
 };
