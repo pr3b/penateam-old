@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 import Modal from 'react-modal';
 import Image from 'next/image';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Modal component
-const CouponModal = ({ isOpen, onClose, checkout, idPrice, idProduct, propsCoupon }) => {
+const CouponModal = ({ isOpen, onClose, checkout, idPrice, idProduct, propsCoupon, setIsLoadingState }) => {
   const [couponCode, setCouponCode] = useState('');
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,10 +17,18 @@ const CouponModal = ({ isOpen, onClose, checkout, idPrice, idProduct, propsCoupo
       checkout({lineItems: [{price: idPrice, quantity: 1}], discounts: [{coupon: propsCoupon,}]}, idProduct);
       setCouponCode("")
       // Close the modal
-      onClose();
+      setIsLoadingState()
+      setTimeout(() => {
+        toast.error('Invalid discount code. Please try again.');
+        window.location.reload(); // Reload the page
+        window.location.href = window.location.origin; // Go to the origin pag
+      }, 5000);
     } catch (error) {
        // Handle the error and update the error state
        setErrorMessage('Invalid discount code. Please try again.');
+    } finally {
+      // setIsLoading(false); // Set loading state to false
+      // onClose();
     }
   };
 
@@ -55,13 +65,13 @@ const CouponModal = ({ isOpen, onClose, checkout, idPrice, idProduct, propsCoupo
             type="text"
             value={couponCode.toUpperCase()}
             onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
-            placeholder="Enter coupon code if any"
+            placeholder="Do you have coupon?"
             onSubmit={() => handleSubmit()}
           />
-          {couponCode ? (
-            <button className="copybtn" type='submit' onClick={handleSubmit}>APPLY DISCOUNT</button>
-          ):(
-            <button className="copybtn" type='submit' onClick={handleSubmit} >NO APPLY</button>
+         {couponCode ? (
+            <button className="copybtn" type="submit" onClick={handleSubmit}>APPLY DISCOUNT</button>
+          ) : (
+            <button className="copybtn" type="submit" onClick={handleSubmit}>NO APPLY</button>
           )}
         </div>
       {/* </div> */}
