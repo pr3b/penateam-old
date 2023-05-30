@@ -41,7 +41,7 @@ const CouponModal = ({ isOpen, onClose, checkout, idPrice, idProduct, propsCoupo
       defaultAppElement="#__next"
       isOpen={isOpen}
       onRequestClose={onClose}
-      className="card"
+      className="cardModal"
       ariaHideApp={false} // To disable the warning about the modal accessibility
     >
       <div className="main">
