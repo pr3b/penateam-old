@@ -11,10 +11,19 @@ const getStripe = async () => {
 
 export async function checkout({lineItems, discounts}, idProduct){
   const stripe = await getStripe();
-  const sessionId = await getCheckoutSessionCreated({lineItems, discounts}, idProduct)
-  await stripe.redirectToCheckout({
-   sessionId: sessionId
-  })
+  if(!discounts || discounts.length === 0 || discounts[0].coupon === ""){
+    await stripe.redirectToCheckout({
+      mode: "subscription",
+      lineItems,
+      successUrl: `${window.location.origin}?session_id={CHECKOUT_SESSION_ID}&&product_id=${idProduct}`,
+      cancelUrl: window.location.origin,
+    })
+  } else {
+    const sessionId = await getCheckoutSessionCreated({lineItems, discounts}, idProduct)
+    await stripe.redirectToCheckout({
+    sessionId: sessionId
+    })
+  }
 }
 
 async function getCheckoutSessionCreated({lineItems, discounts}, idProduct){

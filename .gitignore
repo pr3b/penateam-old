@@ -38,3 +38,5 @@ next-env.d.ts
 .netlify
 
 .example.env
+yarn.lock
+package-lock.json

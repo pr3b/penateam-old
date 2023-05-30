@@ -4,19 +4,26 @@ import Popular from "../../public/assets/images/icons/popular.png";
 import { checkout, displayProductQuantity } from "@/utils/stripe";
 import Link from "next/link";
 import CouponModal from "./utils/Modal";
+import LoadingComponent from "./utils/Loading";
 
 function Pricing() {
   const [productQuantityMonthly, setproductQuantityMonthly] = useState(null);
   const [productQuantityQuarterly, setproductQuantityQuarterly] =
     useState(null);
   const [productQuantityYearly, setproductQuantityYearly] = useState(null);
+  const [idPrice, setIdPrice] = useState("")
+  const [idProduct, setIdProduct] = useState("")
+  const [propsCoupon, setPropsCoupon] = useState("")
   const monthly = "prod_Nx1rngjF99Wgf1";
   const quarterly = "prod_Nx1t07LFmKsEaD";
   const yearly = "prod_Nx1uVW1AZu2qKu";
-  const yearlyCoupon = "H2AlML2r";
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false)
 
-  const handleProductClick = () => {
+  const handleProductClick = (idPrice, idProduct, propsCoupon) => {
+    setIdPrice(idPrice)
+    setIdProduct(idProduct)
+    setPropsCoupon(propsCoupon)
     setIsModalOpen(true);
   };
 
@@ -24,15 +31,22 @@ function Pricing() {
     setIsModalOpen(false);
   };
 
-  const handleClick = (idPrice, idProduct, propsCoupon) => {
-    checkout(
-      {
-        lineItems: [{ price: idPrice, quantity: 1 }],
-        discounts: [{ coupon: propsCoupon }],
-      },
-      idProduct
-    );
-  };
+  const openLoadingSpinner = () => {
+    setIsLoading(true);
+  }
+
+  /**
+   * Unused function
+   */
+  // const handleClick = (idPrice, idProduct, propsCoupon) => {
+  //   checkout(
+  //     {
+  //       lineItems: [{ price: idPrice, quantity: 1 }],
+  //       discounts: [{ coupon: propsCoupon }],
+  //     },
+  //     idProduct
+  //   );
+  // };
 
   useEffect(() => {
     async function fetchProductQuantity() {
@@ -53,7 +67,10 @@ function Pricing() {
 
   return (
     <div id="pricing">
-      <div className="pricing-container">
+      {isLoading === true ? (
+        <LoadingComponent string={"Coupon Applied"} status={"checking"}/>
+      ):(
+        <div className="pricing-container">
         <div className="pricing-section-divider"></div>
         <div data-aos="fade-up">
           <div className="pricing-text">
@@ -65,6 +82,15 @@ function Pricing() {
             </p>
           </div>
         </div>
+        <CouponModal
+          isOpen={isModalOpen} 
+          onClose={handleCloseModal}
+          checkout={checkout}
+          idPrice={idPrice}
+          idProduct={idProduct}
+          propsCoupon={propsCoupon}
+          setIsLoadingState={openLoadingSpinner}
+        />
         <div className="pricing-card-container">
           <div data-aos="fade-up">
             <div className="pricing-card">
@@ -84,15 +110,10 @@ function Pricing() {
                   </div>
                   <button
                     className="pricing-button-monthly"
-                    // onClick={() => handleClick("price_1NB7oEAEioNEOHotyEOXyMz6", monthly)}
-                    onClick={handleProductClick}
+                    onClick={() => handleProductClick("price_1NB7oEAEioNEOHotyEOXyMz6", monthly, propsCoupon)}
                   >
                     Choose Plan
                   </button>
-                  <CouponModal
-                    isOpen={isModalOpen}
-                    onClose={handleCloseModal}
-                  />
                   <Link href="http://calendly.com/cahyosubroto">
                     <h5>Book a Call</h5>
                   </Link>
@@ -153,9 +174,7 @@ function Pricing() {
                   </div>
                   <button
                     className="pricing-button-quarterly"
-                    onClick={() =>
-                      handleClick("price_1NB7piAEioNEOHotkmpv3g0a", quarterly)
-                    }
+                    onClick={() => handleProductClick("price_1NB7piAEioNEOHotkmpv3g0a", quarterly, propsCoupon)}
                   >
                     Choose Plan
                   </button>
@@ -205,19 +224,13 @@ function Pricing() {
                 <div className="price-wrap">
                   <div className="pricing-shape-yearly"></div>
                   <div className="pricing-price">
-                    <h3>$4,995/month</h3>
+                    <h3>$2,000/month</h3>
                     <p>Pause or cancel anytime</p>
                   </div>
                   {productQuantityYearly !== 0 ? (
                     <button
                       className="pricing-button-yearly"
-                      onClick={() =>
-                        handleClick(
-                          "price_1NB7qbAEioNEOHotvwkIc3bh",
-                          yearly,
-                          yearlyCoupon
-                        )
-                      }
+                      onClick={() => handleProductClick("price_1NB7qbAEioNEOHotvwkIc3bh", quarterly, propsCoupon)}
                     >
                       Choose Plan
                     </button>
@@ -261,6 +274,8 @@ function Pricing() {
           </div>
         </div>
       </div>
+      )}
+      
     </div>
   );
 }

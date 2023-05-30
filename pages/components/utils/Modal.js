@@ -1,51 +1,80 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 import Modal from 'react-modal';
-
-// Styling for the modal
-const customStyles = {
-  content: {
-    width: '400px',
-    height: '200px',
-    margin: 'auto',
-    border: '1px solid #ccc',
-    borderRadius: '4px',
-    padding: '20px',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-};
+import Image from 'next/image';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Modal component
-const CouponModal = ({ isOpen, onClose, clickHandler }) => {
+const CouponModal = ({ isOpen, onClose, checkout, idPrice, idProduct, propsCoupon, setIsLoadingState }) => {
   const [couponCode, setCouponCode] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Perform any logic with the entered coupon code here
-    console.log(couponCode);
-    // Close the modal
-    onClose();
+    try {
+      // Perform any logic with the entered coupon code here
+      propsCoupon = couponCode
+      checkout({lineItems: [{price: idPrice, quantity: 1}], discounts: [{coupon: propsCoupon,}]}, idProduct);
+      setCouponCode("")
+      // Close the modal
+      setIsLoadingState()
+      setTimeout(() => {
+        toast.error('Invalid discount code. Please try again.');
+        window.location.reload(); // Reload the page
+        window.location.href = window.location.origin; // Go to the origin pag
+      }, 5000);
+    } catch (error) {
+       // Handle the error and update the error state
+       setErrorMessage('Invalid discount code. Please try again.');
+    } finally {
+      // setIsLoading(false); // Set loading state to false
+      // onClose();
+    }
   };
+
+  if (typeof window !== 'undefined') {
+    Modal.setAppElement('#__next');
+  }  
 
   return (
     <Modal
+      defaultAppElement="#__next"
       isOpen={isOpen}
       onRequestClose={onClose}
-      style={customStyles}
+      className="card"
       ariaHideApp={false} // To disable the warning about the modal accessibility
     >
-      <h2>Enter Coupon Code</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={couponCode}
-          onChange={(e) => setCouponCode(e.target.value)}
-          placeholder="Enter coupon code"
-        />
-        <button type="submit">Apply Coupon</button>
-      </form>
+      <div className="main">
+          <div className="co-img">
+            <Image
+              src="https://drive.google.com/uc?export=view&id=1weC8vFQhpBLCcLQYfiouM5dcW5YdQ_TN"
+              alt=""
+              width={120}
+              height={80}
+            />
+          </div>
+          <div className="vertical"></div>
+          <div className="content">
+            <h2>Pena Discount!!</h2>
+            <h1>10% <span>Coupon</span></h1>
+            <p>Valid till 5 June 2023</p>
+          </div>
+        </div>
+        <div className="copy-button">
+          <input
+            type="text"
+            value={couponCode.toUpperCase()}
+            onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
+            placeholder="Do you have coupon?"
+            onSubmit={() => handleSubmit()}
+          />
+         {couponCode ? (
+            <button className="copybtn" type="submit" onClick={handleSubmit}>APPLY DISCOUNT</button>
+          ) : (
+            <button className="copybtn" type="submit" onClick={handleSubmit}>NO APPLY</button>
+          )}
+        </div>
+      {/* </div> */}
     </Modal>
   );
 };
