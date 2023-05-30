@@ -9,13 +9,20 @@ function Pricing() {
   const [productQuantityMonthly, setproductQuantityMonthly] = useState(null);
   const [productQuantityQuarterly, setproductQuantityQuarterly] = useState(null);
   const [productQuantityYearly, setproductQuantityYearly] = useState(null);
+  const [idPrice, setIdPrice] = useState("")
+  const [idProduct, setIdProduct] = useState("")
+  const [propsCoupon, setPropsCoupon] = useState("")
   const monthly = "prod_Nx1rngjF99Wgf1";
   const quarterly = "prod_Nx1t07LFmKsEaD";
   const yearly = "prod_Nx1uVW1AZu2qKu"
   const yearlyCoupon = "H2AlML2r"
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleProductClick = () => {
+  const handleProductClick = (idPrice, idProduct, propsCoupon) => {
+    console.log(isModalOpen, "state")
+    setIdPrice(idPrice)
+    setIdProduct(idProduct)
+    setPropsCoupon(propsCoupon)
     setIsModalOpen(true);
   };
 
@@ -78,11 +85,18 @@ function Pricing() {
                   <button
                     className="pricing-button-monthly"
                     // onClick={() => handleClick("price_1NB7oEAEioNEOHotyEOXyMz6", monthly)}
-                    onClick={handleProductClick}
+                    onClick={() => handleProductClick("price_1NB7oEAEioNEOHotyEOXyMz6", monthly, propsCoupon)}
                   >
                     Choose Plan
                   </button>
-                  <CouponModal isOpen={isModalOpen} onClose={handleCloseModal} />
+                  <CouponModal
+                    isOpen={isModalOpen} 
+                    onClose={handleCloseModal}
+                    checkout={checkout}
+                    idPrice={idPrice}
+                    idProduct={idProduct}
+                    propsCoupon={propsCoupon}
+                  />
                   <Link href="http://calendly.com/cahyosubroto">
                     <h5>Book a Call</h5>
                   </Link>
