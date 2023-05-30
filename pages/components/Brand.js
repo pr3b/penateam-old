@@ -4,12 +4,17 @@ import Documentation from "../../public/assets/images/icons/fulldocumentation.pn
 import Lowercost from "../../public/assets/images/icons/lowercost.png";
 import Fasthiring from "../../public/assets/images/icons/fasthiring.png";
 import Check from "../../public/assets/images/icons/check.png";
-import ImageText from "../../public/assets/images/icons/image-star.png";
+import BrandImage from "../../public/assets/images/icons/star-symbol-yellow.png";
 import Link from "next/link";
 
 function Brand() {
   return (
     <div className="brand-container">
+      <Image
+        className="brand-spin-img"
+        src={BrandImage}
+        alt="brand spinning shape"
+      />
       <div className="brand-typography">
         <div data-aos="fade-up">
           <h3>

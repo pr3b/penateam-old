@@ -4,12 +4,14 @@ import HeroImage from "../../public/assets/images/icons/hero.png";
 import Yellowstar from "../../public/assets/images/icons/yellowstar.png";
 import Scribble from "../../public/assets/images/icons/scribble.png";
 import ArrowHero from "../../public/assets/images/icons/arrowhero.png";
+import SpinImage from "../../public/assets/images/icons/pena-circular.png";
 import Link from "next/link";
 
 function Hero() {
   return (
     <div id="home">
       <div className="home-container">
+        <Image className="hero-spin-img" src={SpinImage} alt="spinning image" />
         <div data-aos="zoom-in">
           <div className="hero-typography">
             <h1 className="home-title">
@@ -17,7 +19,7 @@ function Hero() {
                 Your go-to
                 <Image className="arrowhero" src={ArrowHero} alt="Arrow icon" />
               </div>
-              documentation
+              <div className="documentation">documentation</div>
               <div className="partner">
                 <Image
                   className="yellowstar"

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Popular from "../../public/assets/images/icons/popular.png";
 import { checkout, displayProductQuantity } from "@/utils/stripe";
 import Link from "next/link";
@@ -7,15 +7,16 @@ import CouponModal from "./utils/Modal";
 
 function Pricing() {
   const [productQuantityMonthly, setproductQuantityMonthly] = useState(null);
-  const [productQuantityQuarterly, setproductQuantityQuarterly] = useState(null);
+  const [productQuantityQuarterly, setproductQuantityQuarterly] =
+    useState(null);
   const [productQuantityYearly, setproductQuantityYearly] = useState(null);
   const [idPrice, setIdPrice] = useState("")
   const [idProduct, setIdProduct] = useState("")
   const [propsCoupon, setPropsCoupon] = useState("")
   const monthly = "prod_Nx1rngjF99Wgf1";
   const quarterly = "prod_Nx1t07LFmKsEaD";
-  const yearly = "prod_Nx1uVW1AZu2qKu"
-  const yearlyCoupon = "H2AlML2r"
+  const yearly = "prod_Nx1uVW1AZu2qKu";
+  const yearlyCoupon = "H2AlML2r";
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleProductClick = (idPrice, idProduct, propsCoupon) => {
@@ -31,8 +32,14 @@ function Pricing() {
   };
 
   const handleClick = (idPrice, idProduct, propsCoupon) => {
-    checkout({lineItems: [{price: idPrice, quantity: 1}], discounts: [{coupon: propsCoupon,}]}, idProduct);
-  }
+    checkout(
+      {
+        lineItems: [{ price: idPrice, quantity: 1 }],
+        discounts: [{ coupon: propsCoupon }],
+      },
+      idProduct
+    );
+  };
 
   useEffect(() => {
     async function fetchProductQuantity() {
@@ -40,8 +47,8 @@ function Pricing() {
         const quantityMonth = await displayProductQuantity(monthly);
         const quantityQuarterly = await displayProductQuantity(quarterly);
         const quantityYearly = await displayProductQuantity(yearly);
-        setproductQuantityMonthly(quantityMonth)
-        setproductQuantityQuarterly(quantityQuarterly)
+        setproductQuantityMonthly(quantityMonth);
+        setproductQuantityQuarterly(quantityQuarterly);
         setproductQuantityYearly(quantityYearly);
       } catch (error) {
         console.error("Error fetching product quantity:", error);
@@ -121,8 +128,10 @@ function Pricing() {
                       </li>
                     </ul>
                   </div>
-                  <p className="limited-spot">
-                    {productQuantityMonthly !== null ? `Only ${productQuantityMonthly} spots left this month` : "Loading..."}
+                  <p className="limited-spot ltd-monthly">
+                    {productQuantityMonthly !== null
+                      ? `Only ${productQuantityMonthly} spots left this month`
+                      : "Loading..."}
                   </p>
                 </div>
               </div>
@@ -155,7 +164,9 @@ function Pricing() {
                   </div>
                   <button
                     className="pricing-button-quarterly"
-                    onClick={() => handleClick("price_1NB7piAEioNEOHotkmpv3g0a", quarterly)}
+                    onClick={() =>
+                      handleClick("price_1NB7piAEioNEOHotkmpv3g0a", quarterly)
+                    }
                   >
                     Choose Plan
                   </button>
@@ -183,8 +194,10 @@ function Pricing() {
                       </li>
                     </ul>
                   </div>
-                  <p className="limited-spot">
-                    {productQuantityQuarterly !== null ? `Only ${productQuantityQuarterly} spots left this month` : "Loading..."}
+                  <p className="limited-spot ltd-quarterly">
+                    {productQuantityQuarterly !== null
+                      ? `Only ${productQuantityQuarterly} spots left this month`
+                      : "Loading..."}
                   </p>
                 </div>
               </div>
@@ -206,16 +219,23 @@ function Pricing() {
                     <h3>$4,995/month</h3>
                     <p>Pause or cancel anytime</p>
                   </div>
-                  {productQuantityYearly !== 0? (
-                    <button 
+                  {productQuantityYearly !== 0 ? (
+                    <button
                       className="pricing-button-yearly"
-                      onClick={() => handleClick("price_1NB7qbAEioNEOHotvwkIc3bh", yearly, yearlyCoupon)}
-                    >Choose Plan</button>
-                  ):(
-                    <button 
-                      className="pricing-button-yearly"
-                      disabled
-                    >Product Sold</button>
+                      onClick={() =>
+                        handleClick(
+                          "price_1NB7qbAEioNEOHotvwkIc3bh",
+                          yearly,
+                          yearlyCoupon
+                        )
+                      }
+                    >
+                      Choose Plan
+                    </button>
+                  ) : (
+                    <button className="pricing-button-yearly" disabled>
+                      Product Sold
+                    </button>
                   )}
                   <Link href="http://calendly.com/cahyosubroto">
                     <h5>Book a Call</h5>
@@ -241,8 +261,10 @@ function Pricing() {
                       </li>
                     </ul>
                   </div>
-                  <p className="limited-spot">
-                    {productQuantityYearly !== null ? `Only ${productQuantityYearly} spots left this month` : "Loading..."}
+                  <p className="limited-spot ltd-yearly">
+                    {productQuantityYearly !== null
+                      ? `Only ${productQuantityYearly} spots left this month`
+                      : "Loading..."}
                   </p>
                 </div>
               </div>
