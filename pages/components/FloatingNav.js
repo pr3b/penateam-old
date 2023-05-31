@@ -19,9 +19,6 @@ function FloatingNav() {
             <a href="\#pricing" className="floating-nav__link w-nav-link">
               Pricing
             </a>
-            <a href="\#referral" className="floating-nav__link w-nav-link">
-              Referral
-            </a>
           </nav>
           {/* <div className="w-nav-button">
             <div className="w-icon-nav-menu"></div>

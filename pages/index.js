@@ -5,7 +5,6 @@ import Work from "./components/Work";
 import Pricing from "./components/Pricing";
 import Logo from "./components/Logo";
 import Collab from "./components/Collab";
-import Referral from "./components/Referral";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
 import Certification from "./components/Certification";
@@ -52,7 +51,6 @@ export default function Home() {
             <Work />
             <Collab />
             <Pricing />
-            <Referral />
             <FAQ />
             <Footer />
           </>
