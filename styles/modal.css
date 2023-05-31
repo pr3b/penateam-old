@@ -35,29 +35,6 @@
   font-size: small;
   border-radius: 5px;
 }
-.card::after {
-  position: absolute;
-  content: "";
-  height: 40px;
-  right: -20px;
-  border-radius: 40px;
-  z-index: 1;
-  top: 70px;
-  background-color: #f39f21;
-  width: 40px;
-}
-
-.card::before {
-  position: absolute;
-  content: "";
-  height: 40px;
-  left: -20px;
-  border-radius: 40px;
-  z-index: 1;
-  top: 70px;
-  background-color: #f39f21;
-  width: 40px;
-}
 
 .vertical {
   border-left: 5px dotted black;

@@ -75,7 +75,7 @@ const PaymentSuccessX = ({ id }) => {
         <p>You can go to check your Email!</p>
         <p>Email: {email}</p>
         <p>Session ID: {session_id.slice(0, 20) + `...`}</p>
-        <button onClick={handleGoHome}>Go to Homepage</button>
+        <button style={{backgroundColor:"#f39f21"}} onClick={handleGoHome}>Go to Homepage</button>
 
         <style jsx>{`
           .dialog {
