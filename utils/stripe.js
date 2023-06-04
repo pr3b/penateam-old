@@ -78,3 +78,32 @@ export async function soldTracker(productId, decreaseAmount) {
     console.error('Error decreasing product quantity:', error);
   }
 }
+
+/**
+ * 
+ * This function is implementation for Promotional code, at first time used, not Discount
+ */
+export async function checkoutWithPromo({lineItems}, idProduct){
+  const stripe = await getStripe();
+  const sessionId = await getCheckoutSessionWithPromotionalCode({lineItems}, idProduct)
+  await stripe.redirectToCheckout({
+  sessionId: sessionId
+  })
+}
+
+async function getCheckoutSessionWithPromotionalCode({lineItems}, idProduct) {
+  try {
+    const session = await stripePublic.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: lineItems,
+      mode: "subscription",
+      allow_promotion_codes: true,
+      success_url: `${window.location.origin}?session_id={CHECKOUT_SESSION_ID}&&product_id=${idProduct}`,
+      cancel_url: window.location.origin,
+    })
+    return session.id;
+  } catch (error) {
+    console.error('Error creating checkout session:', error);
+    return null;
+  }
+}
