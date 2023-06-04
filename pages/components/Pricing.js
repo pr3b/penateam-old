@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import Popular from "../../public/assets/images/icons/popular.png";
-import { checkout, displayProductQuantity } from "@/utils/stripe";
+import { checkout, checkoutWithPromo, displayProductQuantity } from "@/utils/stripe";
 import Link from "next/link";
 import CouponModal from "./utils/Modal";
 import LoadingComponent from "./utils/Loading";
@@ -20,6 +20,12 @@ function Pricing() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false)
 
+  /**
+   * Used Modal - Used for discount feature
+   * @param {*} idPrice 
+   * @param {*} idProduct 
+   * @param {*} propsCoupon 
+   */
   const handleProductClick = (idPrice, idProduct, propsCoupon) => {
     setIdPrice(idPrice)
     setIdProduct(idProduct)
@@ -36,7 +42,7 @@ function Pricing() {
   }
 
   /**
-   * Unused function
+   * Unused function - Simple Checkout implementation
    */
   // const handleClick = (idPrice, idProduct, propsCoupon) => {
   //   checkout(
@@ -47,6 +53,16 @@ function Pricing() {
   //     idProduct
   //   );
   // };
+
+  //Not used Modal
+  const handleClick = (idPrice, idProduct) => {
+    checkoutWithPromo(
+      {
+        lineItems: [{ price: idPrice, quantity: 1 }],
+      },
+      idProduct
+    );
+  };
 
   useEffect(() => {
     async function fetchProductQuantity() {
@@ -110,7 +126,8 @@ function Pricing() {
                   </div>
                   <button
                     className="pricing-button-monthly"
-                    onClick={() => handleProductClick("price_1NB7oEAEioNEOHotyEOXyMz6", monthly, propsCoupon)}
+                    // onClick={() => handleProductClick("price_1NB7oEAEioNEOHotyEOXyMz6", monthly, propsCoupon)}
+                    onClick={() => handleClick("price_1NB7oEAEioNEOHotyEOXyMz6", monthly)}
                   >
                     Choose Plan
                   </button>
@@ -174,7 +191,8 @@ function Pricing() {
                   </div>
                   <button
                     className="pricing-button-quarterly"
-                    onClick={() => handleProductClick("price_1NB7piAEioNEOHotkmpv3g0a", quarterly, propsCoupon)}
+                    // onClick={() => handleProductClick("price_1NB7piAEioNEOHotkmpv3g0a", quarterly, propsCoupon)}
+                    onClick={() => handleClick("price_1NB7piAEioNEOHotkmpv3g0a", monthly)}
                   >
                     Choose Plan
                   </button>
@@ -230,7 +248,8 @@ function Pricing() {
                   {productQuantityYearly !== 0 ? (
                     <button
                       className="pricing-button-yearly"
-                      onClick={() => handleProductClick("price_1NB7qbAEioNEOHotvwkIc3bh", quarterly, propsCoupon)}
+                      // onClick={() => handleProductClick("price_1NB7qbAEioNEOHotvwkIc3bh", quarterly, propsCoupon)}
+                      onClick={() => handleClick("price_1NB7qbAEioNEOHotvwkIc3bh", monthly)}
                     >
                       Choose Plan
                     </button>
