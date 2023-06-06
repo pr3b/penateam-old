@@ -1,8 +1,6 @@
 import NextAuth from "next-auth"
 // import AppleProvider from "next-auth/providers/apple"
 import EmailProvider from "next-auth/providers/email"
-import GithubProvider from "next-auth/providers/github";
-import GoogleProvider from "next-auth/providers/google"
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "../../../prisma/shared-client.js";
 
@@ -33,7 +31,7 @@ export default NextAuth({
           pass: process.env.SENDGRID_API_KEY
         },
       },
-      from: "<no-reply@penateam.com>",
+      from: "hello@penateam.com",
     }),
   ],
   callbacks: {
