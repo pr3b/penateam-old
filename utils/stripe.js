@@ -91,6 +91,18 @@ export async function checkoutWithPromo({lineItems}, idProduct){
   })
 }
 
+export async function getListOfCheckoutSessions(email){
+  try {
+    const checkout_sessions = await stripePublic.checkout.sessions.list({
+      customer_details : {email : email}
+    });
+    return checkout_sessions;
+  } catch (error) {
+    console.error('Error get list of checkout sessions:', error);
+    return null;
+  }
+}
+
 async function getCheckoutSessionWithPromotionalCode({lineItems}, idProduct) {
   try {
     const session = await stripePublic.checkout.sessions.create({
