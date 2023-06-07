@@ -4,10 +4,12 @@ import EmailProvider from "next-auth/providers/email"
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "../../../prisma/shared-client.js";
 
-export default NextAuth({
-  // secret: process.env.SECRET,
-  adapter: PrismaAdapter(prisma),
-  providers: [
+export const prismaData = prisma;
+export const adapterData = PrismaAdapter(prismaData);
+export const authOptions = {
+  secret: process.env.NEXTAUTH_SECRET,
+  adapterData: adapterData,
+  provider: [
     // OAuth authentication providers
     // AppleProvider({
     //   clientId: process.env.APPLE_ID,
@@ -42,26 +44,8 @@ export default NextAuth({
   },
   events: {
     createUser: async ({ user }) => {
-      // Create stripe API client using the secret key env variable
-      // const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-      //   apiVersion: "2020-08-27",
-      // });
-
-      // // Create a stripe customer for the user with their email address
-      // await stripe.customers
-      //   .create({
-      //     email: user.email,
-      //   })
-      //   .then(async (customer) => {
-      //     // Use the Prisma Client to update the user in the database with their new Stripe customer ID
-      //     return prisma.user.update({
-      //       where: { id: user.id },
-      //       data: {
-      //         stripeCustomerId: customer.id,
-      //       },
-      //     });
-      //   });
-
     }
   },
-})
+}
+
+export default NextAuth(authOptions)
