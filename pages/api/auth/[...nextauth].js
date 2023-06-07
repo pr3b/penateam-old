@@ -29,8 +29,8 @@ export default NextAuth({
         host: process.env.SENDGRID_SMTP_HOST,
         port: Number(process.env.SENDGRID_SMTP_PORT),
         auth: {
-          user: process.env.SENDGRID_API_KEY,
-          pass: process.env.SENDGRID_SMTP_PASSWORD
+          user: 'apikey',
+          pass: process.env.SENDGRID_API_KEY
         },
       },
       from: "<no-reply@penateam.com>",
