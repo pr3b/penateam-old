@@ -8,6 +8,7 @@ const PaymentSuccessX = ({ id }) => {
   const router = useRouter();
   const { session_id, product_id } = router.query;
   const [loading, setLoading] = useState(true);
+  const [loginUrl, setLoginUrl] = useState('')
   const [email, setEmail] = useState('');
   const [amount, setAmount] = useState('')
   const [userName, setUsername] = useState('')
@@ -34,7 +35,8 @@ const PaymentSuccessX = ({ id }) => {
     const fetchSession = async () => {
       try {
         const response = await axios.get(`/api/checkout_sessions/${session_id}`);
-        const session = response.data;
+        const session = response.data.session;
+        // const session = response.data;
         soldTracker(product_id, 1);
         setUsername(session.customer_details.name)
         setEmail(session.customer_details.email);
@@ -42,6 +44,7 @@ const PaymentSuccessX = ({ id }) => {
         setInvoice(session.invoice)
         setDate(formatDate(session.created))
         setLoading(false);
+        setLoginUrl(response.data.url)
       } catch (error) {
         console.error('Error fetching session:', error);
       }
@@ -61,7 +64,7 @@ const PaymentSuccessX = ({ id }) => {
   };
 
   const handleGoHome = () => {
-    router.push('/');
+    router.push(loginUrl);
   };
 
   if (loading) {
