@@ -1,16 +1,13 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = []
+}
+
 datasource db {
   provider          = "postgresql"
   url               = env("DATABASE_URL")
   directUrl         = env("DIRECT_URL")
-  // If you want to use Prisma Migrate, you will need to manually create a shadow database
-  // https://neon.tech/docs/guides/prisma-migrate#configure-a-shadow-database-for-prisma-migrate
-  // make sure to append ?connect_timeout=10 to the connection string
-  shadowDatabaseUrl = env("SHADOW_DATABASE_URL") // Only needed when using a cloud provider that doesn't support the creation of new databases, like Heroku. Learn more: https://pris.ly/d/migrate-shadow
-}
-
-generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = []
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 model Account {
@@ -19,16 +16,15 @@ model Account {
   type                     String
   provider                 String
   providerAccountId        String
-  refresh_token            String? @db.Text
-  access_token             String? @db.Text
+  refresh_token            String?
+  access_token             String?
   expires_at               Int?
   token_type               String?
   scope                    String?
-  id_token                 String? @db.Text
+  id_token                 String?
   session_state            String?
   refresh_token_expires_in Int?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user                     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
@@ -47,10 +43,10 @@ model User {
   email            String?   @unique
   emailVerified    DateTime?
   image            String?
-  accounts         Account[]
-  sessions         Session[]
   stripeCustomerId String?
   isActive         Boolean   @default(false)
+  accounts         Account[]
+  sessions         Session[]
 }
 
 model VerificationToken {
