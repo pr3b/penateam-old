@@ -43,10 +43,10 @@ model User {
   email            String?   @unique
   emailVerified    DateTime?
   image            String?
-  stripeCustomerId String?
-  isActive         Boolean   @default(false)
   accounts         Account[]
   sessions         Session[]
+  stripeCustomerId String?
+  isActive         Boolean   @default(false)
 }
 
 model VerificationToken {
