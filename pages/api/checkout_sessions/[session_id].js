@@ -1,8 +1,8 @@
 import Stripe from 'stripe';
 import { authOptions, adapterData, prismaData } from '../auth/[...nextauth]';
 import { getServerSession } from 'next-auth';
-import crypto, { createHash } from "crypto";
-import axios from 'axios';
+import crypto from "crypto";
+// import axios from 'axios';
 
 const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
 
@@ -14,7 +14,7 @@ export default async function handler(req, res) {
   try {
     const stripeSession = await stripe.checkout.sessions.retrieve(session_id);
     const callbackUrl = "/";
-    const provider = authOptions.provider.find((item) => item.type == "email");
+    const provider = authOptions.providers.find((item) => item.type == "email");
     const identifier = stripeSession.customer_details.email;
     const token = (await provider.generateVerificationToken?.()) ?? randomString(32);
     const ONE_DAY_IN_SECONDS = 86400;
@@ -42,4 +42,20 @@ export default async function handler(req, res) {
     console.error(error);
     res.status(500).json({ error: 'Failed to fetch session object from Stripe' });
   }
+}
+
+export async function createHash(message){
+  const data = new TextEncoder().encode(message);
+  const hash = await crypto.subtle.digest("SHA-256", data)
+  return Array.from(new Uint8Array(hash))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("")
+    .toString()
+}
+
+export function randomString(size){
+  const i2Hex = (i) => ("0" + i.toString(16)).slice(-2)
+  const r = (a, i) => a + i2Hex(i)
+  const bytes = crypto.getRandomValues(new Uint8Array(size))
+  return Array.from(bytes).reduce(r, "")
 }
