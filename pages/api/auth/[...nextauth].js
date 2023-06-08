@@ -2,14 +2,14 @@ import NextAuth from "next-auth"
 // import AppleProvider from "next-auth/providers/apple"
 import EmailProvider from "next-auth/providers/email"
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import { prisma } from "../../../prisma/shared-client.js";
+import { prisma } from "../../../prisma/shared-client.ts";
 
 export const prismaData = prisma;
 export const adapterData = PrismaAdapter(prismaData);
 export const authOptions = {
   secret: process.env.NEXTAUTH_SECRET,
-  adapterData: adapterData,
-  provider: [
+  adapter: adapterData,
+  providers: [
     // OAuth authentication providers
     // AppleProvider({
     //   clientId: process.env.APPLE_ID,
