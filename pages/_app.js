@@ -14,7 +14,7 @@ export default function App({
   } 
 }) {
   return(
-    <SessionProvider>
+    <SessionProvider session={session}>
       <ToastContainer autoClose={3000} />
       <Component {...pageProps} />
     </SessionProvider>
