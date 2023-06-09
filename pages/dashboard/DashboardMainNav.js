@@ -12,7 +12,7 @@ const DashboardMainNav = () => {
           <div
             // x-data={{ open }}
             className="inline-flex items-center mr-3"
-            x-cloak
+            // x-cloak
           >
             {/* Item active: "text-gray-900", Item inactive: "text-gray-500" */}
             <a
@@ -59,7 +59,7 @@ const DashboardMainNav = () => {
           <div
             // onClick={closeDropdown}
             className="ml-3 relative"
-            x-data={{ open: false }}
+            // x-data={{ open: false }}
           >
             <div>
               <button
