@@ -1,5 +1,6 @@
 import React from "react";
 import FloatingNavAuth from "./FloatingNavAuth";
+import { Link } from "@mui/material";
 
 function FloatingNav() {
   return (
@@ -20,6 +21,9 @@ function FloatingNav() {
             <a href="\#pricing" className="floating-nav__link w-nav-link">
               Pricing
             </a>
+            <Link href="/dashboard" className="floating-nav__link w-nav-link">
+              Dashboard Try
+            </Link>
             <FloatingNavAuth />
           </nav>
           {/* <div className="w-nav-button">
