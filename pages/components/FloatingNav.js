@@ -21,9 +21,6 @@ function FloatingNav() {
             <a href="\#pricing" className="floating-nav__link w-nav-link">
               Pricing
             </a>
-            <Link href="/dashboard" className="floating-nav__link w-nav-link">
-              Dashboard Try
-            </Link>
             <FloatingNavAuth />
           </nav>
           {/* <div className="w-nav-button">
