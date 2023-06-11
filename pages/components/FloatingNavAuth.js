@@ -8,13 +8,18 @@ function FloatingNavAuth() {
   if(session){
     return(
       <> 
-        <a href="#" class="floating-nav__link w-nav-link">
-          Signed as {session.user.email} <br />
-          <button onClick={() => signOut()}>Sign out</button>
+        {session && (
+          <Link href="/dashboard" className="floating-nav__link w-nav-link">
+            Dashboard
+          </Link>
+        )}
+        <a href="#" className="floating-nav__link w-nav-link">
+          Hi, {session.user.email} <br />
         </a>
-        <Link href="/my-subscriptions" class="floating-nav__link w-nav-link">
-            My Subscriptions
-        </Link>
+        <button className='floating-nav__link w-nav-link' onClick={() => signOut()}>Sign out</button>
+        {/* <Link href="/dashboard" className="floating-nav__link w-nav-link">
+            My Dashboard
+        </Link> */}
       </>
     )
   }
@@ -25,4 +30,4 @@ function FloatingNavAuth() {
   )
 }
 
-export default FloatingNavAuth
+export default FloatingNavAuth;
