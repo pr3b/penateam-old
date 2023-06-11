@@ -6,6 +6,11 @@ import Link from "next/link";
 import CouponModal from "./utils/Modal";
 import LoadingComponent from "./utils/Loading";
 
+/**
+ * Tood Next
+ * - Button Choose plan show loading when clicked, it will add user experience
+ */
+
 function Pricing() {
   const [productQuantityMonthly, setproductQuantityMonthly] = useState(null);
   const [productQuantityQuarterly, setproductQuantityQuarterly] =
