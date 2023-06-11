@@ -1,10 +1,8 @@
-import React, {useEffect, useState } from 'react';
+import React, {useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import LoadingComponent from './components/utils/Loading';
 import { soldTracker } from '@/utils/stripe';
-import { useSession } from 'next-auth/react';
-import { redirect } from 'next/dist/server/api-utils';
 
 const PaymentSuccessX = ({ id }) => {
   const router = useRouter();
@@ -16,7 +14,6 @@ const PaymentSuccessX = ({ id }) => {
   const [userName, setUsername] = useState('')
   const [invoice, setInvoice] = useState('')
   const [date, setDate] = useState()
-  const {data: session, status, update} = useSession()
   
   const formatAmount = (data) => {
     return (data / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
@@ -28,9 +25,9 @@ const PaymentSuccessX = ({ id }) => {
     return formattedDate;
   };
 
-  const redirect = () => {
+  const redirect = useCallback(() => {
     router.push(loginUrl);
-  }
+  }, [router, loginUrl])
 
   useEffect(() => {
     if (session_id && email) {
@@ -47,7 +44,6 @@ const PaymentSuccessX = ({ id }) => {
       try {
         const response = await axios.get(`/api/checkout_sessions/${session_id}`);
         const session = response.data.session;
-        // const session = response.data;
         soldTracker(product_id, 1);
         setUsername(session.customer_details.name)
         setEmail(session.customer_details.email);
