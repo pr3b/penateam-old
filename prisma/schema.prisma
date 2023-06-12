@@ -47,6 +47,7 @@ model User {
   isActive         Boolean   @default(false)
   accounts         Account[]
   sessions         Session[]
+  tasks            Task[]
 }
 
 model VerificationToken {
@@ -55,4 +56,13 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Task {
+  id          String  @id @default(cuid())
+  idUser      String
+  Title       String?
+  category    String?
+  description String?
+  user        User    @relation(fields: [idUser], references: [id], onDelete: Cascade)
 }
