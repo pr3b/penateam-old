@@ -8,20 +8,30 @@ const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
 
 export default async function handler(req, res) {
   const session = await getServerSession(req, res, authOptions);
+  const provider = authOptions.providers.find((item) => item.type == "email");
+  const callbackUrl = "/dashboard";
+  if(typeof provider == "undefined"){
+    return res.status(500).json({error: "Email provider not found"});
+  }
   const session_id = req.query.session_id;
 
   // Fetch the session object from Stripe
   try {
     const stripeSession = await stripe.checkout.sessions.retrieve(session_id);
-    const callbackUrl = "/";
-    const provider = authOptions.providers.find((item) => item.type == "email");
+    // const provider = authOptions.providers.find((item) => item.type == "email");
     const identifier = stripeSession.customer_details.email;
     const token = (await provider.generateVerificationToken?.()) ?? randomString(32);
     const ONE_DAY_IN_SECONDS = 86400;
     const expires = new Date(Date.now() + provider.maxAge ?? ONE_DAY_IN_SECONDS  * 1000);
     const params = new URLSearchParams({callbackUrl, token, email: identifier});
-    const _url = `/api/auth/callback/${provider.id}?${params}`;
+    const urlValidationLoginEmail = `/api/auth/callback/${provider.id}?${params}`;
+    // const _url = `/api/auth/callback/${provider.id}?${params}`;
     const secret = provider.secret ?? authOptions.secret;
+
+    if(session){
+      res.status(200).json({session: stripeSession, url: callbackUrl});
+      return;
+    }
 
     let user = await prismaData.user.findUnique({where: {email: identifier}});
     if(!user){
@@ -37,7 +47,7 @@ export default async function handler(req, res) {
       expires: expires
     })
 
-    res.status(200).json({session: stripeSession, url: _url});
+    res.status(200).json({session: stripeSession, url: urlValidationLoginEmail});
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Failed to fetch session object from Stripe' });
