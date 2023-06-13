@@ -39,6 +39,7 @@ export const authOptions = {
   callbacks: {
     async session({ session, user }) {
       session.user.id = user.id;
+      session.user.email = user.email;
       return session;
     },
   },
