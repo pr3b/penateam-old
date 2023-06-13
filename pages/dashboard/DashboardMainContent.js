@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react'
+import KanbanBoard from './components/KanbanBoard';
 
 const DashboardMainContent = () => {
   const mainRef = useRef(null);
@@ -11,7 +12,6 @@ const DashboardMainContent = () => {
     <main
       className="flex-1 relative z-0 overflow-y-auto focus:outline-none py-6"
       tabIndex="0"
-      x-data
       x-init="$el.focus()"
       id="scrollable-main"
       ref={mainRef}
@@ -54,7 +54,7 @@ const DashboardMainContent = () => {
                 <div className="align-middle inline-block min-w-full overflow-hidden border-t-none border border-gray-200 custom-rounded-b-sm">
                   {/* KONTEN DISINI */}
                   {/* Component Start */}
-                  <div className="flex w-screen h-screen p-10 space-x-4 overflow-auto text-gray-700">
+                  {/* <div className="flex w-screen h-screen p-10 space-x-4 overflow-auto text-gray-700">
                     <div className="flex flex-col flex-shrink-0 w-64 bg-gray-200 border border-gray-300">
                       <div className="flex items-center justify-between flex-shrink-0 h-10 px-2 border-b border-gray-300 bg-white">
                         <span className="block text-sm font-medium">To Do</span>
@@ -103,7 +103,8 @@ const DashboardMainContent = () => {
                         <div className="p-6 mt-2 border border-gray-300 bg-white cursor-pointer">Task - 3</div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
+                  <KanbanBoard />
                   {/* Component End */}
 
                   <a className="fixed flex items-center justify-center h-8 pr-2 pl-1 bg-yellow-600 rounded-full bottom-0 right-0 mr-4 mb-4 shadow-lg text-blue-100 hover:bg-blue-600" href="https://twitter.com/heykaiyo" target="_top">
