@@ -9,12 +9,7 @@ const DashboardMainNav = () => {
         <div className="flex-1 flex"></div>
         <div className="ml-4 flex items-center md:ml-6">
           {/* Notification Komponen */}
-          <div
-            // x-data={{ open }}
-            className="inline-flex items-center mr-3"
-            // x-cloak
-          >
-            {/* Item active: "text-gray-900", Item inactive: "text-gray-500" */}
+          <div className="inline-flex items-center mr-3"> 
             <a
               href="https://penateam.com/notifications"
               className="group text-gray-500 inline-flex items-center space-x-2 text-base leading-6 font-medium hover:text-gray-900 focus:outline-none focus:text-gray-900 transition ease-in-out duration-150"
