@@ -1,27 +1,63 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AddTaskForm from './AddTaskForm';
 import axios from 'axios';
+import { Button } from '@mui/material';
+import { useSession } from 'next-auth/react';
+import { categoryDone, categoryInProgress, categoryRequest } from '@/utils/category';
 
 const KanbanBoard = () => {
+  const {data: session, status} = useSession()
+  const userSessionEmail = session?.user?.email
+  const [userInvoicesID, setUserInvoicesID] = useState([]);
+
+  //Need to change into Table
+  const getInvoicesByEmail = async () => {
+    try {
+      const response = await fetch('/api/invoices', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userSessionEmail }),
+      });
+    
+      if (response.ok) {
+        const { invoiceIds } = await response.json();
+        setUserInvoicesID(invoiceIds)
+        console.log('Invoice IDs:', invoiceIds);
+      } else {
+        console.error('Failed to retrieve invoice IDs:', response.status);
+      }
+    } catch (error) {
+      console.error('Error retrieving invoice IDs:', error);
+    }
+  }
+
   const [tasks, setTasks] = useState([
-    { id: 1, title: 'Task - 1', category: 'todo' },
-    { id: 2, title: 'Task - 2', category: 'todo' },
-    { id: 3, title: 'Task - 3', category: 'inProgress' },
-    { id: 4, title: 'Task - 4', category: 'inProgress' },
-    { id: 5, title: 'Task - 5', category: 'inProgress' },
-    { id: 6, title: 'Task - 6', category: 'done' },
+    { id: 1, title: 'Task - 1', category: categoryRequest },
+    { id: 2, title: 'Task - 2', category: categoryRequest },
+    { id: 3, title: 'Task - 3', category: categoryInProgress },
+    { id: 4, title: 'Task - 4', category: categoryInProgress },
+    { id: 5, title: 'Task - 5', category: categoryInProgress },
+    { id: 6, title: 'Task - 6', category: categoryDone },
   ]);
 
   const handleAddTask = (newTask) => {
     setTasks((prevTasks) => [...prevTasks, newTask]);
   };
 
+  useEffect(() => {
+    getInvoicesByEmail()
+  }, [])
+
+  console.log(userInvoicesID, "data invoices user")
+
   //Send email to admin when user created request
   //Send email to user when category changed by admin
 
   const sendEmailNotification = async (taskTitle, category) => {
     const emailData = {
-      to: 'arista@penateam.com', // Replace with the recipient email address
+      to: userSessionEmail, // Replace with the recipient email address
       from: 'hello@penateam.com', // Replace with your sender email address
       subject: 'Penateam Task Update',
       text: `Task "${taskTitle}" moved to "${category}" category.`,
@@ -63,7 +99,7 @@ const KanbanBoard = () => {
   return (
     <div className="flex w-screen h-screen p-10 space-x-4 overflow-auto text-gray-700">
       <div className="flex flex-col flex-shrink-0 w-64 bg-gray-200 border border-gray-300">
-        <div className="flex items-center justify-between flex-shrink-0 h-10 px-2 border-b border-gray-300 bg-white">
+        <div className="flex items-center justify-between flex-shrink-0 h-10 px-2 border-b border-gray-300 bg-white rounded">
           <span className="block text-sm font-medium">Requests</span>
           <button className="flex items-center justify-center w-6 h-6">
             <svg
@@ -84,7 +120,7 @@ const KanbanBoard = () => {
         <div
           className="flex flex-col px-2 pb-2 overflow-auto"
           onDragOver={(e) => handleDragOver(e)}
-          onDrop={(e) => handleDrop(e, 'todo')}
+          onDrop={(e) => handleDrop(e, categoryRequest)}
         >
           {tasks
             .filter((task) => task.category === 'todo')
@@ -98,6 +134,10 @@ const KanbanBoard = () => {
                 {task.title}
               </div>
             ))}
+            <button className="mt-5 bg-transparent hover:bg-yellow-500 text-yellow-500 font-semibold hover:text-white py-2 px-4 border border-yellow-500 hover:border-transparent rounded">
+              Add new Request
+            </button>
+            <Button>Add new Request</Button>
             <AddTaskForm onAddTask={handleAddTask}/>
         </div>
       </div>
@@ -124,7 +164,7 @@ const KanbanBoard = () => {
         <div
           className="flex flex-col px-2 pb-2 overflow-auto"
           onDragOver={(e) => handleDragOver(e)}
-          onDrop={(e) => handleDrop(e, 'inProgress')}
+          onDrop={(e) => handleDrop(e, categoryInProgress)}
         >
           {tasks
             .filter((task) => task.category === 'inProgress')
@@ -138,7 +178,7 @@ const KanbanBoard = () => {
                 {task.title}
               </div>
             ))}
-            <AddTaskForm onAddTask={handleAddTask}/>
+            {/* <AddTaskForm onAddTask={handleAddTask}/> */}
         </div>
       </div>
 
@@ -164,7 +204,7 @@ const KanbanBoard = () => {
         <div
           className="flex flex-col px-2 pb-2 overflow-auto"
           onDragOver={(e) => handleDragOver(e)}
-          onDrop={(e) => handleDrop(e, 'done')}
+          onDrop={(e) => handleDrop(e, categoryDone)}
         >
           {tasks
             .filter((task) => task.category === 'done')
@@ -178,7 +218,7 @@ const KanbanBoard = () => {
                 {task.title}
               </div>
             ))}
-            <AddTaskForm onAddTask={handleAddTask}/>
+            {/* <AddTaskForm onAddTask={handleAddTask}/> */}
         </div>
       </div>
     </div>
