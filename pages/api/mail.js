@@ -180,3 +180,21 @@ export default async function sendEmail(req, res){
     res.status(500).json({ error: "Error sending email" });
   }
 }
+
+export async function sendEmailNotification(to, from, subject, text) {
+    const msg = {
+      to,
+      from,
+      subject,
+      text,
+    };
+  
+    try {
+      await sgMail.send(msg);
+      console.log('Email sent successfully');
+      return true;
+    } catch (error) {
+      console.error('Error sending email:', error);
+      return false;
+    }
+  }

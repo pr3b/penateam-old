@@ -91,6 +91,18 @@ export async function checkoutWithPromo({lineItems}, idProduct){
   })
 }
 
+export async function getListOfCheckoutSessions(email){
+  try {
+    const checkout_sessions = await stripePublic.checkout.sessions.list({
+      customer_details : {email : email}
+    });
+    return checkout_sessions;
+  } catch (error) {
+    console.error('Error get list of checkout sessions:', error);
+    return null;
+  }
+}
+
 async function getCheckoutSessionWithPromotionalCode({lineItems}, idProduct) {
   try {
     const session = await stripePublic.checkout.sessions.create({
@@ -107,3 +119,28 @@ async function getCheckoutSessionWithPromotionalCode({lineItems}, idProduct) {
     return null;
   }
 }
+
+export async function getInvoiceIdsByCustomerEmail(customerEmail){
+  try {
+    // Retrieve the customer based on email
+    const customers = await stripePublic.customers.list({ email: customerEmail });
+
+    // Get the customer object
+    const customer = customers.data[0];
+
+    if (customer) {
+      // Retrieve the invoices for the customer
+      const invoices = await stripePublic.invoices.list({ customer: customer.id });
+
+      // Extract the invoice IDs
+      const invoiceIds = invoices.data.map((invoice) => invoice.id);
+
+      return invoiceIds;
+    } else {
+      throw new Error('Customer not found.');
+    }
+  } catch (error) {
+    console.error('Error retrieving invoice IDs:', error);
+    throw error;
+  }
+};

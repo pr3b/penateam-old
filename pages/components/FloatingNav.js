@@ -1,4 +1,6 @@
 import React from "react";
+import FloatingNavAuth from "./FloatingNavAuth";
+import { Link } from "@mui/material";
 
 function FloatingNav() {
   return (
@@ -19,6 +21,7 @@ function FloatingNav() {
             <a href="\#pricing" className="floating-nav__link w-nav-link">
               Pricing
             </a>
+            <FloatingNavAuth />
           </nav>
           {/* <div className="w-nav-button">
             <div className="w-icon-nav-menu"></div>
