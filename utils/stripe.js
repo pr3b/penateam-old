@@ -11,10 +11,19 @@ const getStripe = async () => {
 
 export async function checkout({lineItems, discounts}, idProduct){
   const stripe = await getStripe();
-  const sessionId = await getCheckoutSessionCreated({lineItems, discounts}, idProduct)
-  await stripe.redirectToCheckout({
-   sessionId: sessionId
-  })
+  if(!discounts || discounts.length === 0 || discounts[0].coupon === ""){
+    await stripe.redirectToCheckout({
+      mode: "subscription",
+      lineItems,
+      successUrl: `${window.location.origin}?session_id={CHECKOUT_SESSION_ID}&&product_id=${idProduct}`,
+      cancelUrl: window.location.origin,
+    })
+  } else {
+    const sessionId = await getCheckoutSessionCreated({lineItems, discounts}, idProduct)
+    await stripe.redirectToCheckout({
+    sessionId: sessionId
+    })
+  }
 }
 
 async function getCheckoutSessionCreated({lineItems, discounts}, idProduct){
@@ -69,3 +78,69 @@ export async function soldTracker(productId, decreaseAmount) {
     console.error('Error decreasing product quantity:', error);
   }
 }
+
+/**
+ * 
+ * This function is implementation for Promotional code, at first time used, not Discount
+ */
+export async function checkoutWithPromo({lineItems}, idProduct){
+  const stripe = await getStripe();
+  const sessionId = await getCheckoutSessionWithPromotionalCode({lineItems}, idProduct)
+  await stripe.redirectToCheckout({
+  sessionId: sessionId
+  })
+}
+
+export async function getListOfCheckoutSessions(email){
+  try {
+    const checkout_sessions = await stripePublic.checkout.sessions.list({
+      customer_details : {email : email}
+    });
+    return checkout_sessions;
+  } catch (error) {
+    console.error('Error get list of checkout sessions:', error);
+    return null;
+  }
+}
+
+async function getCheckoutSessionWithPromotionalCode({lineItems}, idProduct) {
+  try {
+    const session = await stripePublic.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: lineItems,
+      mode: "subscription",
+      allow_promotion_codes: true,
+      success_url: `${window.location.origin}?session_id={CHECKOUT_SESSION_ID}&&product_id=${idProduct}`,
+      cancel_url: window.location.origin,
+    })
+    return session.id;
+  } catch (error) {
+    console.error('Error creating checkout session:', error);
+    return null;
+  }
+}
+
+export async function getInvoiceIdsByCustomerEmail(customerEmail){
+  try {
+    // Retrieve the customer based on email
+    const customers = await stripePublic.customers.list({ email: customerEmail });
+
+    // Get the customer object
+    const customer = customers.data[0];
+
+    if (customer) {
+      // Retrieve the invoices for the customer
+      const invoices = await stripePublic.invoices.list({ customer: customer.id });
+
+      // Extract the invoice IDs
+      const invoiceIds = invoices.data.map((invoice) => invoice.id);
+
+      return invoiceIds;
+    } else {
+      throw new Error('Customer not found.');
+    }
+  } catch (error) {
+    console.error('Error retrieving invoice IDs:', error);
+    throw error;
+  }
+};
