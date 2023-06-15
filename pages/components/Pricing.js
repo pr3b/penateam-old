@@ -6,6 +6,14 @@ import Link from "next/link";
 import CouponModal from "./utils/Modal";
 import LoadingComponent from "./utils/Loading";
 
+const LoadingPlaceholder = () => {
+  return (
+    <div className="flex justify-center items-center h-6">
+      <span className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-gray-600"></span>
+    </div>
+  );
+};
+
 /**
  * Tood Next
  * - Button Choose plan show loading when clicked, it will add user experience
@@ -24,6 +32,8 @@ function Pricing() {
   const yearly = "prod_Nx1uVW1AZu2qKu";
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false)
+  const [choosePlanLoading, setChoosePlanLoading] = useState(null);
+
 
   /**
    * Used Modal - Used for discount feature
@@ -60,13 +70,19 @@ function Pricing() {
   // };
 
   //Not used Modal
-  const handleClick = (idPrice, idProduct) => {
+  const handleClick = (idPrice, idProduct, buttonId) => {
+    setChoosePlanLoading(buttonId);
     checkoutWithPromo(
       {
         lineItems: [{ price: idPrice, quantity: 1 }],
       },
       idProduct
     );
+    setTimeout(() => {
+      // Perform your desired action here
+
+      setChoosePlanLoading(null); // Set loading state back to false
+    }, 3000); // Simulating a 2-second delay
   };
 
   useEffect(() => {
@@ -129,13 +145,25 @@ function Pricing() {
                     <h3>$3,000/month</h3>
                     <p>Pause or cancel anytime</p>
                   </div>
-                  <button
-                    className="pricing-button-monthly"
-                    // onClick={() => handleProductClick("price_1NB7oEAEioNEOHotyEOXyMz6", monthly, propsCoupon)}
-                    onClick={() => handleClick("price_1NB7oEAEioNEOHotyEOXyMz6", monthly)}
-                  >
-                    Choose Plan
-                  </button>
+                  {productQuantityMonthly !== 0 ? (
+                    <button
+                      id="button1"
+                      className="pricing-button-monthly"
+                      // onClick={() => handleProductClick("price_1NB7oEAEioNEOHotyEOXyMz6", monthly, propsCoupon)}
+                      onClick={() => handleClick("price_1NB7oEAEioNEOHotyEOXyMz6", monthly, "button1")}
+                      disabled={choosePlanLoading === 'button1'}
+                    >
+                      {choosePlanLoading === 'button1' ? (
+                        <LoadingPlaceholder />
+                      ) : (
+                        'Choose Plan'
+                      )}
+                    </button>
+                  ) : (
+                    <button style={{color:"GrayText"}} className="pricing-button-yearly" disabled>
+                      Product Sold
+                    </button>
+                  )}
                   <Link href="http://calendly.com/cahyosubroto">
                     <h5>Book a Call</h5>
                   </Link>
@@ -194,13 +222,25 @@ function Pricing() {
                     <h3>$2,500/month</h3>
                     <p>Pause or cancel anytime</p>
                   </div>
-                  <button
-                    className="pricing-button-quarterly"
-                    // onClick={() => handleProductClick("price_1NB7piAEioNEOHotkmpv3g0a", quarterly, propsCoupon)}
-                    onClick={() => handleClick("price_1NB7piAEioNEOHotkmpv3g0a", monthly)}
-                  >
-                    Choose Plan
-                  </button>
+                  {productQuantityQuarterly !== 0 ? (
+                    <button
+                      id="button2"
+                      className="pricing-button-quarterly"
+                      // onClick={() => handleProductClick("price_1NB7piAEioNEOHotkmpv3g0a", quarterly, propsCoupon)}
+                      onClick={() => handleClick("price_1NB7piAEioNEOHotkmpv3g0a", quarterly, "button2")}
+                      disabled={choosePlanLoading === 'button2'}
+                    >
+                      {choosePlanLoading === 'button2' ? (
+                        <LoadingPlaceholder />
+                      ) : (
+                        'Choose Plan'
+                      )}
+                    </button>
+                  ) : (
+                    <button style={{color:"GrayText"}} className="pricing-button-yearly" disabled>
+                      Product Sold
+                    </button>
+                  )}
                   <Link href="http://calendly.com/cahyosubroto">
                     <h5>Book a Call</h5>
                   </Link>
@@ -250,16 +290,22 @@ function Pricing() {
                     <h3>$2,000/month</h3>
                     <p>Pause or cancel anytime</p>
                   </div>
-                  {productQuantityYearly !== 0 ? (
+                  {productQuantityYearly > 0 ? (
                     <button
+                      id="button3"
                       className="pricing-button-yearly"
                       // onClick={() => handleProductClick("price_1NB7qbAEioNEOHotvwkIc3bh", quarterly, propsCoupon)}
-                      onClick={() => handleClick("price_1NB7qbAEioNEOHotvwkIc3bh", monthly)}
+                      onClick={() => handleClick("price_1NB7qbAEioNEOHotvwkIc3bh", monthly, "button3")}
+                      disabled={choosePlanLoading === 'button3'}
                     >
-                      Choose Plan
+                      {choosePlanLoading === 'button3' ? (
+                        <LoadingPlaceholder />
+                      ) : (
+                        'Choose Plan'
+                      )}
                     </button>
                   ) : (
-                    <button className="pricing-button-yearly" disabled>
+                    <button style={{color:"GrayText"}} className="pricing-button-yearly pointer-events-none">
                       Product Sold
                     </button>
                   )}

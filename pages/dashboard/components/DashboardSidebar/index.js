@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import SidebarDesktop from './SidebarDesktop'
 import SidebarMobile from './SidebarMobile'
 
-const DashboardSidebar = () => {
+const DashboardSidebar = ({ activeNavItem, onNavItemClick }) => {
   const [showComponent, setShowComponent] = useState(true);
 
   useEffect(() => {
@@ -30,9 +30,9 @@ const DashboardSidebar = () => {
   return (
     <div className="md:block md:flex md:flex-shrink-0">
       {showComponent ? (
-        <SidebarMobile />
+        <SidebarMobile activeNavItem={activeNavItem} onNavItemClick={onNavItemClick}/>
       ) : (
-        <SidebarDesktop />
+        <SidebarDesktop activeNavItem={activeNavItem} onNavItemClick={onNavItemClick}/>
       )}
     </div>
   )

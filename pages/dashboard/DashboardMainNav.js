@@ -9,9 +9,10 @@ const DashboardMainNav = () => {
         <div className="ml-4 flex items-center md:ml-6">
           {/* Notification Komponen */}
           <div className="inline-flex items-center mr-3"> 
+            {/* Masih deaktif - pointer-events-none */}
             <a
               href="https://penateam.com/notifications"
-              className="group text-gray-500 inline-flex items-center space-x-2 text-base leading-6 font-medium hover:text-gray-900 focus:outline-none focus:text-gray-900 transition ease-in-out duration-150"
+              className="group text-gray-200 inline-flex items-center space-x-2 text-base leading-6 font-medium hover:text-gray-900 focus:outline-none focus:text-gray-900 transition ease-in-out duration-150 pointer-events-none"
             >
               <svg
                 className="h-6 w-6"
@@ -27,26 +28,6 @@ const DashboardMainNav = () => {
                 />
               </svg>
             </a>
-            {/* <div
-              x-show={open}
-              className="origin-top-right absolute top-14 right-0 mr-6 rounded-md z-10"
-            >
-              <div className="rounded-lg shadow-lg">
-                <div className="rounded-lg shadow-xs overflow-hidden max-w-xs sm:max-w-lg">
-                  <div className="z-20 relative grid gap-6 bg-white px-2 pt-3 pb-3 overflow-x-hidden overflow-y-auto max-h-96"></div>
-                  <a
-                    href="https://penateam.com/notifications"
-                    className="px-5 py-4 bg-gray-50 space-y-6 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8 justify-center hover:bg-gray-100 transition ease-in-out duration-150"
-                  >
-                    <div className="flow-root">
-                      <div className="-m-3 p-3 flex items-center space-x-3 rounded-md text-base leading-6 font-medium text-gray-900">
-                        <span>All notifications</span>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div> */}
           </div>
 
           {/* User Component */}
