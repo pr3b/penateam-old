@@ -11,7 +11,6 @@ const SidebarDesktop = ({ activeNavItem, onNavItemClick }) => {
   const handleItemClick = (navItem) => {
     onNavItemClick(navItem);
   };
-  console.log(activeNavItem, "data active")
 
   return (
     <div className="flex flex-col w-64">
@@ -29,7 +28,6 @@ const SidebarDesktop = ({ activeNavItem, onNavItemClick }) => {
       <div className="h-0 flex-1 flex flex-col overflow-y-auto">
         <ul className="flex-1 px-2 py-4 bg-white">
           <li
-            // href={`${originUrl}/dashboard`}
             className="group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-900 rounded-md bg-gray-100 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:bg-gray-200 transition ease-in-out duration-150"
             onClick={() => handleItemClick('dashboard')}
           >
@@ -54,7 +52,6 @@ const SidebarDesktop = ({ activeNavItem, onNavItemClick }) => {
             Orders
           </span>
           <li
-            // href={`${originUrl}/dashboard`}
             className={`${activeNavItem === 'requests' ? 'active' : ''} group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition ease-in-out duration-150`}
             onClick={() => handleItemClick('requests')}
           >
@@ -74,7 +71,6 @@ const SidebarDesktop = ({ activeNavItem, onNavItemClick }) => {
             Requests
           </li>
           <li
-            // href={`${originUrl}/dashboard`}
             className={`${activeNavItem === 'invoices' ? 'active' : ''} group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition ease-in-out duration-150`}
             onClick={() => handleItemClick('invoices')}
           >
@@ -94,7 +90,6 @@ const SidebarDesktop = ({ activeNavItem, onNavItemClick }) => {
             Invoices
           </li>
           <li
-            // href={`${originUrl}/dashboard`}
             className={`${activeNavItem === 'invoices' ? 'active' : ''} group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-300 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition ease-in-out duration-150 pointer-events-none`}
             onClick={() => handleItemClick('settings')}
           >

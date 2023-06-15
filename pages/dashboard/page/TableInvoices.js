@@ -25,7 +25,6 @@ const TableInvoices = () => {
       const response = await axios.post('/api/invoices', {
         customerEmail: userSessionEmail,
       });
-      console.log(response, "return data")
       setUserInvoicesID(response.data?.invoices)
     } catch (error) {
       console.error('Error retrieving invoice IDs:', error);
@@ -36,8 +35,6 @@ const TableInvoices = () => {
   useEffect(() => {
     getInvoicesByEmail()
   }, [userSessionEmail])
-
-  console.log(userInvoicesData, "data invoices user")
 
   return (
     <>
