@@ -1,24 +1,73 @@
 import React, { useEffect, useState } from 'react';
 import AddTaskForm from '../components/AddTaskForm';
 import axios from 'axios';
-import { Button } from '@mui/material';
 import { useSession } from 'next-auth/react';
 import { categoryDone, categoryInProgress, categoryRequest } from '@/utils/category';
+
+const CardSkeleton = () => {
+  return (
+    <div className="p-4 bg-gray-200 rounded-md animate-pulse">
+      <div className="h-6 bg-gray-300 mb-4"></div>
+      <div className="h-4 bg-gray-300 mb-4"></div>
+      <div className="h-4 bg-gray-300 w-1/3"></div>
+    </div>
+  );
+};
 
 const KanbanBoard = () => {
   const {data: session, status} = useSession()
   const userSessionEmail = session?.user?.email
-  const [tasks, setTasks] = useState([
-    { id: 1, title: 'Task - 1', category: categoryRequest },
-    { id: 2, title: 'Task - 2', category: categoryRequest },
-    { id: 3, title: 'Task - 3', category: categoryInProgress },
-    { id: 4, title: 'Task - 4', category: categoryInProgress },
-    { id: 5, title: 'Task - 5', category: categoryInProgress },
-    { id: 6, title: 'Task - 6', category: categoryDone },
-  ]);
+  const [tasks, setTasks] = useState([]);
+  const [isLoadDataDone, setIsLoadDataDone] = useState(true)
+  const [isAddTaskFormOpen, setIsAddTaskFormOpen] = useState(false);
+
+  const openAddTaskFormModal = () => {
+    setIsAddTaskFormOpen(true);
+  };
+
+  const closeAddTaskFormModal = () => {
+    setIsAddTaskFormOpen(false);
+  };
+
+  const mapTaskOrTasks = (taskOrTasks) => {
+    if(Array.isArray(taskOrTasks)){
+      return taskOrTasks.map((originalObject) => {
+        const mappedObject = {
+          id: originalObject.id,
+          title: originalObject.Title,
+          category: originalObject.category,
+        };
+
+        return mappedObject;
+      });
+    } else {
+      return {
+        id: taskOrTasks.id,
+        title: taskOrTasks.Title,
+        category: taskOrTasks.category,
+      }
+    }
+  }
+
+  useEffect(() => {
+    const loadTask = async () => {
+      try{
+        setIsLoadDataDone(false)
+        const res = await fetch("/api/task");
+        const data = await res.json();
+        const mappedArray = mapTaskOrTasks(data.tasks);
+        setTasks(mappedArray);
+        setIsLoadDataDone(true)
+      } catch(error){
+        console.error("Error while loading data:", error);
+      }
+    };
+    loadTask();
+  }, [])
 
   const handleAddTask = (newTask) => {
-    setTasks((prevTasks) => [...prevTasks, newTask]);
+    const mappedTask = mapTaskOrTasks(newTask)
+    setTasks((prevTasks) => [...prevTasks, mappedTask]);
   };
 
   const sendEmailNotification = async (taskTitle, category) => {
@@ -50,16 +99,29 @@ const KanbanBoard = () => {
   };
 
   const handleDrop = (e, category) => {
-    const taskId = parseInt(e.dataTransfer.getData('text/plain'), 10);
-    const updatedTasks = tasks.map((task) => {
-      if (task.id === taskId) {
-        return { ...task, category };
-      }
-      return task;
-    });
-    setTasks(updatedTasks);
-    const updatedTask = updatedTasks.find((task) => task.id === taskId);
-    sendEmailNotification(updatedTask.title, category);
+    const taskId = e.dataTransfer.getData('text/plain');
+    const updateTask = async () => {
+      return axios.put("/api/task", {id: taskId, category})
+        .then((res) => {
+          if(res.status >= 200 && res.status < 300){
+            const updatedTask = tasks.map((task) => {
+              if(task.id === taskId){
+                return {...task, category};
+              }
+              return task;
+            });
+            setTasks(updatedTask);
+            if(category == categoryInProgress){
+              sendEmailNotification(updatedTask.title, category);
+            }
+          } else {
+            console.error("Error while updating data:", res)
+          }
+        }).catch((error) => {
+          console.error("Error while updating data:", error);
+        })
+    };
+    updateTask();
   };
 
   return (
@@ -94,27 +156,34 @@ const KanbanBoard = () => {
             </button>
           </div>
           <div
-            className="flex flex-col px-2 pb-2 overflow-auto"
+            className="flex flex-col px-2 pb-2 overflow-auto h-screen"
             onDragOver={(e) => handleDragOver(e)}
             onDrop={(e) => handleDrop(e, categoryRequest)}
           >
-            {tasks
-              .filter((task) => task.category === 'todo')
+            {isLoadDataDone ? (
+              tasks.filter((task) => task.category === categoryRequest)
               .map((task) => (
-                <div
-                  key={task.id}
-                  className="p-6 mt-2 border border-gray-300 bg-white cursor-pointer"
-                  draggable
-                  onDragStart={(e) => handleDragStart(e, task.id)}
+                  <div
+                    key={task.id}
+                    className="p-6 mt-2 border border-gray-300 bg-white cursor-pointer"
+                    draggable
+                    onDragStart={(e) => handleDragStart(e, task.id)}
+                  >
+                    {task.title}
+                  </div>
+                
+                ))): (
+                  <CardSkeleton />
+                )}
+              <button 
+                className="mt-5 bg-transparent hover:bg-yellow-500 text-yellow-500 font-semibold hover:text-white py-2 px-4 border border-yellow-500 hover:border-transparent rounded"
+                onClick={openAddTaskFormModal}
                 >
-                  {task.title}
-                </div>
-              ))}
-              <button className="mt-5 bg-transparent hover:bg-yellow-500 text-yellow-500 font-semibold hover:text-white py-2 px-4 border border-yellow-500 hover:border-transparent rounded">
                 Add new Request
               </button>
-              <Button>Add new Request</Button>
-              <AddTaskForm onAddTask={handleAddTask}/>
+              {isAddTaskFormOpen && (
+                <AddTaskForm onAddTask={handleAddTask} closeModal={closeAddTaskFormModal} />
+              )}
           </div>
         </div>
 
@@ -138,12 +207,13 @@ const KanbanBoard = () => {
             </button>
           </div>
           <div
-            className="flex flex-col px-2 pb-2 overflow-auto"
+            className="flex flex-col px-2 pb-2 overflow-auto h-screen"
             onDragOver={(e) => handleDragOver(e)}
             onDrop={(e) => handleDrop(e, categoryInProgress)}
           >
-            {tasks
-              .filter((task) => task.category === 'inProgress')
+            {isLoadDataDone ? (
+              tasks
+              .filter((task) => task.category === categoryInProgress)
               .map((task) => (
                 <div
                   key={task.id}
@@ -153,8 +223,9 @@ const KanbanBoard = () => {
                 >
                   {task.title}
                 </div>
-              ))}
-              {/* <AddTaskForm onAddTask={handleAddTask}/> */}
+              ))) : (
+                <CardSkeleton />
+              )}
           </div>
         </div>
 
@@ -178,12 +249,13 @@ const KanbanBoard = () => {
             </button>
           </div>
           <div
-            className="flex flex-col px-2 pb-2 overflow-auto"
+            className="flex flex-col px-2 pb-2 overflow-auto h-screen"
             onDragOver={(e) => handleDragOver(e)}
             onDrop={(e) => handleDrop(e, categoryDone)}
           >
-            {tasks
-              .filter((task) => task.category === 'done')
+            {isLoadDataDone ? (
+              tasks
+              .filter((task) => task.category === categoryDone)
               .map((task) => (
                 <div
                   key={task.id}
@@ -193,8 +265,9 @@ const KanbanBoard = () => {
                 >
                   {task.title}
                 </div>
-              ))}
-              {/* <AddTaskForm onAddTask={handleAddTask}/> */}
+              ))):(
+                <CardSkeleton />
+              )}
           </div>
         </div>
       </div>
