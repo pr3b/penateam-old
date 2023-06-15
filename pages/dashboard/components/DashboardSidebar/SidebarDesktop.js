@@ -95,7 +95,7 @@ const SidebarDesktop = ({ activeNavItem, onNavItemClick }) => {
           </li>
           <li
             // href={`${originUrl}/dashboard`}
-            className={`${activeNavItem === 'invoices' ? 'active' : ''} group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition ease-in-out duration-150`}
+            className={`${activeNavItem === 'invoices' ? 'active' : ''} group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-300 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition ease-in-out duration-150 pointer-events-none`}
             onClick={() => handleItemClick('settings')}
           >
             <svg

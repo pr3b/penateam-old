@@ -131,7 +131,6 @@ export async function getInvoicesByCustomerEmail(customerEmail) {
     if (customer) {
       // Retrieve the invoices for the customer
       const invoices = await stripePublic.invoices.list({ customer: customer.id });
-      console.log(invoices, "data return invoices")
 
       // Extract the invoice data
       const invoiceData = invoices.data.map((invoice) => {
