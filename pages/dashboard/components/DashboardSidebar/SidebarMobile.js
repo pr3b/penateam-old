@@ -1,12 +1,17 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 
-const SidebarMobile = () => {
+const SidebarMobile = ({ activeNavItem, onNavItemClick }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const openSidebar = () => {
     setIsSidebarOpen(true);
   };
+
+  const handleItemClick = (navItem) => {
+    onNavItemClick(navItem);
+  };
+
 
   return (
     <div className="md:block">
@@ -75,10 +80,10 @@ const SidebarMobile = () => {
           </a>
         </div>
         <div className="flex-1 h-0 overflow-y-auto">
-          <nav className="px-2 py-4">
-            <a
-              href="https://penateam.com"
-              className="group flex items-center px-2 py-2 text-base leading-6 font-medium text-gray-900 rounded-md bg-gray-100 focus:outline-none focus:bg-gray-200 transition ease-in-out duration-150"
+          <ul className="px-2 py-4">
+            <li
+              className={`${activeNavItem === 'requests' ? 'active' : ''} group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition ease-in-out duration-150`}
+              onClick={() => handleItemClick('requests')}
             >
               <svg
                 className="mr-4 h-6 w-6 text-gray-500 group-hover:text-gray-500 group-focus:text-gray-600 transition ease-in-out duration-150"
@@ -94,10 +99,10 @@ const SidebarMobile = () => {
                 />
               </svg>
               Dashboard
-            </a>
-            <a
-              href="https://penateam.com/service-requests"
-              className="group flex items-center px-2 py-2 text-base leading-6 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-100 transition ease-in-out duration-150"
+            </li>
+            <li
+              className={`${activeNavItem === 'requests' ? 'active' : ''} group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition ease-in-out duration-150`}
+              onClick={() => handleItemClick('requests')}
             >
               <svg
                 className="mr-4 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-500 transition ease-in-out duration-150"
@@ -113,10 +118,10 @@ const SidebarMobile = () => {
                 />
               </svg>
               Requests
-            </a>
-            <a
-              href="https://penateam.com/invoices"
-              className="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-100 transition ease-in-out duration-150"
+            </li>
+            <li
+              className={`${activeNavItem === 'invoices' ? 'active' : ''} group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition ease-in-out duration-150`}
+              onClick={() => handleItemClick('invoices')}
             >
               <svg
                 className="mr-4 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-500 transition ease-in-out duration-150"
@@ -132,10 +137,10 @@ const SidebarMobile = () => {
                 />
               </svg>
               Invoices
-            </a>
-            <a
-              href="https://penateam.com/settings"
-              className="group flex items-center px-2 py-2 text-base leading-6 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-100 transition ease-in-out duration-150"
+            </li>
+            <li
+              className={`${activeNavItem === 'settings' ? 'active' : ''} group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition ease-in-out duration-150`}
+              onClick={() => handleItemClick('settings')}
             >
               <svg
                 className="mr-4 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-500 transition ease-in-out duration-150"
@@ -151,8 +156,8 @@ const SidebarMobile = () => {
                 />
               </svg>
               Settings
-            </a>
-          </nav>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
