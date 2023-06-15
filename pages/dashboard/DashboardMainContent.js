@@ -1,7 +1,9 @@
 import React, { useRef, useEffect } from 'react'
-import KanbanBoard from './components/KanbanBoard';
+import KanbanBoard from './page/KanbanBoard';
+import TableInvoices from './page/TableInvoices';
+import SubscribeStatus from './page/SubscribeStatus';
 
-const DashboardMainContent = () => {
+const DashboardMainContent = ({activeNavItem}) => {
   const mainRef = useRef(null);
 
   useEffect(() => {
@@ -24,8 +26,8 @@ const DashboardMainContent = () => {
         <div className="mt-2 md:flex md:items-center md:justify-between">
           {/* Title Request */}
           <div className="flex-1 min-w-0">
-            <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-10 break-normal sm:truncate">
-              Requests
+            <h2 className="text-2xl font-bold leading-7 text-gray-600 sm:text-3xl sm:leading-10 break-normal sm:truncate">
+              User Dashboard
             </h2>
           </div>
 
@@ -52,60 +54,9 @@ const DashboardMainContent = () => {
             <div className="flex flex-col">
               <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-4 lg:-mx-8 lg:px-8">
                 <div className="align-middle inline-block min-w-full overflow-hidden border-t-none border border-gray-200 custom-rounded-b-sm">
-                  {/* KONTEN DISINI */}
-                  {/* Component Start */}
-                  {/* <div className="flex w-screen h-screen p-10 space-x-4 overflow-auto text-gray-700">
-                    <div className="flex flex-col flex-shrink-0 w-64 bg-gray-200 border border-gray-300">
-                      <div className="flex items-center justify-between flex-shrink-0 h-10 px-2 border-b border-gray-300 bg-white">
-                        <span className="block text-sm font-medium">To Do</span>
-                        <button className="flex items-center justify-center w-6 h-6">
-                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                          </svg>
-                        </button>
-                      </div>
-                      <div className="flex flex-col px-2 pb-2 overflow-auto">
-                        <div className="p-6 mt-2 border border-gray-300 bg-white cursor-pointer">Task - 1</div>
-                        <div className="p-6 mt-2 border border-gray-300 bg-white cursor-pointer">Task - 2</div>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-col flex-shrink-0 w-64 bg-gray-200 border border-gray-300">
-                      <div className="flex items-center justify-between flex-shrink-0 h-10 px-2 border-b border-gray-300 bg-white">
-                        <span className="block text-sm font-medium">In Progress</span>
-                        <button className="flex items-center justify-center w-6 h-6">
-                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                          </svg>
-                        </button>
-                      </div>
-                      <div className="flex flex-col px-2 pb-2 overflow-auto">
-                        <div className="p-6 mt-2 border border-gray-300 bg-white cursor-pointer">Task - 1</div>
-                        <div className="p-6 mt-2 border border-gray-300 bg-white cursor-pointer">Task - 2</div>
-                        <div className="p-6 mt-2 border border-gray-300 bg-white cursor-pointer">Task - 3</div>
-                        <div className="p-6 mt-2 border border-gray-300 bg-white cursor-pointer">Task - 4</div>
-                        <div className="p-6 mt-2 border border-gray-300 bg-white cursor-pointer">Task - 5</div>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-col flex-shrink-0 w-64 bg-gray-200 border border-gray-300">
-                      <div className="flex items-center justify-between flex-shrink-0 h-10 px-2 border-b border-gray-300 bg-white">
-                        <span className="block text-sm font-medium">Done</span>
-                        <button className="flex items-center justify-center w-6 h-6">
-                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                          </svg>
-                        </button>
-                      </div>
-                      <div className="flex flex-col px-2 pb-2 overflow-auto">
-                        <div className="p-6 mt-2 border border-gray-300 bg-white cursor-pointer">Task - 1</div>
-                        <div className="p-6 mt-2 border border-gray-300 bg-white cursor-pointer">Task - 2</div>
-                        <div className="p-6 mt-2 border border-gray-300 bg-white cursor-pointer">Task - 3</div>
-                      </div>
-                    </div>
-                  </div> */}
-                  <KanbanBoard />
-                  {/* Component End */}
+                  {activeNavItem === 'invoices' && <TableInvoices />}
+                  {activeNavItem === 'requests' && <KanbanBoard />}
+                  {activeNavItem === 'dashboard' && <SubscribeStatus />}
 
                   <a className="fixed flex items-center justify-center h-8 pr-2 pl-1 bg-yellow-600 rounded-full bottom-0 right-0 mr-4 mb-4 shadow-lg text-blue-100 hover:bg-blue-600" href="https://twitter.com/heykaiyo" target="_top">
                     <div className="flex items-center justify-center h-6 w-6 bg-yellow-500 rounded-full">
