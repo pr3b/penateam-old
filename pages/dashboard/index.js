@@ -40,14 +40,6 @@ const Layout = () => {
           </div>
         </div>
       )}
-      {/* <div className="h-screen flex overflow-hidden bg-gray-100" id="body-container">
-        <CustomCursor customCursor={CursorSVG} />
-        <DashboardSidebar activeNavItem={activeNavItem} onNavItemClick={handleNavItemClick}/>
-        <div className="flex flex-col w-0 flex-1 overflow-hidden">
-          <DashboardMainNav />
-          <DashboardMainContent activeNavItem={activeNavItem}/> 
-        </div>
-      </div> */}
     </>
   )
 }

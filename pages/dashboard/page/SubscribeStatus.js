@@ -27,6 +27,7 @@ const SubscribeStatus = () => {
     // Handle unsubscribe logic here
     alert("success clicked unsub")
     setIsEmailVerified(false);
+    setIsUnsubscribeDisabled(true);
   };
 
 

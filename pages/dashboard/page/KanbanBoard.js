@@ -21,13 +21,10 @@ const KanbanBoard = () => {
     setTasks((prevTasks) => [...prevTasks, newTask]);
   };
 
-  //Send email to admin when user created request
-  //Send email to user when category changed by admin
-
   const sendEmailNotification = async (taskTitle, category) => {
     const emailData = {
-      to: userSessionEmail, // Replace with the recipient email address
-      from: 'hello@penateam.com', // Replace with your sender email address
+      to: userSessionEmail, 
+      from: 'hello@penateam.com',
       subject: 'Penateam Task Update',
       text: `Task "${taskTitle}" moved to "${category}" category.`,
     };
