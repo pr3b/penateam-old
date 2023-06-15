@@ -1,12 +1,17 @@
 import React, {useEffect, useState} from 'react'
 import Image from 'next/image'
 
-const SidebarDesktop = () => {
+const SidebarDesktop = ({ activeNavItem, onNavItemClick }) => {
   const [originUrl, setOriginUrl] = useState('');
 
   useEffect(() => {
     setOriginUrl(window.location.origin);
   }, []);
+
+  const handleItemClick = (navItem) => {
+    onNavItemClick(navItem);
+  };
+  console.log(activeNavItem, "data active")
 
   return (
     <div className="flex flex-col w-64">
@@ -22,10 +27,11 @@ const SidebarDesktop = () => {
         </a>
       </div>
       <div className="h-0 flex-1 flex flex-col overflow-y-auto">
-        <nav className="flex-1 px-2 py-4 bg-white">
-          <a
-            href={`${originUrl}/dashboard`}
+        <ul className="flex-1 px-2 py-4 bg-white">
+          <li
+            // href={`${originUrl}/dashboard`}
             className="group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-900 rounded-md bg-gray-100 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:bg-gray-200 transition ease-in-out duration-150"
+            onClick={() => handleItemClick('dashboard')}
           >
             <svg
               className="mr-3 h-6 w-6 text-gray-300 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
@@ -41,15 +47,16 @@ const SidebarDesktop = () => {
               />
             </svg>
             Dashboard
-          </a>
+          </li>
           <span
             className="mt-6 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md cursor-default"
           >
             Orders
           </span>
-          <a
-            href={`${originUrl}/dashboard`}
-            className="group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition ease-in-out duration-150"
+          <li
+            // href={`${originUrl}/dashboard`}
+            className={`${activeNavItem === 'requests' ? 'active' : ''} group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition ease-in-out duration-150`}
+            onClick={() => handleItemClick('requests')}
           >
             <svg
               className="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-500 transition ease-in-out duration-150"
@@ -65,10 +72,11 @@ const SidebarDesktop = () => {
               />
             </svg>
             Requests
-          </a>
-          <a
-            href={`${originUrl}/dashboard`}
-            className="group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition ease-in-out duration-150"
+          </li>
+          <li
+            // href={`${originUrl}/dashboard`}
+            className={`${activeNavItem === 'invoices' ? 'active' : ''} group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition ease-in-out duration-150`}
+            onClick={() => handleItemClick('invoices')}
           >
             <svg
               className="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-500 transition ease-in-out duration-150"
@@ -84,10 +92,11 @@ const SidebarDesktop = () => {
               />
             </svg>
             Invoices
-          </a>
-          <a
-            href={`${originUrl}/dashboard`}
-            className="group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition ease-in-out duration-150"
+          </li>
+          <li
+            // href={`${originUrl}/dashboard`}
+            className={`${activeNavItem === 'invoices' ? 'active' : ''} group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-300 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition ease-in-out duration-150 pointer-events-none`}
+            onClick={() => handleItemClick('settings')}
           >
             <svg
               className="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-500 transition ease-in-out duration-150"
@@ -103,8 +112,8 @@ const SidebarDesktop = () => {
               />
             </svg>
             Settings
-          </a>
-        </nav>
+          </li>
+        </ul>
       </div>
     </div>
   )
