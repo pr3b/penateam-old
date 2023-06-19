@@ -127,6 +127,7 @@ export async function getInvoicesByCustomerEmail(customerEmail) {
 
     // Get the customer object
     const customer = customers.data[0];
+    console.log(customer, "data customer")
 
     if (customer) {
       // Retrieve the invoices for the customer
@@ -152,5 +153,32 @@ export async function getInvoicesByCustomerEmail(customerEmail) {
   } catch (error) {
     console.error('Error retrieving invoices:', error);
     throw error;
+  }
+}
+
+export async function getSubscription(subscription_id){
+  try {
+    const subscription = await stripePublic.subscriptions.retrieve(subscription_id);
+    return subscription
+  } catch (error) {
+    console.error("Error get subscription:", error);
+    return null;
+  }
+}
+
+export async function cancelSubscription(subscription_id, cancel_at_period_end=true){
+  let subscription;
+  try {
+    if(cancel_at_period_end === false){
+      subscription = await stripePublic.subscriptions.cancel(subscription_id);
+    } else {
+      subscription = await stripePublic.subscriptions.update(subscription_id, {
+        cancel_at_period_end: true,
+      });
+    }
+    return subscription
+  } catch (error) {
+    console.error('Error cancel subscription:', error);
+    return null;
   }
 }
