@@ -1,11 +1,12 @@
 import Image from "next/image";
 import React from "react";
-import Documentation from "../../public/assets/images/icons/fulldocumentation.png";
-import Lowercost from "../../public/assets/images/icons/lowercost.png";
-import Fasthiring from "../../public/assets/images/icons/fasthiring.png";
+import Documentation from "../../public/assets/images/icons/brand-full.png";
+import Lowercost from "../../public/assets/images/icons/brand-save.png";
+import Fasthiring from "../../public/assets/images/icons/brand-hiring.png";
 import Check from "../../public/assets/images/icons/check.png";
 import BrandImage from "../../public/assets/images/icons/star-symbol-yellow.png";
 import Link from "next/link";
+import RightShape from "../../public/assets/images/icons/brand-right.png";
 
 function Brand() {
   return (
@@ -15,14 +16,17 @@ function Brand() {
         src={BrandImage}
         alt="brand spinning shape"
       />
+      <Image className="brand-right" src={RightShape} alt="Right shape" />
+
       <div className="brand-typography">
         <div data-aos="fade-up">
           <h3>
-            We wrote for fastest growing startups and big enterprises{" "}
-            <span style={{ color: "#f39f21" }}> across the globe </span>
+            We wrote for fastest growing startups and <br /> big enterprises{" "}
+            <span className="gradient-span"> across the globe </span>
           </h3>
           <p className="brand-desc">
-            Some are bootstrapped, others venture-backed-all work with Pena to
+            Some are bootstrapped, others venture-backed-all work with Pena to{" "}
+            <br />
             develop their documentation.
           </p>
         </div>
@@ -31,14 +35,22 @@ function Brand() {
         <div data-aos="zoom-in">
           <div className="card">
             <div className="card-title">
-              <h4>Comprehensive Service</h4>
+              <h4 className="brand-tech-write">Comprehensive Service</h4>
             </div>
-            <div className="brand-image">
-              <Image src={Documentation} alt="Verified paper image" />
+            <div className="brand-image-title">
+              <div className="brand-image">
+                <Image
+                  className="brand-image-img"
+                  src={Documentation}
+                  alt="Verified paper image"
+                />
+              </div>
+              <div className="brand-title-desc">
+                <h5>Full Documentation Coverage</h5>
+                <p>We cover full documentation service include</p>
+              </div>
             </div>
-            <h5>Full Documentation Coverage</h5>
             <div className="brand-content">
-              <p>We cover full documentation service include</p>
               <div className="brand-card-list">
                 <Image className="check-icon" src={Check} alt="Check icon" />
                 <p>Project Management</p>
@@ -70,14 +82,22 @@ function Brand() {
         <div data-aos="zoom-in">
           <div className="card">
             <div className="card-title">
-              <h4>Lower Cost</h4>
+              <h4 className="brand-tech-write">Lower Cost</h4>
             </div>
-            <div className="brand-image">
-              <Image src={Lowercost} alt="Percent icon" />
+            <div className="brand-image-title">
+              <div className="brand-image">
+                <Image
+                  className="brand-image-img"
+                  src={Lowercost}
+                  alt="Percent icon"
+                />
+              </div>
+              <div className="brand-title-desc">
+                <h5>Save Over 45%</h5>
+                <p>Work with Pena compared to entry-level US talent</p>
+              </div>
             </div>
-            <h5>Save Over 45%</h5>
             <div className="brand-content">
-              <p>Work with Pena compared to entry-level US talent</p>
               <div className="brand-card-list">
                 <Image className="check-icon" src={Check} alt="Check icon" />
                 <p>Simple pricing: most roles are just $3,000 per month</p>
@@ -91,14 +111,22 @@ function Brand() {
         <div data-aos="zoom-in">
           <div className="card">
             <div className="card-title">
-              <h4>Fast Hiring</h4>
+              <h4 className="brand-tech-write">Fast Hiring</h4>
             </div>
-            <div className="brand-image">
-              <Image src={Fasthiring} alt="Search icon" />
+            <div className="brand-image-title">
+              <div className="brand-image">
+                <Image
+                  className="brand-image-img"
+                  src={Fasthiring}
+                  alt="Search icon"
+                />
+              </div>
+              <div className="brand-title-desc">
+                <h5>Hire within days</h5>
+                <p>Subscribe now for immediate assistance from our team</p>
+              </div>
             </div>
-            <h5>Hire within days</h5>
             <div className="brand-content">
-              <p>Subscribe now for immediate assistance from our team</p>
               <div className="brand-card-list">
                 <Image className="check-icon" src={Check} alt="Check icon" />
                 <p>

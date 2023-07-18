@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Arrow from "../../public/assets/images/icons/arrowaccordion.svg";
+import LeftShape from "../../public/assets/images/icons/faq-left.png";
+import RightShape from "../../public/assets/images/icons/faq-right.png";
 
 function FAQ() {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -11,8 +13,10 @@ function FAQ() {
   return (
     <div className="faq-container">
       <div id="faq" className="section white p-t-150">
+        <Image src={LeftShape} alt="Left shape" className="faq-left" />
+        <Image src={RightShape} alt="Right shape" className="faq-right" />
         <div className="container">
-          <h3 className="faq-font">FAQs</h3>
+          <h3 className="faq-font">Frequently Asked Questions</h3>
           <div className="faq__list-wrapper">
             <div className="faq__row">
               <div className="faq__left">

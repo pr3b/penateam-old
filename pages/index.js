@@ -49,7 +49,7 @@ export default function Home() {
             </div>
             <Benefit />
             <Work />
-            <Collab />
+            {/* <Collab /> */}
             <Pricing />
             <FAQ />
             <Footer />

@@ -36,6 +36,10 @@ body h3 {
   font-family: "Poppins", sans-serif;
 }
 
+/* span {
+  font-family: "Monument Extended";
+} */
+
 a {
   cursor: none;
 }
@@ -224,11 +228,53 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5rem;
+  text-align: center;
+  padding: 1rem 5rem 5rem 5rem;
+}
+
+.hero-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pena-logo {
+  width: 100px;
+  margin-bottom: 5rem;
+}
+
+.hero-shape-left {
+  z-index: -1;
+  width: 200px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+}
+
+.hero-shape-right {
+  z-index: -1;
+  width: 200px;
+  position: absolute;
+  right: 0;
+  top: 20%;
+}
+
+.arrow-button {
+  position: absolute;
+  left: 58%;
+  width: 75px;
+  margin-left: 2rem;
+  margin-top: -2rem;
+}
+
+.hero-buttons {
+  display: flex;
+  align-items: center;
 }
 
 .home-title {
-  font-family: "Monument Extended", sans-serif;
+  /* font-family: "Monument Extended", sans-serif; */
   font-size: 4rem;
   font-weight: 600;
   line-height: 70px;
@@ -455,9 +501,28 @@ nav {
   justify-content: center;
 }
 
+.gradient-span {
+  background: linear-gradient(to right, #fa7d47, #faa938);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tech-write {
+  cursor: none;
+  width: 300px;
+  font-size: 15px;
+  background: linear-gradient(to right, #fabea0, #fade94);
+  border-radius: 25px;
+  padding: 10px;
+  color: #000;
+  margin: 3rem 0 3rem 0;
+}
+
 .hero-typography {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .hero-typography p {
@@ -531,7 +596,8 @@ nav {
 }
 
 .trusted {
-  background-color: #d4dae7;
+  background-color: #212121;
+  color: #fff;
   text-align: center;
   width: 500px;
   padding: 10px;
@@ -551,11 +617,7 @@ nav {
 .slider::before,
 .slider::after {
   position: absolute;
-  background-image: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 100%);
   content: "";
   height: 100%;
   width: 25%;
@@ -575,7 +637,7 @@ nav {
 /*  IMPORTANT CODE BELOW */
 
 .slide-track {
-  background-color: #000;
+  background-color: #212121;
   width: calc(150px * 20);
   display: flex;
   animation: scroll 40s linear infinite;
@@ -927,22 +989,61 @@ nav {
   border-radius: 2px;
 }
 
-.developing-container {
+.developing-top {
+  width: 50px;
+  margin-bottom: 4rem;
+}
+
+.developing-hassle {
+  position: absolute;
+  top: 20%;
+  right: 22%;
+  width: 50px;
+}
+
+.developing-right-shape {
+  position: absolute;
+  right: 0;
+  width: 200px;
+}
+
+.developing-left-bottom {
+  position: absolute;
+  left: 0;
+  bottom: -80rem;
+  width: 200px;
+}
+
+.developing-bottom {
+  position: absolute;
+  left: 50%;
+  bottom: -80rem;
+  width: 50px;
+}
+
+.developing-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10rem 5rem 5rem 5rem;
+}
+
+.developing-container {
+  background-color: #fdf7e7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5rem 5rem 10rem 5rem;
 }
 
 .developing-container h3 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 2rem;
-  font-family: "Monument Extended", sans-serif;
+  font-size: 40px;
+  font-weight: 600;
+  margin-bottom: 5rem;
 }
 
 .developing-desc {
-  font-size: 25px;
+  text-align: left;
+  font-size: 20px;
 }
 
 .developing-typography {
@@ -953,6 +1054,16 @@ nav {
   padding: 0 0 5rem 0;
 }
 
+.developing-card-typography {
+  display: flex;
+  flex-direction: column;
+}
+
+.developing-card-title {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
 .developing-card-container {
   display: flex;
   flex-direction: row;
@@ -961,20 +1072,18 @@ nav {
 
 .developing-card {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   width: 400px;
   height: 200px;
-  background-color: #f3f5f9;
-  border-radius: 20px;
+  background-color: #fffcf6;
   padding: 25px;
   margin: 1rem;
 }
 
 .developing-gif {
-  background-color: #fff;
   margin-right: 2rem;
-  border-radius: 10px;
-  width: 75px;
+  padding: 10px;
+  width: 60px;
 }
 
 .developing-image-bg {
@@ -991,17 +1100,24 @@ nav {
 }
 
 .brand-container {
+  background-color: #e5f2fb;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 10rem 10rem 10rem;
+  padding: 10rem;
 }
 
 .brand-container h3 {
-  font-family: "Monument Extended", sans-serif;
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 2rem;
+  font-size: 40px;
+  font-weight: 600;
+  margin-bottom: 5rem;
+}
+
+.brand-right {
+  position: absolute;
+  right: 0;
+
+  width: 150px;
 }
 
 .brand-typography {
@@ -1013,7 +1129,7 @@ nav {
 }
 
 .brand-desc {
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .brand-card-container {
@@ -1024,16 +1140,35 @@ nav {
 
 .card {
   width: 350px;
-  background-color: #f3f5f9;
-  border-radius: 20px;
+  background-color: #f4f9fd;
   padding: 25px;
 }
 
+.brand-tech-write {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: none;
+  width: 300px;
+  font-size: 15px;
+  background: linear-gradient(to right, #fabea0, #fade94);
+  border-radius: 25px;
+  padding: 10px;
+  color: #000;
+}
+
 .brand-card-container h5 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  height: 100px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.brand-image-title {
+  display: flex;
+}
+
+.brand-title-desc {
+  display: flex;
+  flex-direction: column;
 }
 
 .brand-card-list {
@@ -1050,6 +1185,8 @@ nav {
 
 .check-icon {
   width: 20px;
+  height: 20px;
+  filter: brightness(0);
 }
 
 .brand-content {
@@ -1069,23 +1206,24 @@ nav {
 .card-title {
   display: flex;
   justify-content: center;
-  background-color: #e1e6f1;
+  align-items: center;
   padding: 10px;
   border-radius: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
   margin-bottom: 2rem;
 }
 
 .brand-image {
   display: flex;
-  align-items: center;
-  width: 75px;
+  align-items: flex-start;
+  width: 100px;
   height: 100px;
-  background-color: #ffffff;
-  padding: 15px;
   border-radius: 10px;
   margin-bottom: 2rem;
+  margin-right: 1rem;
+}
+
+.brand-image-img {
+  margin-right: 1rem;
 }
 
 .brand-image-bg {
@@ -1093,19 +1231,34 @@ nav {
   z-index: 0;
 }
 
+.certification-right {
+  width: 50px;
+  height: 50px;
+  margin-left: 2rem;
+}
+
+.certification-left {
+  width: 50px;
+  height: 50px;
+  margin-right: 2rem;
+}
+
+.certification-wrapper {
+  display: flex;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+
 .certification-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #f3f5f9;
   padding: 5rem 0 5rem 0;
 }
 
 .certification-container h3 {
-  font-family: "Monument Extended", sans-serif;
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 2rem;
+  font-size: 40px;
+  font-weight: 600;
 }
 
 .certification-logo-container {
@@ -1134,15 +1287,38 @@ nav {
   width: 200px;
 }
 
+.webflow-quote {
+  position: absolute;
+  z-index: -1;
+  left: 1rem;
+  top: -1rem;
+  width: 50px;
+}
+
+.webflow-left {
+  position: absolute;
+  left: 0;
+  width: 200px;
+}
+
+.webflow-right {
+  position: absolute;
+  top: 70%;
+  right: 0;
+  width: 200px;
+}
+
 .webflow-container {
-  background-color: #000;
-  color: #fff;
-  padding: 5rem;
-  height: 400px;
+  background-color: #fdfdfd;
+  color: #272626;
+  padding: 10rem;
+  height: 600px;
   display: flex;
 }
 
 .webflow-container h3 {
+  position: relative;
+  z-index: 1;
   font-size: 2rem;
   text-align: center;
   margin-bottom: 5rem;
@@ -1151,7 +1327,8 @@ nav {
 }
 
 .webflow-bg {
-  background-image: url("../public/assets/images/icons/webflowbg.png");
+  /* background-image: url("../public/assets/images/icons/webflowbg.png"); */
+  background-color: #fee8e8;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1160,6 +1337,7 @@ nav {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 10rem 0 10rem 0;
 }
 
 .webflow-dots {
@@ -1171,12 +1349,24 @@ nav {
   display: none;
 }
 
+.benefit-top {
+  position: absolute;
+  right: 43%;
+  margin-top: -3rem;
+  width: 200px;
+}
+
+.benefit-card-wrapper {
+  display: flex;
+}
+
 .benefit-container {
+  background-color: #f6f6f6;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 4rem 0 5rem 0;
+  padding: 10rem 0 5rem 0;
 }
 
 .benefit-typography {
@@ -1185,16 +1375,15 @@ nav {
 }
 
 .benefit-typography h3 {
-  font-family: "Monument Extended", sans-serif;
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 40px;
+  font-weight: 600;
   margin-bottom: 2rem;
   position: relative;
   z-index: 1;
 }
 
 .benefit-typography p {
-  font-size: 25px;
+  font-size: 20px;
   margin-bottom: 3rem;
   position: relative;
   z-index: 1;
@@ -1222,42 +1411,34 @@ nav {
 }
 
 .benefit-card-container {
-  padding: 5rem;
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 45px;
+  margin: 0 5rem 0 5rem;
 }
 
 .benefit-card {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
   font-weight: 700;
-  justify-content: space-around;
-  width: 250px;
-  height: 250px;
-  padding: 1.5rem;
-  background-color: #f3f5f9;
-  border-radius: 10px;
 }
 
 .benefit-card h4 {
   font-size: 1.2rem;
-  margin-bottom: 2rem;
 }
 
 .benefit-img {
-  display: flex;
-  justify-content: flex-end;
+  margin-right: 1rem;
 }
 
 .benefit-white-shape {
-  padding: 0.5rem;
-  border-radius: 10px;
-  background-color: #fff;
+  width: 75px;
+  height: 75px;
+}
+
+.benefit-image {
+  width: 50px;
 }
 
 .service-text {
@@ -1473,18 +1654,38 @@ nav {
   padding: 0 0 0 2rem;
 }
 
+.work-top {
+  width: 100px;
+  position: absolute;
+  left: 46%;
+  margin-top: -2rem;
+}
+
+.work-left {
+  width: 150px;
+  position: absolute;
+  left: 0;
+  margin-top: 5rem;
+}
+
+.work-right {
+  width: 150px;
+  position: absolute;
+  right: 0;
+  margin-top: 25rem;
+}
+
 .work-container {
-  background-color: #f3f5f9;
-  padding: 5rem;
+  background-color: #fdf7e7;
+  padding: 10rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .work-container h3 {
-  font-family: "Monument Extended", sans-serif;
-  font-size: 3rem;
-  font-weight: 700;
+  font-size: 40px;
+  font-weight: 600;
   z-index: 1;
 }
 
@@ -1506,7 +1707,7 @@ nav {
 }
 
 .work-text h3 {
-  font-size: 2rem;
+  font-size: 40px;
 }
 
 .work-card-container {
@@ -1594,6 +1795,7 @@ nav {
 }
 
 .pricing-container {
+  background-color: #f6f6f6;
   padding: 5rem;
   display: flex;
   flex-direction: column;
@@ -1602,17 +1804,16 @@ nav {
 
 .pricing-text {
   text-align: center;
-  padding-bottom: 5rem;
+  padding-bottom: 10rem;
 }
 
 .pricing-text h3 {
-  font-family: "Monument Extended", sans-serif;
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 40px;
+  font-weight: 600;
 }
 
 .pricing-text p {
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .pricing-card-container {
@@ -1629,57 +1830,87 @@ nav {
   transition: 0.5s ease-in-out;
 }
 
+.feature-check {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1rem;
+}
+
+.feature-check p {
+  margin-left: 1rem;
+}
+
 .card-bg {
   background-color: #d2d2d2;
-  border-radius: 0 0 20px 20px;
 }
 
 .monthly {
   color: #000;
-  background-color: #e8edf5;
+  background-color: #f9f9f9;
 }
 
 .quarterly {
   color: #000;
-  background-color: #f39f21;
+  background-color: #fcf6e6;
 }
 
 .yearly {
-  color: #fff;
-  background-color: #282828;
+  color: #000;
+  background-color: #fbe5e5;
 }
 
 .pricing-title-monthly {
   display: flex;
-  justify-content: center;
-  background-color: #e8edf5;
-  border-radius: 20px 20px 0 0;
-  padding: 1rem;
+  flex-direction: column;
+  align-items: start;
+  text-align: left;
+  background-color: #f9f9f9;
+  padding: 2rem;
   font-weight: 700;
   font-size: 20px;
   color: #000;
+}
+
+.pricing-title-monthly p {
+  margin-top: 1rem;
+  font-size: 15px;
+  font-weight: 500;
 }
 
 .pricing-title-quarterly {
   display: flex;
-  justify-content: center;
-  background-color: #f39f21;
-  border-radius: 20px 20px 0 0;
-  padding: 1rem;
+  flex-direction: column;
+  align-items: start;
+  text-align: left;
+  background-color: #fcf6e6;
+  padding: 2rem;
   font-weight: 700;
   font-size: 20px;
   color: #000;
 }
 
+.pricing-title-quarterly p {
+  margin-top: 1rem;
+  font-size: 15px;
+  font-weight: 500;
+}
+
 .pricing-title-yearly {
   display: flex;
-  justify-content: center;
-  background-color: #282828;
-  border-radius: 20px 20px 0 0;
-  padding: 1rem;
+  flex-direction: column;
+  align-items: start;
+  text-align: left;
+  background-color: #fbe5e5;
+  padding: 2rem;
   font-weight: 700;
   font-size: 20px;
-  color: #fff;
+  color: #000;
+}
+
+.pricing-title-yearly p {
+  margin-top: 1rem;
+  font-size: 15px;
+  font-weight: 500;
 }
 
 .price-wrap {
@@ -1726,44 +1957,51 @@ nav {
   margin-bottom: 2rem;
 }
 
+.pricing-price-permonth {
+  font-size: 50px;
+  font-weight: 600;
+}
+
 .pricing-price {
-  padding: 0 0 2rem 0;
+  margin: 2rem;
 }
 
 .pricing-price h3 {
-  font-size: 30px;
-  font-weight: 700;
+  text-align: left;
+  font-size: 25px;
+  font-weight: 500;
 }
 
 .pricing-price p {
   color: #878787;
 }
 
+.meeting {
+  margin-top: 2rem;
+}
+
 .pricing-button-monthly {
-  background-color: #fff;
+  background-color: #f39f21;
   border-radius: 25px;
-  width: 250px;
+  width: 80%;
   padding: 10px;
-  color: #000;
-  margin-bottom: 1rem;
+  color: #fff;
 }
 
 .pricing-button-quarterly {
-  background-color: #000;
+  background-color: #f39f21;
   border-radius: 25px;
-  width: 250px;
+  width: 80%;
   padding: 10px;
   color: #fff;
-  margin-bottom: 1rem;
 }
 
 .pricing-button-yearly {
-  background-color: #fff;
+  background-color: #f39f21;
   border-radius: 25px;
-  width: 250px;
+  width: 80%;
   padding: 10px;
-  color: #000;
-  margin-bottom: 1rem;
+  color: #fff;
 }
 
 .pricing-divider {
@@ -1829,10 +2067,26 @@ nav {
   color: #000000;
 }
 
+.faq-left {
+  position: absolute;
+  left: 0;
+  margin-top: 15rem;
+  width: 150px;
+}
+
+.faq-right {
+  position: absolute;
+  right: 0;
+  margin-right: 5rem;
+  margin-top: 3rem;
+  width: 75px;
+}
+
 .faq-container {
   padding: 5rem;
   display: flex;
   flex-direction: column;
+  background-color: #f6f6f6;
   align-items: left;
 }
 
@@ -1850,9 +2104,8 @@ nav {
 }
 
 .faq-font {
-  font-family: "Monument Extended", sans-serif;
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 40px;
+  font-weight: 600;
   z-index: 1;
 }
 
@@ -1932,8 +2185,23 @@ nav {
   justify-content: space-between;
 }
 
+.footer-top {
+  position: absolute;
+  margin-top: -2rem;
+  left: 65%;
+  width: 100px;
+}
+
+.footer-lets {
+  position: absolute;
+  margin-top: -2rem;
+  margin-left: -2rem;
+  width: 40px;
+  transform: rotate(120deg);
+}
+
 .footer-container {
-  background-color: #000;
+  background-color: #212121;
   color: #fff;
 }
 
@@ -2054,8 +2322,6 @@ nav {
   margin-top: 2rem;
   padding: 1rem;
   width: 100%;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
 }
 
 .ltd-monthly {
@@ -2125,6 +2391,95 @@ nav {
 }
 
 @media only screen and (max-width: 1200px) {
+  .brand-title-desc {
+    margin-bottom: 2rem;
+  }
+  .brand-image-title {
+    flex-direction: column;
+  }
+
+  .brand-image {
+    margin-right: 0;
+    margin-bottom: 1rem;
+    width: 75px;
+    height: 75px;
+  }
+
+  .benefit-top {
+    width: 125px;
+    right: 35%;
+  }
+
+  .webflow-container {
+    margin-bottom: 5rem;
+  }
+
+  .webflow-left {
+    margin-top: -40rem;
+    width: 150px;
+  }
+
+  .webflow-right {
+    top: 70%;
+    width: 150px;
+  }
+
+  .certification-wrapper {
+    align-items: normal;
+  }
+
+  .certification-left,
+  .certification-right {
+    width: 30px;
+    height: 30px;
+  }
+
+  .brand-right {
+    margin-top: 5rem;
+  }
+
+  .developing-top {
+    display: none;
+  }
+
+  .developing-bottom {
+    /* bottom: -142rem;
+    left: 40%; */
+    display: none;
+  }
+
+  .developing-left-bottom {
+    bottom: -100rem;
+  }
+
+  .developing-right-shape {
+    width: 150px;
+    margin-top: 3rem;
+  }
+
+  .developing-hassle {
+    left: 30%;
+    margin-top: 2rem;
+  }
+
+  .hero-shape-left {
+    width: 100px;
+    top: 35%;
+  }
+
+  .hero-shape-right {
+    width: 100px;
+    top: 65%;
+  }
+
+  .hero-buttons {
+    margin: 4rem 0 0 0;
+  }
+
+  .tech-write {
+    margin: 0 0 3rem 0;
+  }
+
   header {
     padding: 2rem;
   }
@@ -2145,7 +2500,7 @@ nav {
     position: relative;
     z-index: 0;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     align-items: center;
     padding: 2rem;
     margin-bottom: 2rem;
@@ -2163,9 +2518,8 @@ nav {
   }
 
   .home-title {
-    font-size: 30px;
-    line-height: 45px;
-    margin-top: 2rem;
+    font-size: 40px;
+    line-height: 55px;
     margin-bottom: 2rem;
     width: 100%;
   }
@@ -2197,8 +2551,7 @@ nav {
   }
 
   .brand-container {
-    padding: 0 2rem 2rem 2rem;
-    margin-bottom: 2rem;
+    padding: 5rem 2rem 5rem 2rem;
   }
 
   .brand-card-container {
@@ -2252,11 +2605,7 @@ nav {
   }
 
   .certification-container {
-    padding: 3rem 0 3rem 0;
-  }
-
-  .certification-container h3 {
-    margin-bottom: 3rem;
+    padding: 5rem 0 3rem 0;
   }
 
   .card {
@@ -2265,8 +2614,9 @@ nav {
   }
 
   .certification-container h3 {
-    font-size: 21px;
+    font-size: 30px;
     font-weight: 600;
+    margin-bottom: 3rem;
   }
 
   .brand-button {
@@ -2293,15 +2643,13 @@ nav {
   }
 
   .benefit-typography p {
-    font-size: 25px;
+    font-size: 20px;
   }
 
   .benefit-card {
     display: flex;
-    flex-direction: row-reverse;
     width: 250px;
     height: 100%;
-    justify-content: flex-end;
   }
 
   .benefit-card h4 {
@@ -2334,7 +2682,7 @@ nav {
 
   .developing-container {
     text-align: center;
-    padding: 2rem;
+    padding: 2rem 2rem 5rem 2rem;
   }
 
   .developing-card-container {
@@ -2344,6 +2692,7 @@ nav {
   .developing-card {
     text-align: center;
     flex-direction: column;
+    align-items: center;
     width: 300px;
     height: 100%;
   }
@@ -2429,7 +2778,20 @@ nav {
   }
 
   .work-container {
-    padding: 2rem;
+    padding: 5rem 2rem 5rem 2rem;
+  }
+
+  .work-top {
+    left: 35%;
+    margin-top: -3rem;
+  }
+
+  .work-left {
+    margin-top: 20rem;
+  }
+
+  .work-right {
+    margin-top: 50rem;
   }
 
   .work-card-container {
@@ -2448,7 +2810,7 @@ nav {
   }
 
   .pricing-text p {
-    font-size: 25px;
+    font-size: 20px;
   }
 
   .pricing-card {
@@ -2466,7 +2828,7 @@ nav {
   }
 
   .pricing-container {
-    padding: 2rem;
+    padding: 5rem 2rem 2rem 2rem;
   }
 
   .pricing-card-container {
@@ -2501,7 +2863,17 @@ nav {
   }
 
   .faq-container {
-    padding: 0 2rem 2rem 2rem;
+    padding: 5rem 2rem 5rem 2rem;
+  }
+
+  .faq-left {
+    margin-top: 5rem;
+    width: 100px;
+  }
+
+  .faq-right {
+    margin-right: 2rem;
+    margin-top: 19rem;
   }
 
   .faq-container h3 {
@@ -2530,8 +2902,19 @@ nav {
     opacity: 0;
   }
 
+  .footer-lets {
+    margin-top: -1rem;
+    margin-left: 1rem;
+    width: 25px;
+    transform: rotate(95deg);
+  }
+
+  .footer-wrapper {
+    padding: 0 0 2rem 0;
+  }
+
   .footer-text {
-    padding: 0 2rem 0 2rem;
+    padding: 0 2rem 4rem 2rem;
   }
 
   .footer-text h3 {
@@ -2540,6 +2923,7 @@ nav {
 
   .footer-text p {
     font-size: 14px;
+    margin: 2rem 0 2rem 0;
   }
 
   .footer-shape {
@@ -2665,6 +3049,7 @@ nav {
   .aos-init {
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
 
   .floating-nav a {
