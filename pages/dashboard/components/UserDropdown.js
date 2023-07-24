@@ -1,10 +1,19 @@
 import { useSession, signOut } from 'next-auth/react';
 import React, { useState, useEffect, useRef } from 'react';
+import LoadingOverlay from '@/pages/components/utils/LoadingOverlay';
 
 const UserDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const {data: session} = useSession()
   const dropdownRef = useRef(null);
+  const [loading, setLoading] = useState(false)
+
+  const handleSignOut = async (e) => {
+    e.preventDefault()
+    setLoading(true)
+    await signOut()
+    setLoading(false)
+  }
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -89,13 +98,14 @@ const UserDropdown = () => {
             <a
               href="#"
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-              onClick={() => signOut()}
+              onClick={handleSignOut}
             >
               Sign Out
             </a>
           </div>
         </div>
       )}
+      {loading ? <LoadingOverlay event="Signing out" /> : null}
     </div>
   );
 };
