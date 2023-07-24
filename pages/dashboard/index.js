@@ -18,19 +18,19 @@ const Layout = () => {
     setActiveNavItem(navItem);
   };
 
-  // useEffect(() => {
-  //   if(status === "authenticated"){
-  //     //User is logged in
-  //   } else if(status === "loading"){
-  //     //Session is still loading
-  //   } else {
-  //     router.push("/api/auth/signin");
-  //   }
-  // }, [session, status, router])
+  useEffect(() => {
+    if(status === "authenticated"){
+      //User is logged in
+    } else if(status === "loading"){
+      //Session is still loading
+    } else {
+      router.push("/api/auth/signin");
+    }
+  }, [session, status, router])
 
   return (
     <>
-      {/* {status === "authenticated" && (
+      {status === "authenticated" && (
         <div className="h-screen flex overflow-hidden bg-gray-100" id="body-container">
           <CustomCursor customCursor={CursorSVG} />
           <DashboardSidebar activeNavItem={activeNavItem} onNavItemClick={handleNavItemClick}/>
@@ -39,15 +39,15 @@ const Layout = () => {
             <DashboardMainContent activeNavItem={activeNavItem}/> 
           </div>
         </div>
-      )} */}
-      <div className="h-screen flex overflow-hidden bg-gray-100" id="body-container">
+      )}
+      {/* <div className="h-screen flex overflow-hidden bg-gray-100" id="body-container">
         <CustomCursor customCursor={CursorSVG} />
         <DashboardSidebar activeNavItem={activeNavItem} onNavItemClick={handleNavItemClick}/>
         <div className="flex flex-col w-0 flex-1 overflow-hidden">
           <DashboardMainNav />
           <DashboardMainContent activeNavItem={activeNavItem}/> 
         </div>
-      </div>
+      </div> */}
     </>
   )
 }
