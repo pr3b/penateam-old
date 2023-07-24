@@ -126,22 +126,22 @@ const KanbanBoard = () => {
 
   return (
     <>
-      <div className="ml-8 mt-2 md:flex md:items-center md:justify-between">
+      <div className="ml-3 mt-2 mb-6 md:flex md:items-center md:justify-between">
         <div className="flex-1 min-w-0">
-          <h3
-            className="text-xl font-bold leading-5 text-gray-600 sm:text-3xl sm:leading-10 break-normal sm:truncate"
+          <div
+            className="text-sm leading-2 text-gray-900 sm:text-3xl sm:leading-10 break-normal sm:truncate"
           >
             Request
-          </h3>
+          </div>
         </div>
       </div>
-      <div className="flex w-100vw h-screen p-10 space-x-4 overflow-auto text-gray-700">
-        <div className="flex flex-col flex-shrink-0 w-64 bg-gray-200 border border-gray-300">
-          <div className="flex items-center justify-between flex-shrink-0 h-10 px-2 border-b border-gray-300 bg-white rounded">
-            <span className="block text-sm font-medium">Requests</span>
+      <div className="flex w-100vw h-screen p-3 space-x-4 overflow-auto text-gray-700 bg-none">
+        <div className="flex flex-col flex-shrink-0 w-72 bg-white p-4 rounded-xl">
+          <div className="flex items-center justify-between flex-shrink-0 h-10 p-4 bg-gray-100 rounded-md">
+            <span className="block text-sm text-gray-400 font-medium">Requests</span>
             <button className="flex items-center justify-center w-6 h-6">
               <svg
-                className="w-5 h-5"
+                className="w-5 h-5 text-gray-400"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -156,7 +156,7 @@ const KanbanBoard = () => {
             </button>
           </div>
           <div
-            className="flex flex-col px-2 pb-2 overflow-auto h-screen"
+            className="flex mt-4 flex-col w-full pb-2 overflow-auto h-screen"
             onDragOver={(e) => handleDragOver(e)}
             onDrop={(e) => handleDrop(e, categoryRequest)}
           >
@@ -165,7 +165,7 @@ const KanbanBoard = () => {
               .map((task) => (
                   <div
                     key={task.id}
-                    className="p-6 mt-2 border border-gray-300 bg-white cursor-pointer"
+                    className="mt-2 rounded-md p-4 bg-gray-100 cursor-pointer text-sm text-gray-400"
                     draggable
                     onDragStart={(e) => handleDragStart(e, task.id)}
                   >
@@ -187,12 +187,12 @@ const KanbanBoard = () => {
           </div>
         </div>
 
-        <div className="flex flex-col flex-shrink-0 w-64 bg-gray-200 border border-gray-300">
-          <div className="flex items-center justify-between flex-shrink-0 h-10 px-2 border-b border-gray-300 bg-white">
-            <span className="block text-sm font-medium">In Progress</span>
+        <div className="flex flex-col flex-shrink-0 w-72 bg-white p-4 rounded-xl">
+          <div className="flex items-center justify-between flex-shrink-0 h-10 px-2 bg-gray-100 rounded-md">
+            <span className="block text-sm text-gray-400 font-medium">In Progress</span>
             <button className="flex items-center justify-center w-6 h-6">
               <svg
-                className="w-5 h-5"
+                className="w-5 h-5 text-gray-400"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -207,7 +207,7 @@ const KanbanBoard = () => {
             </button>
           </div>
           <div
-            className="flex flex-col px-2 pb-2 overflow-auto h-screen"
+            className="flex mt-4 flex-col w-full pb-2 overflow-auto h-screen"
             onDragOver={(e) => handleDragOver(e)}
             onDrop={(e) => handleDrop(e, categoryInProgress)}
           >
@@ -217,7 +217,7 @@ const KanbanBoard = () => {
               .map((task) => (
                 <div
                   key={task.id}
-                  className="p-6 mt-2 border border-gray-300 bg-white cursor-pointer"
+                  className="mt-2 rounded-md p-4 bg-gray-100 cursor-pointer text-sm text-gray-400"
                   draggable
                   onDragStart={(e) => handleDragStart(e, task.id)}
                 >
@@ -229,12 +229,12 @@ const KanbanBoard = () => {
           </div>
         </div>
 
-        <div className="flex flex-col flex-shrink-0 w-64 bg-gray-200 border border-gray-300">
-          <div className="flex items-center justify-between flex-shrink-0 h-10 px-2 border-b border-gray-300 bg-white">
-            <span className="block text-sm font-medium">Done</span>
+        <div className="flex flex-col flex-shrink-0 w-72 bg-white p-4 rounded-xl">
+          <div className="flex items-center justify-between flex-shrink-0 h-10 px-2 bg-gray-100 rounded-md">
+            <span className="block text-sm text-gray-400 font-medium">Done</span>
             <button className="flex items-center justify-center w-6 h-6">
               <svg
-                className="w-5 h-5"
+                className="w-5 h-5 text-gray-400"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -249,7 +249,7 @@ const KanbanBoard = () => {
             </button>
           </div>
           <div
-            className="flex flex-col px-2 pb-2 overflow-auto h-screen"
+            className="flex flex-col mt-4 w-full pb-2 overflow-auto h-screen"
             onDragOver={(e) => handleDragOver(e)}
             onDrop={(e) => handleDrop(e, categoryDone)}
           >
@@ -259,7 +259,7 @@ const KanbanBoard = () => {
               .map((task) => (
                 <div
                   key={task.id}
-                  className="p-6 mt-2 border border-gray-300 bg-white cursor-pointer"
+                  className="p-4 mt-2 rounded-md bg-gray-100 cursor-pointer text-sm text-gray-400"
                   draggable
                   onDragStart={(e) => handleDragStart(e, task.id)}
                 >
