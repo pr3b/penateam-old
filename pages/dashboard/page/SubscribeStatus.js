@@ -32,11 +32,11 @@ const SubscribeStatus = () => {
 
 
   return (
-    <div className="bg-white border border-gray-200 custom-rounded-sm mt-3">
+    <div className="bg-white rounded-lg">
       <div className="p-6">
-        <h3 className="text-lg leading-6 font-medium text-gray-900">Cancel Subscription</h3>
+        <h3 className="text-xl mb-6 ml-3 leading-6 font-medium text-gray-900">Cancel Subscription</h3>
         <div className="mt-2 sm:flex sm:items-start sm:justify-between">
-          <div className="max-w-xl text-sm leading-5 text-gray-500">
+          <div className="max-w-xl ml-3 mb-8 text-sm leading-5 text-gray-500">
             <p>
               Canceling your subscription means that you no longer wish to continue using our services and accessing
               the associated features and benefits. By canceling your subscription, you will lose access to any premium
@@ -48,7 +48,7 @@ const SubscribeStatus = () => {
             {!isEmailVerified ? (
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150"
+                className="font-medium text-amber-600 hover:text-amber-500 focus:outline-none focus:underline transition ease-in-out duration-150"
               >
                 Email Verify button!
               </button>
@@ -64,7 +64,7 @@ const SubscribeStatus = () => {
                 onClick={handleUnsubscribe}
                 disabled={isUnsubscribeDisabled}
                 className={`mr-3 inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white ${
-                  isUnsubscribeDisabled ? 'bg-gray-300 cursor-not-allowed' : 'bg-indigo-600 hover:bg-indigo-500 focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700'
+                  isUnsubscribeDisabled ? 'bg-gray-300 cursor-not-allowed' : 'bg-amber-600 hover:bg-amber-500 focus:border-amber-700 focus:shadow-outline-indigo active:bg-amber-700'
                 } focus:outline-none transition duration-150 ease-in-out`}
               >
                 Unsubscribe
@@ -94,7 +94,7 @@ const SubscribeStatus = () => {
                 onClick={handleEmailVerification}
                 disabled={!userEmail}
                 className={`inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white ${
-                  !userEmail ? 'bg-gray-300 cursor-not-allowed' : 'bg-indigo-600 hover:bg-indigo-500 focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700'
+                  !userEmail ? 'bg-gray-300 cursor-not-allowed' : 'bg-amber-600 hover:bg-amber-500 focus:border-amber-700 focus:shadow-outline-indigo active:bg-amber-700'
                 } focus:outline-none transition duration-150 ease-in-out`}
               >
                 Verify
