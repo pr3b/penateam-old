@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import Image from 'next/image'
+import BottomImage from '../../../../public/assets/images/dashboard/bottmImage.svg'
 
 const SidebarDesktop = ({ activeNavItem, onNavItemClick }) => {
   const [originUrl, setOriginUrl] = useState('');
@@ -13,8 +14,8 @@ const SidebarDesktop = ({ activeNavItem, onNavItemClick }) => {
   };
 
   return (
-    <div className="flex flex-col w-64">
-      <div className="flex items-center h-16 flex-shrink-0 px-4 bg-white">
+    <div className="flex flex-col w-64 bg-white">
+      <div className="flex border-b-2 justify-start mx-5 my-1 items-center h-16 flex-shrink-0 px-4">
         <a href={originUrl}>
           <Image
             className="h-8 w-auto"
@@ -28,11 +29,11 @@ const SidebarDesktop = ({ activeNavItem, onNavItemClick }) => {
       <div className="h-0 flex-1 flex flex-col overflow-y-auto">
         <ul className="flex-1 px-2 py-4 bg-white">
           <li
-            className="group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-900 rounded-md bg-gray-100 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:bg-gray-200 transition ease-in-out duration-150"
+            className={`group mx-5 my-2 h-12 flex bg-amber-500 items-center px-4 py-2 text-sm leading-5 font-medium text-white rounded-md focus:outline-none focus:bg-gray-200 transition ease-in-out duration-150`}
             onClick={() => handleItemClick('dashboard')}
           >
             <svg
-              className="mr-3 h-6 w-6 text-gray-300 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
+              className="mr-3 h-6 w-6 text-white group-focus:text-gray-300 transition ease-in-out duration-150"
               stroke="currentColor"
               fill="none"
               viewBox="0 0 24 24"
@@ -47,16 +48,18 @@ const SidebarDesktop = ({ activeNavItem, onNavItemClick }) => {
             Dashboard
           </li>
           <span
-            className="mt-6 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md cursor-default"
+            className="mt-6 group flex mx-5 items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md cursor-default"
           >
             Orders
           </span>
           <li
-            className={`${activeNavItem === 'requests' ? 'active' : ''} group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition ease-in-out duration-150`}
+            className={`group mx-5 flex items-center px-2 py-3 text-sm leading-5 font-medium text-gray-600 rounded-md focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition ease-in-out duration-150
+              ${activeNavItem === 'requests' ? 'bg-amber-500 text-white' : ''}
+            `}
             onClick={() => handleItemClick('requests')}
           >
             <svg
-              className="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-500 transition ease-in-out duration-150"
+              className={`mr-3 h-6 w-6 text-gray-400 ${activeNavItem === 'requests' ? "text-white group-focus:text-gray-500":""} transition ease-in-out duration-150`}
               stroke="currentColor"
               fill="none"
               viewBox="0 0 24 24"
@@ -71,11 +74,13 @@ const SidebarDesktop = ({ activeNavItem, onNavItemClick }) => {
             Requests
           </li>
           <li
-            className={`${activeNavItem === 'invoices' ? 'active' : ''} group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition ease-in-out duration-150`}
+            className={`mx-5 group flex items-center px-2 py-3 text-sm leading-5 font-medium text-gray-600 rounded-md  focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition ease-in-out duration-150
+            ${activeNavItem === 'invoices' ? 'bg-amber-500 text-white' : ''}
+            `}
             onClick={() => handleItemClick('invoices')}
           >
             <svg
-              className="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-500 transition ease-in-out duration-150"
+              className={`mr-3 h-6 w-6 text-gray-400 ${activeNavItem === 'invoices' ? "text-white group-focus:text-gray-500 ":""} transition ease-in-out duration-150`}
               stroke="currentColor"
               fill="none"
               viewBox="0 0 24 24"
@@ -90,7 +95,7 @@ const SidebarDesktop = ({ activeNavItem, onNavItemClick }) => {
             Invoices
           </li>
           <li
-            className={`${activeNavItem === 'invoices' ? 'active' : ''} group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-300 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition ease-in-out duration-150 pointer-events-none`}
+            className={`${activeNavItem === 'invoices' ? 'active' : ''} mx-5 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-300 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition ease-in-out duration-150 pointer-events-none`}
             onClick={() => handleItemClick('settings')}
           >
             <svg
@@ -109,6 +114,12 @@ const SidebarDesktop = ({ activeNavItem, onNavItemClick }) => {
             Settings
           </li>
         </ul>
+        <Image 
+          src={BottomImage}
+          width={200}
+          height={200}
+          alt='bottom image'
+        />
       </div>
     </div>
   )
