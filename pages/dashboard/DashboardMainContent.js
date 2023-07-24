@@ -23,10 +23,10 @@ const DashboardMainContent = ({activeNavItem}) => {
         {/* Navigasi Dashboard to Request */}
 
         {/* Komponen title + button export data create request */}
-        <div className="mt-2 md:flex md:items-center md:justify-between">
+        <div className="mt-2 md:flex md:items-center md:justify-between border-b-2 pb-4">
           {/* Title Request */}
           <div className="flex-1 min-w-0">
-            <h2 className="text-2xl font-bold leading-7 text-gray-600 sm:text-3xl sm:leading-10 break-normal sm:truncate">
+            <h2 className="ml-3 text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-10 break-normal sm:truncate">
               User Dashboard
             </h2>
           </div>
@@ -52,7 +52,7 @@ const DashboardMainContent = ({activeNavItem}) => {
           <div>
             <div className="flex flex-col">
               <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-4 lg:-mx-8 lg:px-8">
-                <div className="align-middle inline-block min-w-full overflow-hidden border-t-none border border-gray-200 custom-rounded-b-sm">
+                <div className="align-middle inline-block min-w-full overflow-hidden ">
                   {activeNavItem === 'invoices' && <TableInvoices />}
                   {activeNavItem === 'requests' && <KanbanBoard />}
                   {activeNavItem === 'dashboard' && <SubscribeStatus />}
