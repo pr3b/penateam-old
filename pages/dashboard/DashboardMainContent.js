@@ -36,7 +36,8 @@ const DashboardMainContent = ({activeNavItem}) => {
             <span className="lg:ml-3 shadow-sm rounded-md">
               <a
                 href="https://penateam.com/service-requests/submit"
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-yellow-700 transition duration-150 ease-in-out"
+                // className="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-yellow-700 transition duration-150 ease-in-out"
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-gray-500 bg-gray-300 cursor-not-allowed pointer-events-none"
               >
                 Create request
               </a>
