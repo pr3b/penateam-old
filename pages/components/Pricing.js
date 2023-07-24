@@ -236,7 +236,7 @@ function Pricing() {
                         <>
                           Only{" "}
                           <span className="gradient-span">
-                            ${productQuantityMonthly}
+                            {productQuantityMonthly}
                           </span>{" "}
                           spots left this month
                         </>
@@ -347,7 +347,7 @@ function Pricing() {
                         <>
                           Only{" "}
                           <span className="gradient-span">
-                            ${productQuantityQuarterly}
+                            {productQuantityQuarterly}
                           </span>{" "}
                           spots left this month
                         </>
@@ -458,7 +458,7 @@ function Pricing() {
                         <>
                           Only{" "}
                           <span className="gradient-span">
-                            ${productQuantityYearly}
+                            {productQuantityYearly}
                           </span>{" "}
                           spots left this month
                         </>

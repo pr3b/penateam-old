@@ -9,6 +9,9 @@ export const adapterData = PrismaAdapter(prismaData);
 export const authOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   adapter: adapterData,
+  pages: {
+    signIn: '/auth/signin',
+  },
   providers: [
     // OAuth authentication providers
     // AppleProvider({
