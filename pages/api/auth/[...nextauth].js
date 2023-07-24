@@ -11,6 +11,7 @@ export const authOptions = {
   adapter: adapterData,
   pages: {
     signIn: '/auth/signin',
+    verifyRequest: '/auth/verify-request',
   },
   providers: [
     // OAuth authentication providers
