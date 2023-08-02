@@ -1,23 +1,35 @@
 // pages/api/createSubscription.js
 
 import { NextApiRequest, NextApiResponse } from 'next';
-import { gateway } from 'braintree';
-
-// Initialize Braintree gateway with your API credentials
-const gatewayInstance = new gateway.BraintreeGateway({
-  environment: gateway.Environment.Sandbox, // Replace with 'Production' in a live environment
-  merchantId: 'yrkkbmyx4t6xchxm',
-  publicKey: '7pq5rsbs32wvcsh6',
-  privateKey: '3ad1a35f23e62bfedc9ef6df43df194c',
-});
+// import { gateway } from 'braintree';
+const gateway = require('braintree');
 
 export default async function handler(req, res) {
-  const { paymentMethodNonce, planId } = req.body;
+  const { paymentMethodNonce, customer } = req.body;
+  // Initialize Braintree gateway with your API credentials
+  const gatewayInstance = new gateway.BraintreeGateway({
+    environment: gateway.Environment.Sandbox, // Replace with 'Production' in a live environment
+    merchantId: 'yrkkbmyx4t6xchxm',
+    publicKey: '7pq5rsbs32wvcsh6',
+    privateKey: '3ad1a35f23e62bfedc9ef6df43df194c',
+  });
+
+  const createCustomerResult = await gatewayInstance.customer.create({
+    firstName: customer.firstName,
+    lastName: customer.lastName,
+    email: customer.email,
+    paymentMethodNonce,
+  });
+
+  if (!createCustomerResult.success) {
+    throw new Error('Failed to create customer');
+  }
 
   try {
     const result = await gatewayInstance.subscription.create({
-      paymentMethodNonce,
-      planId: planId, // Replace with your Braintree plan ID
+      paymentMethodToken: createCustomerResult.customer.paymentMethods[0].token,
+      // paymentMethodNonce,
+      planId: "pena-monthly-payment", // Replace with your Braintree plan ID
     });
 
     if (result.success) {
