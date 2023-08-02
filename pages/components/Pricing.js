@@ -8,7 +8,7 @@ import {
 } from "@/utils/stripe";
 
 //Braintree
-import braintree from 'braintree-web-drop-in';
+// import braintree from 'braintree-web-drop-in';
 import { getBraintreeNonce } from "@/utils/braintree";
 
 import Link from "next/link";
@@ -32,7 +32,7 @@ const LoadingPlaceholder = () => {
 function Pricing() {
   // Braintree
   const [clientToken, setClientToken] = useState('');
-  console.log(clientToken, "data client token sudah ada")
+  // console.log(clientToken, "data client token sudah ada")
   const dropInContainer = useRef(null);
 
   const [productQuantityMonthly, setproductQuantityMonthly] = useState(null);
@@ -48,6 +48,8 @@ function Pricing() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [choosePlanLoading, setChoosePlanLoading] = useState(null);
+  const [instanceDropin, setInstanceDropIn] = useState(null);
+  const [plandId, setPlanId] = useState(null);
 
   /**
    * Used Modal - Used for discount feature
@@ -120,32 +122,56 @@ function Pricing() {
     }
   }
 
-  const handleProductClickBraintree = async (idPlan) => {
+  const showDropIn = async () => {
+    const instance = await braintree.dropin.create({
+      authorization: 'sandbox_pgwcm7zx_yrkkbmyx4t6xchxm',
+      container: '#test-dropin',
+      // container: dropInContainer.current,
+      // paypal: {
+      //   flow: 'vault',
+      // },
+      card: {
+        cardholderName: true,
+      },
+    });
+    setInstanceDropIn(instance);
+    // setPlanId(planId);
+  }
+
+  const customerCoba = {
+    firstName: 'John',
+    lastName: 'Doe',
+    email: 'john@mail.com',
+  }
+
+  const handleProductClickBraintree = async () => {
     try {
-      if (!idPlan) {
-        console.error('Please select a plan');
-        return;
-      }
+      // if (!plandId) {
+      //   console.error('Please select a plan');
+      //   return;
+      // }
 
-      const instance = await braintree.create({
-        authorization: clientToken,
-        container: dropInContainer.current,
-        paypal: {
-          flow: 'vault',
-        },
-        card: {
-          cardholderName: true,
-        },
-      });
+      // const instance = await braintree.dropin.create({
+      //   authorization: 'sandbox_pgwcm7zx_yrkkbmyx4t6xchxm',
+      //   container: '#test-dropin',
+      //   // container: dropInContainer.current,
+      //   // paypal: {
+      //   //   flow: 'vault',
+      //   // },
+      //   card: {
+      //     cardholderName: true,
+      //   },
+      // });
 
-      const { nonce } = await instance.requestPaymentMethod();
+      const { nonce } = await instanceDropin.requestPaymentMethod();
 
       const response = await fetch('/api/braintree/create-subscription', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ paymentMethodNonce: nonce, planId: idPlan }),
+        // body: JSON.stringify({ paymentMethodNonce: nonce, planId: plandId }),
+        body: JSON.stringify({ paymentMethodNonce: nonce, customer: customerCoba }),
       });
 
       if (response.ok) {
@@ -158,12 +184,14 @@ function Pricing() {
     }
   };
 
+  
+
   useEffect(() => {
     fetch('/api/braintree/get-client-token')
       .then((response) => response.json())
       .then((data) => setClientToken(data.clientToken))
       .catch((error) => console.error('Error fetching client token:', error));
-  }, [clientToken]);
+  }, []);
 
 
   useEffect(() => {
@@ -184,7 +212,7 @@ function Pricing() {
   }, []);
 
   return (
-    <div ref={dropInContainer} id="pricing">
+    <div id="pricing">
       {isLoading === true ? (
         <LoadingComponent string={"Coupon Applied"} status={"checking"} />
       ) : (
@@ -213,8 +241,11 @@ function Pricing() {
             propsCoupon={propsCoupon}
             setIsLoadingState={openLoadingSpinner}
           />
+          <div id="test-dropin"></div>
+          <button onClick={handleProductClickBraintree}>Checkout</button>
           <div className="pricing-card-container">
             <div data-aos="fade-up">
+              <div ref={dropInContainer}/>
               <div className="pricing-card">
                 <div className="pricing-title-monthly">
                   <h4>Monthly</h4>
@@ -242,7 +273,7 @@ function Pricing() {
                           //   monthly,
                           //   "button1"
                           // )
-                          handleProductClickBraintree("pena-monthly-payment")
+                          showDropIn()
                         }
                         disabled={choosePlanLoading === "button1"}
                       >
