@@ -1,11 +1,16 @@
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Popular from "../../public/assets/images/icons/popular.png";
 import {
   checkout,
   checkoutWithPromo,
   displayProductQuantity,
 } from "@/utils/stripe";
+
+//Braintree
+import braintree from 'braintree-web-drop-in';
+import { getBraintreeNonce } from "@/utils/braintree";
+
 import Link from "next/link";
 import CouponModal from "./utils/Modal";
 import LoadingComponent from "./utils/Loading";
@@ -25,6 +30,11 @@ const LoadingPlaceholder = () => {
  */
 
 function Pricing() {
+  // Braintree
+  const [clientToken, setClientToken] = useState('');
+  console.log(clientToken, "data client token sudah ada")
+  const dropInContainer = useRef(null);
+
   const [productQuantityMonthly, setproductQuantityMonthly] = useState(null);
   const [productQuantityQuarterly, setproductQuantityQuarterly] =
     useState(null);
@@ -89,6 +99,73 @@ function Pricing() {
     }, 3000); // Simulating a 2-second delay
   };
 
+  //Braintree
+  const handlePaymentSubmit = async (idPlan) => {
+    try {
+      const nonce = await getBraintreeNonce();
+      const res = await fetch("/api/braintree/create-subscription", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ paymentMethodNonce: nonce, planId: idPlan }),
+      });
+      if(res.ok){
+        console.log("subscription success")
+      } else {
+        console.error("subscription failed")
+      }
+    } catch (error) {
+      console.error("Error creating subscription:", error);
+    }
+  }
+
+  const handleProductClickBraintree = async (idPlan) => {
+    try {
+      if (!idPlan) {
+        console.error('Please select a plan');
+        return;
+      }
+
+      const instance = await braintree.create({
+        authorization: clientToken,
+        container: dropInContainer.current,
+        paypal: {
+          flow: 'vault',
+        },
+        card: {
+          cardholderName: true,
+        },
+      });
+
+      const { nonce } = await instance.requestPaymentMethod();
+
+      const response = await fetch('/api/braintree/create-subscription', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ paymentMethodNonce: nonce, planId: idPlan }),
+      });
+
+      if (response.ok) {
+        console.log('Subscription successful');
+      } else {
+        console.error('Subscription failed');
+      }
+    } catch (error) {
+      console.error('Error processing payment:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetch('/api/braintree/get-client-token')
+      .then((response) => response.json())
+      .then((data) => setClientToken(data.clientToken))
+      .catch((error) => console.error('Error fetching client token:', error));
+  }, [clientToken]);
+
+
   useEffect(() => {
     async function fetchProductQuantity() {
       try {
@@ -107,7 +184,7 @@ function Pricing() {
   }, []);
 
   return (
-    <div id="pricing">
+    <div ref={dropInContainer} id="pricing">
       {isLoading === true ? (
         <LoadingComponent string={"Coupon Applied"} status={"checking"} />
       ) : (
@@ -160,11 +237,12 @@ function Pricing() {
                         className="pricing-button-monthly"
                         // onClick={() => handleProductClick("price_1NB7oEAEioNEOHotyEOXyMz6", monthly, propsCoupon)}
                         onClick={() =>
-                          handleClick(
-                            "price_1NB7oEAEioNEOHotyEOXyMz6",
-                            monthly,
-                            "button1"
-                          )
+                          // handleClick(
+                          //   "price_1NB7oEAEioNEOHotyEOXyMz6",
+                          //   monthly,
+                          //   "button1"
+                          // )
+                          handleProductClickBraintree("pena-monthly-payment")
                         }
                         disabled={choosePlanLoading === "button1"}
                       >
