@@ -5,7 +5,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 const gateway = require('braintree');
 
 export default async function handler(req, res) {
-  const { paymentMethodNonce, customer } = req.body;
+  const { nonceFromTheClient, customer } = req.body;
   // Initialize Braintree gateway with your API credentials
   const gatewayInstance = new gateway.BraintreeGateway({
     environment: gateway.Environment.Sandbox, // Replace with 'Production' in a live environment
@@ -14,20 +14,30 @@ export default async function handler(req, res) {
     privateKey: '3ad1a35f23e62bfedc9ef6df43df194c',
   });
 
-  const createCustomerResult = await gatewayInstance.customer.create({
-    firstName: customer.firstName,
-    lastName: customer.lastName,
-    email: customer.email,
-    paymentMethodNonce,
-  });
+  // const createCustomerResult = await gatewayInstance.customer.create({
+  //   firstName: customer.firstName,
+  //   lastName: customer.lastName,
+  //   email: customer.email,
+  //   paymentMethodNonce,
+  // });
+  const createCustomerResult = await gatewayInstance.customer.create(customer)
 
   if (!createCustomerResult.success) {
     throw new Error('Failed to create customer');
   }
 
+  const paymentMethodResult = await gatewayInstance.paymentMethod.create({
+    customerId: createCustomerResult.customer.id,
+    paymentMethodNonce: nonceFromTheClient
+  })
+
+  if(!paymentMethodResult.success) {
+    throw new Error('Failed to create payment method');
+  }
+
   try {
     const result = await gatewayInstance.subscription.create({
-      paymentMethodToken: createCustomerResult.customer.paymentMethods[0].token,
+      paymentMethodToken: paymentMethodResult.paymentMethod.token,
       // paymentMethodNonce,
       planId: "pena-monthly-payment", // Replace with your Braintree plan ID
     });
