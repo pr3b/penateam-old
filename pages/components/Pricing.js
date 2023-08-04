@@ -20,6 +20,9 @@ import Check from "../../public/assets/images/icons/check.png";
 //Midtrans
 import { MonthlySubscribtionObject } from "@/utils/midtrans";
 
+//Exchange realtime
+import { convertUSDToIDR, convertUSDToIDRNono } from "@/utils/currencyConverter";
+
 const LoadingPlaceholder = () => {
   return (
     <div className="flex justify-center items-center h-6">
@@ -34,6 +37,8 @@ const LoadingPlaceholder = () => {
  */
 
 function Pricing() {
+  // console.log(convertUSDToIDRNono(3000), "return rate")
+
   // Braintree
   const [clientToken, setClientToken] = useState('');
   // console.log(clientToken, "data client token sudah ada")
@@ -302,8 +307,8 @@ function Pricing() {
             propsCoupon={propsCoupon}
             setIsLoadingState={openLoadingSpinner}
           />
-          <div id="test-dropin"></div>
-          <button onClick={handleProductClickBraintree}>Checkout</button>
+          {/* <div id="test-dropin"></div>
+          <button onClick={handleProductClickBraintree}>Checkout</button> */}
           {/* <div>
             <DropIn 
               options={{ authorization: "sandbox_pgwcm7zx_yrkkbmyx4t6xchxm" }}
@@ -343,7 +348,7 @@ function Pricing() {
                           //   "button1"
                           // )
                           // showDropIn()
-                          handleProductClickMidtrans(MonthlySubscribtionObject, 100000000)
+                          handleProductClickMidtrans(MonthlySubscribtionObject, Math.floor(3000*15165))
                         }
                         disabled={choosePlanLoading === "button1"}
                       >
