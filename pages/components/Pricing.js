@@ -10,11 +10,15 @@ import {
 //Braintree
 // import braintree from 'braintree-web-drop-in';
 import { getBraintreeNonce } from "@/utils/braintree";
+import DropIn from "braintree-web-drop-in-react";
 
 import Link from "next/link";
 import CouponModal from "./utils/Modal";
 import LoadingComponent from "./utils/Loading";
 import Check from "../../public/assets/images/icons/check.png";
+
+//Midtrans
+import { MonthlySubscribtionObject } from "@/utils/midtrans";
 
 const LoadingPlaceholder = () => {
   return (
@@ -33,7 +37,8 @@ function Pricing() {
   // Braintree
   const [clientToken, setClientToken] = useState('');
   // console.log(clientToken, "data client token sudah ada")
-  const dropInContainer = useRef(null);
+  const dropInContainerReference = useRef(null);
+  const [purchaseComplete, setPurchaseComplete] = useState(false);
 
   const [productQuantityMonthly, setproductQuantityMonthly] = useState(null);
   const [productQuantityQuarterly, setproductQuantityQuarterly] =
@@ -50,6 +55,7 @@ function Pricing() {
   const [choosePlanLoading, setChoosePlanLoading] = useState(null);
   const [instanceDropin, setInstanceDropIn] = useState(null);
   const [plandId, setPlanId] = useState(null);
+  // const [snapToken, setSnapToken] = useState(null)
 
   /**
    * Used Modal - Used for discount feature
@@ -144,6 +150,26 @@ function Pricing() {
     email: 'john@mail.com',
   }
 
+  const buy = async () => {
+    // Send the nonce to your server
+    const { nonce } = await dropInContainerReference.current.requestPaymentMethod();
+    const res = await fetch('/api/braintree/subscription', {
+      body: JSON.stringify({
+        paymentMethodNonce: nonce,
+        user_id: '1234',
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+    });
+
+    const result = await res.json();
+    if (result.result === 'success') {
+      setPurchaseComplete(true);
+    }
+  };
+
   const handleProductClickBraintree = async () => {
     try {
       // if (!plandId) {
@@ -171,7 +197,7 @@ function Pricing() {
           'Content-Type': 'application/json',
         },
         // body: JSON.stringify({ paymentMethodNonce: nonce, planId: plandId }),
-        body: JSON.stringify({ paymentMethodNonce: nonce, customer: customerCoba }),
+        body: JSON.stringify({ nonceFromTheClient: nonce, customer: customerCoba }),
       });
 
       if (response.ok) {
@@ -184,7 +210,34 @@ function Pricing() {
     }
   };
 
-  
+  const handleProductClickMidtrans = async (subsObject, amount) => {
+    try {
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      let mm = today.getMonth() + 1;
+      let dd = today.getDate();
+      let hours = today.getHours();
+      let minutes = today.getMinutes();
+      let seconds = today.getSeconds();
+
+      const order_id = `ORDER_${yyyy}-${mm}-${dd}_${hours}${minutes}${seconds}`;
+      const callback_success_url = `${window.location.origin}/`;
+
+      const response = await fetch('/api/midtrans/get-snap-token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({order_id, amount, redirect_url: callback_success_url, subscription: subsObject}),
+      });
+      const json = await response.json();
+      window.location.href = json.redirect_url;
+
+      console.log('set response', json)
+    } catch (error) {
+      console.error("Error fetching snap token:", error);
+    }
+  }
 
   useEffect(() => {
     fetch('/api/braintree/get-client-token')
@@ -211,13 +264,21 @@ function Pricing() {
     fetchProductQuantity();
   }, []);
 
+  if (purchaseComplete) {
+    return (
+      <div>
+        <h1>Completed.</h1>
+      </div>
+    );
+  }
+
   return (
     <div id="pricing">
       {isLoading === true ? (
         <LoadingComponent string={"Coupon Applied"} status={"checking"} />
       ) : (
         <div className="pricing-container">
-          {/* <div className="pricing-section-divider"></div> */}
+          {/* <div className="pricing-section-divider" id="test-dropin"></div> */}
           <div data-aos="fade-up">
             <div className="pricing-text">
               <h3>
@@ -243,9 +304,16 @@ function Pricing() {
           />
           <div id="test-dropin"></div>
           <button onClick={handleProductClickBraintree}>Checkout</button>
+          {/* <div>
+            <DropIn 
+              options={{ authorization: "sandbox_pgwcm7zx_yrkkbmyx4t6xchxm" }}
+              onInstance={(instance) => (dropInContainerReference.current = instance)}
+            />
+            <button onClick={handleProductClickBraintree}>Submit</button>
+          </div> */}
           <div className="pricing-card-container">
             <div data-aos="fade-up">
-              <div ref={dropInContainer}/>
+              <div ref={dropInContainerReference}/>
               <div className="pricing-card">
                 <div className="pricing-title-monthly">
                   <h4>Monthly</h4>
@@ -264,6 +332,7 @@ function Pricing() {
                   <div className="price-wrap">
                     {productQuantityMonthly !== 0 ? (
                       <button
+                        type="button"
                         id="button1"
                         className="pricing-button-monthly"
                         // onClick={() => handleProductClick("price_1NB7oEAEioNEOHotyEOXyMz6", monthly, propsCoupon)}
@@ -273,7 +342,8 @@ function Pricing() {
                           //   monthly,
                           //   "button1"
                           // )
-                          showDropIn()
+                          // showDropIn()
+                          handleProductClickMidtrans(MonthlySubscribtionObject, 100000000)
                         }
                         disabled={choosePlanLoading === "button1"}
                       >
