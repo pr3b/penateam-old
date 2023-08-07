@@ -54,7 +54,12 @@ const CustomerDetailForm = () => {
             email: email,
             phone: phone,
           },
-          
+          item_details: {
+            id: itemDetail.id,
+            price: itemDetail.price,
+            quantity: itemDetail.quantity,
+            name: itemDetail.name,
+          }
         }),
       });
       const json = await response.json();
