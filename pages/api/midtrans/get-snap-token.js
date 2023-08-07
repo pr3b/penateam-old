@@ -5,7 +5,7 @@ const SERVER_KEY = 'SB-Mid-server-TbE_XT4lTt-uXrBI6vVNW4xt';
 const AUTH_STRING = Buffer.from(`${SERVER_KEY}:`).toString('base64');
 
 export default async function handler(req, res) {
-    const { order_id, amount, redirect_url, subscription, customer_details } = req.body;
+    const { order_id, amount, redirect_url, subscription, customer_details, item_details } = req.body;
     // order_id max 50, Unique transaction ID. A single ID could be used only once by a Merchant.
     // NOTE: Allowed Symbols are dash(-), underscore(_), tilde (~), and dot (.)
 
@@ -23,12 +23,20 @@ export default async function handler(req, res) {
             order_id: order_id,
             gross_amount: amount,
         },
+        // item_details: [
+        //     {
+        //         id: "ITEM001",
+        //         price: amount,
+        //         quantity: 1,
+        //         name: "Product 1",
+        //     },
+        // ],
         item_details: [
             {
-                id: "ITEM001",
-                price: amount,
-                quantity: 1,
-                name: "Product 1",
+                id: item_details.id,
+                price: item_details.price,
+                quantity: item_details.quantity,
+                name: item_details.name,
             },
         ],
         customer_details: {
