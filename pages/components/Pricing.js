@@ -304,9 +304,9 @@ function Pricing() {
               </h3>
               <br />
               <p>
-                A steady yet flexible subscription to help keep your
+                Stay on Course with Our Reliable and Adaptable Subscription,
                 <br />
-                documentation on track.
+                 Perfectly Tailored to Keep Your Documentation Journey Smooth.
               </p>
             </div>
           </div>

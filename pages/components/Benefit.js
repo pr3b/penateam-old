@@ -21,8 +21,7 @@ function Benefit() {
           <div className="benefit-typography">
             <h3>Member Benefits</h3>
             <p>
-              Perks so good you&rsquo;ll never need to go anywhere else for your
-              design. Seriously.
+              Elevate Your Design with Pena&rsquo;s Irresistible Perks – <span className="gradient-span" style={{fontWeight: 700}}>Why Go Anywhere Else?</span>
             </p>
             {/* <Link href="#pricing" scroll={false}>
               <button className="benefit-button">See Plans</button>

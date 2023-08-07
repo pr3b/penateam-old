@@ -49,14 +49,8 @@ function Developing() {
               />
             </h3>
             <p className="developing-desc">
-              Pena provides a solution for businesses struggling to hire
-              high-quality technical writers for short-term projects. Say
-              goodbye to unreliable freelancers and expensive commitments by
-              subscribing to Pena for a monthly fee. Our team of expert
-              technical writers can be onboarded quickly and deliver excellent
-              technical documentation at lightning speed, allowing your
-              developers to focus on what really matters - creating great
-              products.
+            Wave farewell to the hassle of finding skilled technical writers for your short-term projects.”
+            Introducing Pena – your solution to unreliable freelancers and costly long-term commitments. With a convenient monthly subscription, access our team of expert writers who can swiftly create top-tier technical documentation. Free up your developers to excel in product creation while we handle the documentation magic.
             </p>
           </div>
         </div>
@@ -70,10 +64,9 @@ function Developing() {
                 alt="Search icon"
               />
               <div className="developing-card-typography">
-                <p className="developing-card-title">Hiring Woes:</p>
+                <p className="developing-card-title">Hiring Woes</p>
                 <p>
-                  Pena provides access to skilled technical writers for
-                  short-term projects.
+                  Skip the hiring hassle and access skilled technical writers for short-term projects with Pena!
                 </p>
               </div>
             </div>
@@ -82,11 +75,9 @@ function Developing() {
             <div className="developing-card">
               <Image className="developing-gif" src={Doc} alt="Doc icon" />
               <div className="developing-card-typography">
-                <p className="developing-card-title">Reliable Documentation:</p>
+                <p className="developing-card-title">Reliable Documentation</p>
                 <p>
-                  Pena&rsquo;s team of technical writers consistently deliver
-                  high-quality documentation, eliminating the problem of
-                  unreliable freelancers.
+                  Pena&rsquo;s expert writers eliminate freelancer worries with top-notch documentation quality.
                 </p>
               </div>
             </div>
@@ -95,10 +86,9 @@ function Developing() {
             <div className="developing-card">
               <Image className="developing-gif" src={Time} alt="Time icon" />
               <div className="developing-card-typography">
-                <p className="developing-card-title">Time Crunch:</p>
+                <p className="developing-card-title">Time Crunch</p>
                 <p>
-                  Pena&rsquo;s fast documentation delivery allows businesses to
-                  focus on other aspects of their projects.
+                  Pena&rsquo;s swift documentation delivery frees developer teams to elevate their products.
                 </p>
               </div>
             </div>
