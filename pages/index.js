@@ -4,6 +4,7 @@ import Brand from "./components/Brand";
 import Work from "./components/Work";
 import Pricing from "./components/Pricing";
 import Logo from "./components/Logo";
+import Logo2 from "./components/Logo2";
 import Collab from "./components/Collab";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
@@ -37,7 +38,8 @@ export default function Home() {
           <>
             <CustomCursor customCursor={CursorSVG} />
             <Hero />
-            <Logo />
+            {/* <Logo /> */}
+            <Logo2 />
             {/* <About /> */}
             <Developing />
             <Brand />
