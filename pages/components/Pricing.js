@@ -149,7 +149,7 @@ function Pricing() {
                 <div className="card-bg monthly">
                   <div className="pricing-price">
                     <h3>
-                      <span className="pricing-price-permonth">$3,000</span>
+                      <span className="pricing-price-permonth">Rp. 45.000.000</span>
                       /mo
                     </h3>
                   </div>
@@ -260,7 +260,7 @@ function Pricing() {
                 <div className="card-bg quarterly">
                   <div className="pricing-price">
                     <h3>
-                      <span className="pricing-price-permonth">$2,500</span>
+                      <span className="pricing-price-permonth">Rp. 37.000.000.</span>
                       /mo
                     </h3>
                   </div>
@@ -371,7 +371,7 @@ function Pricing() {
                 <div className="card-bg yearly">
                   <div className="pricing-price">
                     <h3>
-                      <span className="pricing-price-permonth">$2,000</span>
+                      <span className="pricing-price-permonth">Rp. 30.000.000.</span>
                       /mo
                     </h3>
                   </div>
