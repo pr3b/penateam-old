@@ -45,13 +45,18 @@ export default async function handler(req, res) {
         console.log(responseData); // Optional: Log the response data for debugging
 
         const apiUrlSub = 'https://api.sandbox.midtrans.com/v1/subscriptions';
-        const sub_data = MonthlySubscribtionObject(responseData.token, amount, order_id, 'credit_card', {});
+        const sub_data = MonthlySubscribtionObject(responseData.token, amount, order_id, 'credit_card');
         const responseSub = await fetch(apiUrlSub, {
             method: 'POST',
             headers: headers,
             body: JSON.stringify(sub_data),
         });
-        console.log('responseSub', responseSub); // Optional: Log the response data for debugging
+
+        if (!responseSub.ok) {
+            throw new Error('Subscription request failed');
+        }
+
+        // console.log('responseSub', responseSub); // Optional: Log the response data for debugging
         const responseDataSub = await responseSub.json();
         console.log('responseSubData', responseDataSub); // Optional: Log the response data for debugging
 
