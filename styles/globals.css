@@ -649,12 +649,12 @@ nav {
   justify-content: space-between;
 }
 
-.slide-track2 {
+/* .slide-track2 {
   width: calc(150px * 15);
   display: flex;
   animation: scroll2 15s linear infinite;
   justify-content: space-between;
-}
+} */
 
 .slide {
   width: 100px;
@@ -1428,6 +1428,7 @@ nav {
 .benefit-card {
   display: flex;
   font-weight: 700;
+  align-items: center;
 }
 
 .benefit-card h4 {
@@ -1439,6 +1440,9 @@ nav {
 }
 
 .benefit-white-shape {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 75px;
   height: 75px;
 }
@@ -1713,7 +1717,12 @@ nav {
 }
 
 .work-text h3 {
+  margin-bottom: 2rem;
   font-size: 40px;
+}
+
+.work-text p {
+  font-size: 20px;
 }
 
 .work-card-container {
