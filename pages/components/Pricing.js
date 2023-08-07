@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React, { useState, useEffect, useRef } from "react";
 import Popular from "../../public/assets/images/icons/popular.png";
 import {
@@ -22,6 +23,7 @@ import { MonthlySubscribtionObject } from "@/utils/midtrans";
 
 //Exchange realtime
 import { convertUSDToIDR, convertUSDToIDRNono } from "@/utils/currencyConverter";
+import { Router } from "next/router";
 
 const LoadingPlaceholder = () => {
   return (
@@ -37,6 +39,7 @@ const LoadingPlaceholder = () => {
  */
 
 function Pricing() {
+  const router = useRouter();
   // console.log(convertUSDToIDRNono(3000), "return rate")
 
   // Braintree
@@ -59,7 +62,9 @@ function Pricing() {
   const [isLoading, setIsLoading] = useState(false);
   const [choosePlanLoading, setChoosePlanLoading] = useState(null);
   const [instanceDropin, setInstanceDropIn] = useState(null);
-  const [plandId, setPlanId] = useState(null);
+  
+  //Midtrans variable
+  let id, quantity, price, name;
   // const [snapToken, setSnapToken] = useState(null)
 
   /**
@@ -244,6 +249,13 @@ function Pricing() {
     }
   }
 
+  const goToInputCustomerData = (idItem, amount, quantity, name) => {
+    router.push({
+      pathname: "/customer",
+      query: {idItem, amount, quantity, name },
+    });
+  }
+
   useEffect(() => {
     fetch('/api/braintree/get-client-token')
       .then((response) => response.json())
@@ -348,7 +360,10 @@ function Pricing() {
                           //   "button1"
                           // )
                           // showDropIn()
-                          handleProductClickMidtrans(MonthlySubscribtionObject, Math.floor(3000*15165))
+                          // handleProductClickMidtrans(MonthlySubscribtionObject, 45000000)
+                          goToInputCustomerData(
+                              "ITEM001",45000000,1,"Pena Monthly Subscription",
+                          )
                         }
                         disabled={choosePlanLoading === "button1"}
                       >
@@ -455,11 +470,17 @@ function Pricing() {
                         className="pricing-button-quarterly"
                         // onClick={() => handleProductClick("price_1NB7oEAEioNEOHotyEOXyMz6", monthly, propsCoupon)}
                         onClick={() =>
-                          handleClick(
-                            "price_1NB7piAEioNEOHotkmpv3g0a",
-                            quarterly,
-                            "button2"
-                          )
+                          // handleClick(
+                          //   "price_1NB7piAEioNEOHotkmpv3g0a",
+                          //   quarterly,
+                          //   "button2"
+                          // )
+                          goToInputCustomerData(
+                            id="ITEM002",
+                            price=38000000,
+                            quantity=1,
+                            name="Pena Querterly Subscription",
+                        )
                         }
                         disabled={choosePlanLoading === "button2"}
                       >
