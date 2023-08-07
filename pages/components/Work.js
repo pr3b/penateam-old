@@ -36,6 +36,9 @@ function Work() {
         <div data-aos="fade-up">
           <div className="work-text">
             <h3>Our Masterpiece</h3>
+            <p>
+              Dive into Our Masterpiece Showcase,<span className="gradient-span" style={{fontWeight: 700}}> Unveiling the Stunning Realities</span> We&rsquo;ve Crafted for Clients.
+            </p>
           </div>
         </div>
         <div className="work-card-container">
