@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import {MonthlySubscribtionObject} from "../utils/midtrans";
 import Image from 'next/image';
 import PenaLogo from "../public/assets/images/logo/pena-text.png";
+
 import CustomCursor from "./components/CustomCursor";
 import CursorSVG from "../public/assets/images/icons/cursor-pena-01.svg";
 
@@ -13,6 +14,7 @@ const LoadingPlaceholder = () => {
     </div>
   );
 };
+
 
 const CustomerDetailForm = () => {
   const router = useRouter();
