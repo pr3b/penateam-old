@@ -40,7 +40,6 @@ function Developing() {
                 {" "}
                 Developing and maintaining technical
               </span>{" "}
-              <br />
               documentation is a hassle
               <Image
                 className="developing-hassle"
@@ -70,7 +69,7 @@ function Developing() {
                 alt="Search icon"
               />
               <div className="developing-card-typography">
-                <p className="developing-card-title">Hiring Woes:</p>
+                <p className="developing-card-title">Hiring Woes</p>
                 <p>
                   Pena provides access to skilled technical writers for
                   short-term projects.
@@ -82,7 +81,7 @@ function Developing() {
             <div className="developing-card">
               <Image className="developing-gif" src={Doc} alt="Doc icon" />
               <div className="developing-card-typography">
-                <p className="developing-card-title">Reliable Documentation:</p>
+                <p className="developing-card-title">Reliable Documentation</p>
                 <p>
                   Pena&rsquo;s team of technical writers consistently deliver
                   high-quality documentation, eliminating the problem of
@@ -95,7 +94,7 @@ function Developing() {
             <div className="developing-card">
               <Image className="developing-gif" src={Time} alt="Time icon" />
               <div className="developing-card-typography">
-                <p className="developing-card-title">Time Crunch:</p>
+                <p className="developing-card-title">Time Crunch</p>
                 <p>
                   Pena&rsquo;s fast documentation delivery allows businesses to
                   focus on other aspects of their projects.

@@ -21,13 +21,10 @@ function Brand() {
       <div className="brand-typography">
         <div data-aos="fade-up">
           <h3>
-            We wrote for fastest growing startups and <br /> big enterprises{" "}
-            <span className="gradient-span"> across the globe </span>
+            Pena Powers the Documentation Journey for <span className="gradient-span"> Thriving Startups and Global Enterprises Alike</span>
           </h3>
           <p className="brand-desc">
-            Some are bootstrapped, others venture-backed-all work with Pena to{" "}
-            <br />
-            develop their documentation.
+            From bootstrapped pioneers to venture-backed giants, the Pena Partnership drives exceptional documentation development.
           </p>
         </div>
       </div>
