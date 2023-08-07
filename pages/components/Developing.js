@@ -40,7 +40,6 @@ function Developing() {
                 {" "}
                 Developing and maintaining technical
               </span>{" "}
-              <br />
               documentation is a hassle
               <Image
                 className="developing-hassle"

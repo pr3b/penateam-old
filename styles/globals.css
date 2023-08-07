@@ -589,10 +589,15 @@ nav {
   object-fit: cover;
 }
 
-.marquee-container {
+.marquee-containers {
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+.black-bg {
+  background-color: #212121;
+  display: flex;
 }
 
 .trusted {
@@ -1038,11 +1043,11 @@ nav {
 .developing-container h3 {
   font-size: 40px;
   font-weight: 600;
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
 }
 
 .developing-desc {
-  text-align: left;
+  text-align: justify;
   font-size: 20px;
 }
 
@@ -1111,7 +1116,7 @@ nav {
 .brand-container h3 {
   font-size: 40px;
   font-weight: 600;
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
 }
 
 .brand-right {
@@ -1291,9 +1296,9 @@ nav {
 .webflow-quote {
   position: absolute;
   z-index: -1;
-  left: 1rem;
-  top: -1rem;
-  width: 50px;
+  /* left: 1rem; */
+  /* top: -1rem; */
+  width: 35px;
 }
 
 .webflow-left {
@@ -1338,7 +1343,7 @@ nav {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 10rem 0 10rem 0;
+  padding: 10rem 2rem 10rem 2rem;
 }
 
 .webflow-dots {
@@ -1714,6 +1719,11 @@ nav {
 .work-text h3 {
   margin-bottom: 2rem;
   font-size: 40px;
+  margin-bottom: 2rem;
+}
+
+.work-text p {
+  font-size: 20px;
 }
 
 .work-text p {
@@ -2166,7 +2176,7 @@ nav {
   flex-direction: column;
   align-items: center;
   background-color: #f3f5f9;
-  padding: 5rem;
+  padding: 2rem;
 }
 
 .workcase-card-container {
@@ -2401,11 +2411,18 @@ nav {
 }
 
 @media only screen and (max-width: 1200px) {
+  .webflow-quote {
+    margin-top: -3rem;
+    left: 45%;
+  }
+
   .brand-title-desc {
     margin-bottom: 2rem;
   }
   .brand-image-title {
     flex-direction: column;
+    text-align: center;
+    align-items: center;
   }
 
   .brand-image {
@@ -2445,7 +2462,7 @@ nav {
   }
 
   .brand-right {
-    margin-top: 5rem;
+    margin-top: -7rem;
   }
 
   .developing-top {
@@ -2459,12 +2476,13 @@ nav {
   }
 
   .developing-left-bottom {
-    bottom: -100rem;
+    /* bottom: -100rem; */
+    display: none;
   }
 
   .developing-right-shape {
-    width: 150px;
-    margin-top: 3rem;
+    width: 75px;
+    margin-top: 15rem
   }
 
   .developing-hassle {
@@ -2473,13 +2491,13 @@ nav {
   }
 
   .hero-shape-left {
-    width: 100px;
-    top: 35%;
+    width: 60px;
+    top: 10%;
   }
 
   .hero-shape-right {
-    width: 100px;
-    top: 65%;
+    width: 60px;
+    top: 60%;
   }
 
   .hero-buttons {
@@ -2582,7 +2600,7 @@ nav {
   }
 
   .brand-desc {
-    text-align: left;
+    text-align: justify;
   }
 
   .brand-content {
@@ -2635,6 +2653,7 @@ nav {
 
   .brand-card-container h5 {
     font-size: 22px;
+    padding-bottom: 1rem;
   }
 
   .benefit-card-container {
@@ -2879,9 +2898,11 @@ nav {
   .faq-left {
     margin-top: 5rem;
     width: 100px;
+    display: none;
   }
 
   .faq-right {
+    display: none;
     margin-right: 2rem;
     margin-top: 19rem;
   }
@@ -2945,20 +2966,26 @@ nav {
     align-items: flex-start;
   }
 
+  .workhero-container {
+    text-align: center;
+  }
+
   .workhero-typography h3 {
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 600;
     width: 100%;
     margin-top: 2rem;
   }
 
   .workhero-typography p {
-    font-size: 25px;
+    font-size: 20px;
     width: 100%;
   }
 
   .workhero-container {
     flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
     padding: 2rem;
   }
 
@@ -3039,7 +3066,7 @@ nav {
   }
 
   .hero-typography p {
-    text-align: left;
+    /* text-align: left; */
   }
 
   .webflow-container h3 {
