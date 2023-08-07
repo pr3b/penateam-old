@@ -5,7 +5,7 @@ const SERVER_KEY = 'SB-Mid-server-TbE_XT4lTt-uXrBI6vVNW4xt';
 const AUTH_STRING = Buffer.from(`${SERVER_KEY}:`).toString('base64');
 
 export default async function handler(req, res) {
-    const { order_id, amount, redirect_url, subscription } = req.body;
+    const { order_id, amount, redirect_url, subscription, customer_details } = req.body;
     // order_id max 50, Unique transaction ID. A single ID could be used only once by a Merchant.
     // NOTE: Allowed Symbols are dash(-), underscore(_), tilde (~), and dot (.)
 
@@ -23,6 +23,20 @@ export default async function handler(req, res) {
             order_id: order_id,
             gross_amount: amount,
         },
+        item_details: [
+            {
+                id: "ITEM001",
+                price: amount,
+                quantity: 1,
+                name: "Product 1",
+            },
+        ],
+        customer_details: {
+            first_name: customer_details.first_name,
+            last_name: customer_details.last_name,
+            email: customer_details.email,
+            phone: customer_details.phone,
+        },   
         "callbacks": {
             "finish" : redirect_url,
             "unfinish" : redirect_url,
@@ -42,6 +56,7 @@ export default async function handler(req, res) {
         }
 
         const responseData = await response.json();
+        console.error('responseData', responseData); // Optional: Log the response data for debugging
         console.log(responseData); // Optional: Log the response data for debugging
 
         const apiUrlSub = 'https://api.sandbox.midtrans.com/v1/subscriptions';
