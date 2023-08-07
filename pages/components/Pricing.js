@@ -482,7 +482,7 @@ function Pricing() {
                           //   "button2"
                           // )
                           goToInputCustomerData(
-                            "ITEM002",37000000,1,"Pena Quarterly Subscription","button2"
+                            "ITEM002",37000000,1,"Pena Quarterly Subscription paid Monthly","button2"
                           )
                         }
                         disabled={choosePlanLoading === "button2"}
@@ -596,7 +596,7 @@ function Pricing() {
                           //   "button3"
                           // )
                           goToInputCustomerData(
-                            "ITEM003",30000000,1,"Pena Yearly Subscription","button3"
+                            "ITEM003",30000000,1,"Pena Yearly Subscription paid Monthly","button3"
                           )
                         }
                         disabled={choosePlanLoading === "button3"}
