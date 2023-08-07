@@ -4,6 +4,18 @@ import {MonthlySubscribtionObject} from "../utils/midtrans";
 import Image from 'next/image';
 import PenaLogo from "../public/assets/images/logo/pena-text.png";
 
+import CustomCursor from "./components/CustomCursor";
+import CursorSVG from "../public/assets/images/icons/cursor-pena-01.svg";
+
+const LoadingPlaceholder = () => {
+  return (
+    <div className="flex justify-center items-center h-6">
+      <span className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-gray-600"></span>
+    </div>
+  );
+};
+
+
 const CustomerDetailForm = () => {
   const router = useRouter();
   const { idItem, amount, quantity, name } = router.query;
@@ -11,6 +23,7 @@ const CustomerDetailForm = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [chooseLoading, setChooseLoading] = useState(null);
 
   const itemDetail = {
     id: idItem,
@@ -25,7 +38,8 @@ const CustomerDetailForm = () => {
     console.log(firstName, lastName, email, phone);
   };
 
-  const handleProductClickMidtrans = async (subsObject, itemDetail) => {
+  const handleProductClickMidtrans = async (subsObject, itemDetail, buttonId) => {
+    setChooseLoading(buttonId);
     try {
       const today = new Date();
       const yyyy = today.getFullYear();
@@ -71,10 +85,14 @@ const CustomerDetailForm = () => {
     } catch (error) {
       console.error("Error fetching snap token:", error);
     }
+    setTimeout(() => {
+      // Perform your desired action here
+      setChooseLoading(null); // Set loading state back to false
+    }, 3000); // Simulating a 2-second delay
   }
 
   return (
-    <>
+  <>
     <svg preserveAspectRatio="xMidYMid slice" viewBox="10 10 80 80">
       <defs>
         <style>
@@ -139,6 +157,7 @@ const CustomerDetailForm = () => {
       />
     </svg>
     <div className="py-8 md: px-8">
+      <CustomCursor customCursor={CursorSVG} />
       <div className="flex justify-center">
         <h3 className="font-bold text-3xl mb-8 text-white md:text-4xl">Payment Form</h3>
       </div>
@@ -203,9 +222,14 @@ const CustomerDetailForm = () => {
           {/* Submit button */}
           <button
             className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-500 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
-            onClick={() => handleProductClickMidtrans(MonthlySubscribtionObject, itemDetail)}
+            onClick={() => handleProductClickMidtrans(MonthlySubscribtionObject, itemDetail, "button")}
+            disabled={chooseLoading === "button"}
           >
-            Clicked
+            {chooseLoading === "button" ? (
+              <LoadingPlaceholder />
+            ) : (
+              "Checkout"
+            )}
           </button>
         </div>
         <Image src={PenaLogo} alt="Pena Logo" width={75} height={75} />

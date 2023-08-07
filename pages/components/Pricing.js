@@ -249,11 +249,17 @@ function Pricing() {
     }
   }
 
-  const goToInputCustomerData = (idItem, amount, quantity, name) => {
+  const goToInputCustomerData = (idItem, amount, quantity, name, buttonId) => {
+    setChoosePlanLoading(buttonId);
     router.push({
       pathname: "/customer",
       query: {idItem, amount, quantity, name },
     });
+    setTimeout(() => {
+      // Perform your desired action here
+
+      setChoosePlanLoading(null); // Set loading state back to false
+    }, 3000); // Simulating a 2-second delay
   }
 
   useEffect(() => {
@@ -362,7 +368,7 @@ function Pricing() {
                           // showDropIn()
                           // handleProductClickMidtrans(MonthlySubscribtionObject, 45000000)
                           goToInputCustomerData(
-                              "ITEM001",45000000,1,"Pena Monthly Subscription",
+                              "ITEM001",45000000,1,"Pena Monthly Subscription","button1"
                           )
                         }
                         disabled={choosePlanLoading === "button1"}
@@ -476,7 +482,7 @@ function Pricing() {
                           //   "button2"
                           // )
                           goToInputCustomerData(
-                            "ITEM002",37000000,1,"Pena Quarterly Subscription",
+                            "ITEM002",37000000,1,"Pena Quarterly Subscription","button2"
                           )
                         }
                         disabled={choosePlanLoading === "button2"}
@@ -590,7 +596,7 @@ function Pricing() {
                           //   "button3"
                           // )
                           goToInputCustomerData(
-                            "ITEM003",30000000,1,"Pena Yearly Subscription",
+                            "ITEM003",30000000,1,"Pena Yearly Subscription","button3"
                           )
                         }
                         disabled={choosePlanLoading === "button3"}
