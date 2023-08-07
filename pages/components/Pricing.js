@@ -476,11 +476,8 @@ function Pricing() {
                           //   "button2"
                           // )
                           goToInputCustomerData(
-                            id="ITEM002",
-                            price=38000000,
-                            quantity=1,
-                            name="Pena Querterly Subscription",
-                        )
+                            "ITEM002",38000000,1,"Pena Querterly Subscription",
+                          )
                         }
                         disabled={choosePlanLoading === "button2"}
                       >
@@ -587,10 +584,13 @@ function Pricing() {
                         className="pricing-button-yearly"
                         // onClick={() => handleProductClick("price_1NB7oEAEioNEOHotyEOXyMz6", monthly, propsCoupon)}
                         onClick={() =>
-                          handleClick(
-                            "price_1NB7qbAEioNEOHotvwkIc3bh",
-                            monthly,
-                            "button3"
+                          // handleClick(
+                          //   "price_1NB7qbAEioNEOHotvwkIc3bh",
+                          //   monthly,
+                          //   "button3"
+                          // )
+                          goToInputCustomerData(
+                            "ITEM003",30000000,1,"Pena Yearly Subscription",
                           )
                         }
                         disabled={choosePlanLoading === "button3"}
