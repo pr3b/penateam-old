@@ -589,10 +589,15 @@ nav {
   object-fit: cover;
 }
 
-.marquee-container {
+.marquee-containers {
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+.black-bg {
+  background-color: #212121;
+  display: flex;
 }
 
 .trusted {
