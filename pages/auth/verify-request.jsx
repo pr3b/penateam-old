@@ -28,7 +28,7 @@ export default function VerifyRequest() {
       <div className="text-center w-[35%] border p-8 border-solid rounded-xl bg-amber-500">
         <h1 className="text-2xl pb-2 border-b-2 text-white font-semibold mb-4">Verify Your Email</h1>
         <p className="text-sm mb-4 text-white">
-          We've sent an email to your registered email address. Click the link in the email to
+          We`ve sent an email to your registered email address. Click the link in the email to
           verify your account.
         </p>
         <button

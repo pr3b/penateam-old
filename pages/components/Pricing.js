@@ -149,7 +149,7 @@ function Pricing() {
                 <div className="card-bg monthly">
                   <div className="pricing-price">
                     <h3>
-                      <span className="pricing-price-permonth">Rp. 45.000.000.</span>
+                      <span className="pricing-price-permonth">Rp. 45.000.000</span>
                       /mo
                     </h3>
                   </div>

@@ -38,7 +38,7 @@ const TableInvoices = () => {
 
   return (
     <>
-      <div className="ml-8 mt-2 md:flex md:items-center md:justify-between">
+      <div className="ml-3 mt-2 md:flex md:items-center md:justify-between">
         <div className="flex-1 min-w-0">
           <h3
             className="text-xl font-bold leading-5 text-gray-600 sm:text-3xl sm:leading-10 break-normal sm:truncate"
@@ -47,11 +47,11 @@ const TableInvoices = () => {
           </h3>
         </div>
       </div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+      <div className="max-w-7xl mx-auto px-1 sm:px-3 md:px-4">
         <div className="py-4">
           <div className="flex flex-col">
             <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-              <div className="align-middle inline-block min-w-full overflow-hidden border border-gray-200 custom-rounded-sm">
+              <div className="align-middle inline-block min-w-full overflow-hidden rounded-xl">
                 <table className="min-w-full">
                   <thead>
                     <tr>
@@ -98,24 +98,24 @@ const TableInvoices = () => {
                       userInvoicesData.map((invoice, idx) => (
                       <Suspense key={idx} fallback={<LoadingPlaceholder />}>
                         <tr key={idx}>
-                          <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium text-gray-900">
+                          <td className="px-6 py-4 whitespace-no-wraptext-sm leading-5 font-medium text-amber-500">
                           <a href={`${invoice.invoice_url}`} target="_blank" alt="Click to view invoice">
                             {invoice.id}
                           </a>
                           </td>
-                          <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                          <td className="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
                             Stripe
                           </td>
-                          <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                          <td className="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
                             {formatAmount(invoice.totalAmount)}
                           </td>
-                          <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                          <td className="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
                             {invoice.status}
                           </td>
-                          <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                          <td className="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
                             {invoice.createdDate}
                           </td>
-                          <td className="w-1 px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-right text-sm leading-5 font-medium">
+                          <td className="w-1 px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
                             <a href={`${invoice.invoice_pdf_download}`} target="_blank" alt="Click to view invoice">
                               <svg 
                                 width="24"
