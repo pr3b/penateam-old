@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import {MonthlySubscribtionObject} from "../../../utils/midtrans";
 
-const SERVER_KEY = 'SB-Mid-server-TbE_XT4lTt-uXrBI6vVNW4xt';
+const SERVER_KEY = process.env.NEXT_MIDTRANS_PENA_SANDBOX;
 const AUTH_STRING = Buffer.from(`${SERVER_KEY}:`).toString('base64');
 
 export default async function handler(req, res) {
@@ -68,16 +68,16 @@ export default async function handler(req, res) {
         console.log(responseData); // Optional: Log the response data for debugging
 
         const apiUrlSub = 'https://api.sandbox.midtrans.com/v1/subscriptions';
-        const sub_data = MonthlySubscribtionObject(responseData.token, amount, order_id, 'credit_card');
+        const sub_data = MonthlySubscribtionObject(responseData.token, amount, order_id);
         const responseSub = await fetch(apiUrlSub, {
             method: 'POST',
             headers: headers,
             body: JSON.stringify(sub_data),
         });
 
-        if (!responseSub.ok) {
-            throw new Error('Subscription request failed');
-        }
+        // if (!responseSub.ok) {
+        //     throw new Error('Subscription request failed');
+        // }
 
         // console.log('responseSub', responseSub); // Optional: Log the response data for debugging
         const responseDataSub = await responseSub.json();

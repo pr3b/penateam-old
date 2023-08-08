@@ -4,6 +4,18 @@ import {MonthlySubscribtionObject} from "../utils/midtrans";
 import Image from 'next/image';
 import PenaLogo from "../public/assets/images/logo/pena-text.png";
 
+import CustomCursor from "./components/CustomCursor";
+import CursorSVG from "../public/assets/images/icons/cursor-pena-01.svg";
+
+const LoadingPlaceholder = () => {
+  return (
+    <div className="flex justify-center items-center h-6">
+      <span className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-gray-600"></span>
+    </div>
+  );
+};
+
+
 const CustomerDetailForm = () => {
   const router = useRouter();
   const { idItem, amount, quantity, name } = router.query;
@@ -11,6 +23,9 @@ const CustomerDetailForm = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
+  const [chooseLoading, setChooseLoading] = useState(null);
 
   const itemDetail = {
     id: idItem,
@@ -19,13 +34,28 @@ const CustomerDetailForm = () => {
     name: name,
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    console.log(firstName, lastName, email, phone);
-  };
+  const handleProductClickMidtrans = async (subsObject, itemDetail, buttonId) => {
+    if (!firstName || !lastName || !email || !phone) {
+      return; // Abort if any required field is empty
+    }
 
-  const handleProductClickMidtrans = async (subsObject, itemDetail) => {
+    // Validate email format
+    if (!isEmailValid(email)) {
+      setEmailError("Please enter a valid email address");
+      return;
+    } else {
+      setEmailError("");
+    }
+
+    // Validate phone number format
+    if (!isPhoneNumberValid(phone)) {
+      setPhoneError("Please enter a valid phone number");
+      return;
+    } else {
+      setPhoneError("");
+    }
+
+    setChooseLoading(buttonId);
     try {
       const today = new Date();
       const yyyy = today.getFullYear();
@@ -71,10 +101,51 @@ const CustomerDetailForm = () => {
     } catch (error) {
       console.error("Error fetching snap token:", error);
     }
+    setTimeout(() => {
+      // Perform your desired action here
+      setChooseLoading(null); // Set loading state back to false
+    }, 3000); // Simulating a 2-second delay
   }
 
+  const isEmailValid = (email) => {
+    // Simple email validation using regular expression
+    // You can customize this validation as per your requirements
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    return emailRegex.test(email);
+  };
+
+  const isPhoneNumberValid = (phone) => {
+    // Simple phone number validation using regular expression
+    const phoneRegex = /^\d{10,}$/;
+    return phoneRegex.test(phone);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    if (name === "email") {
+      setEmail(value);
+      if (!isEmailValid(value)) {
+        setEmailError("Please enter a valid email address");
+      } else {
+        setEmailError("");
+      }
+    } else if (name === "phone") {
+      setPhone(value);
+      if (!isPhoneNumberValid(value)) {
+        setPhoneError("Please enter a valid phone number");
+      } else {
+        setPhoneError("");
+      }
+    } else if (name === "firstName") {
+      setFirstName(value);
+    } else if (name === "lastName") {
+      setLastName(value);
+    }
+  };
+
   return (
-    <>
+  <>
     <svg preserveAspectRatio="xMidYMid slice" viewBox="10 10 80 80">
       <defs>
         <style>
@@ -139,6 +210,7 @@ const CustomerDetailForm = () => {
       />
     </svg>
     <div className="py-8 md: px-8">
+      <CustomCursor customCursor={CursorSVG} />
       <div className="flex justify-center">
         <h3 className="font-bold text-3xl mb-8 text-white md:text-4xl">Payment Form</h3>
       </div>
@@ -150,11 +222,12 @@ const CustomerDetailForm = () => {
               First Name
             </label>
             <input
+              name="firstName" // Add this
               type="text"
               id="firstName"
               className="mt-1 p-2 w-full border rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
               value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+              onChange={handleInputChange}
             />
           </div>
 
@@ -164,48 +237,82 @@ const CustomerDetailForm = () => {
               Last Name
             </label>
             <input
+              name="lastName" // Add this
               type="text"
               id="lastName"
               className="mt-1 p-2 w-full border rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
               value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
+              onChange={handleInputChange}
             />
           </div>
 
           {/* Email */}
           <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700"
+            >
               Email
             </label>
             <input
+              name="email" // Add this
               type="email"
               id="email"
-              className="mt-1 p-2 w-full border rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+              className={`mt-1 p-2 w-full border rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm ${
+                emailError ? "border-red-500" : ""
+              }`}
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleInputChange}
             />
+            {emailError && (
+              <p className="text-red-500 text-sm mt-2">{emailError}</p>
+            )}
           </div>
 
           {/* Phone */}
           <div className="mb-6">
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="phone"
+              className="block text-sm font-medium text-gray-700"
+            >
               Phone
             </label>
             <input
+              name="phone" // Add this
               type="text"
               id="phone"
-              className="mt-1 p-2 w-full border rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+              className={`mt-1 p-2 w-full border rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm ${
+                phoneError ? "border-red-500" : ""
+              }`}
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={handleInputChange}
             />
+            {phoneError && (
+              <p className="text-red-500 text-sm mt-2">{phoneError}</p>
+            )}
           </div>
 
           {/* Submit button */}
           <button
             className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-500 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
-            onClick={() => handleProductClickMidtrans(MonthlySubscribtionObject, itemDetail)}
+            onClick={() => 
+              handleProductClickMidtrans(MonthlySubscribtionObject, 
+              itemDetail, 
+              "button"
+            )}
+            disabled={
+              !firstName || 
+              !lastName || 
+              !email || 
+              !phone || 
+              !(isEmailValid(email) && isPhoneNumberValid(phone)) ||
+              chooseLoading === "button"}
           >
-            Clicked
+            {chooseLoading === "button" ? (
+              <LoadingPlaceholder />
+            ) : (
+              "Checkout"
+            )}
           </button>
         </div>
         <Image src={PenaLogo} alt="Pena Logo" width={75} height={75} />
