@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import {MonthlySubscribtionObject} from "../../../utils/midtrans";
 
-const SERVER_KEY = 'SB-Mid-server-TbE_XT4lTt-uXrBI6vVNW4xt';
+const SERVER_KEY = process.env.NEXT_MIDTRANS_PENA_SANDBOX;
 const AUTH_STRING = Buffer.from(`${SERVER_KEY}:`).toString('base64');
 
 export default async function handler(req, res) {
