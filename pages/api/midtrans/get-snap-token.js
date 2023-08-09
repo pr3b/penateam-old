@@ -1,8 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import {MonthlySubscribtionObject} from "../../../utils/midtrans";
-
-const SERVER_KEY = process.env.NEXT_MIDTRANS_PENA_SANDBOX;
-const AUTH_STRING = Buffer.from(`${SERVER_KEY}:`).toString('base64');
+import { prismaData } from '../auth/[...nextauth]';
+import { AUTH_STRING } from '../../../utils/midtrans';
 
 export default async function handler(req, res) {
     const { order_id, amount, redirect_url, subscription, customer_details, item_details } = req.body;
@@ -14,6 +13,7 @@ export default async function handler(req, res) {
         Authorization: `Basic ${AUTH_STRING}`,
         'Content-Type': 'application/json',
         Accept: 'application/json',
+        "X-Append-Notification": "https://pena.vercel.app/api/log/log",
     };
     const data = {
         credit_card: { secure: true },
@@ -89,11 +89,43 @@ export default async function handler(req, res) {
         const responseDataSub = await responseSub.json();
         console.log('responseSubData', responseDataSub); // Optional: Log the response data for debugging
 
+        //input data to database
+        const inputDB = await createSubscriptionAndTransactions(
+            responseDataSub.id,
+            responseDataSub.schedule.next_execution_at,
+            responseDataSub.status,
+            responseDataSub.payment_type,
+            order_id,
+            amount,
+        );
+
         return res.status(200).json(responseData);
     } catch (error) {
         console.log(apiUrl, data, req.body);
         console.log(error);
         return res.status(500).json({error: "Error"});
     }
+}
 
+async function createSubscriptionAndTransactions(subscription_id, schedule_next_execution_at, status, payment_type, orderId, gross_amount){
+    try {
+        const subscription = await prismaData.subscription.create({
+            data: {
+                id: subscription_id,
+                schedule_next_execution_at: schedule_next_execution_at,
+                status: status,
+                payment_type: payment_type,
+                trans: {
+                    create: [
+                        {orderId: orderId, gross_amount: gross_amount},
+                    ],
+                },
+            },
+        });
+       console.log('subscription', subscription); 
+    } catch (error) {
+        console.error("Error creating subscription",error);
+    } finally {
+        await prismaData.$disconnect();
+    }
 }
