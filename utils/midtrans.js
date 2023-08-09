@@ -1,3 +1,5 @@
+const SERVER_KEY = process.env.NEXT_MIDTRANS_PENA_SANDBOX;
+
 export function MonthlySubscribtionObject(
     snapToken, 
     amount, 
@@ -37,3 +39,8 @@ export function MonthlySubscribtionObject(
       },
   }
 }
+
+export const AUTH_STRING = Buffer.from(`${SERVER_KEY}:`).toString('base64');
+
+export const MIDTRANS_BASE_URL = 'https://api.midtrans.com';
+export const MIDTRANS_SANDBOX_URL = "https://app.sandbox.midtrans.com";
