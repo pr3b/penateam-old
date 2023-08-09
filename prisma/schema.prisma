@@ -38,16 +38,17 @@ model Session {
 }
 
 model User {
-  id               String    @id @default(cuid())
-  name             String?
-  email            String?   @unique
-  emailVerified    DateTime?
-  image            String?
-  stripeCustomerId String?
-  isActive         Boolean   @default(false)
-  accounts         Account[]
-  sessions         Session[]
-  tasks            Task[]
+  id                     String                 @id @default(cuid())
+  name                   String?
+  email                  String?                @unique
+  emailVerified          DateTime?
+  image                  String?
+  stripeCustomerId       String?
+  isActive               Boolean                @default(false)
+  accounts               Account[]
+  sessions               Session[]
+  tasks                  Task[]
+  midtrans_subscriptions MidtransSubscription[]
 }
 
 model VerificationToken {
@@ -65,4 +66,21 @@ model Task {
   category    String?
   description String?
   user        User    @relation(fields: [idUser], references: [id], onDelete: Cascade)
+}
+
+model MidtransSubscription {
+  id                         String               @id @default(cuid())
+  schedule_next_execution_at String
+  status                     String
+  payment_type               String
+  trans                      MidransTransaction[]
+  idUser                     String
+  user                       User                 @relation(fields: [idUser], references: [id], onDelete: Cascade)
+}
+
+model MidransTransaction {
+  subscription_id String
+  orderId         String               @unique
+  gross_amount    Int
+  subscription    MidtransSubscription @relation(fields: [subscription_id], references: [id], onDelete: Cascade)
 }
