@@ -249,11 +249,26 @@ function Pricing() {
     }
   }
 
-  const goToInputCustomerData = (idItem, amount, quantity, name, buttonId) => {
+  const goToInputCustomerData = (
+    idItem, 
+    amount, 
+    intervalUnit, 
+    quantity, 
+    name, 
+    itemPlan, 
+    buttonId
+  ) => {
     setChoosePlanLoading(buttonId);
     router.push({
       pathname: "/customer",
-      query: {idItem, amount, quantity, name },
+      query: {
+        idItem, 
+        amount, 
+        intervalUnit, 
+        quantity, 
+        name, 
+        itemPlan 
+      },
     });
     setTimeout(() => {
       // Perform your desired action here
@@ -368,7 +383,13 @@ function Pricing() {
                           // showDropIn()
                           // handleProductClickMidtrans(MonthlySubscribtionObject, 45000000)
                           goToInputCustomerData(
-                              "ITEM001",45000000,1,"Pena Monthly Subscription","button1"
+                              "ITEM001", //item name
+                              45000000, // item amount
+                              1, //item interval
+                              1, //item quantity
+                              "Pena Monthly Subscription", //item name
+                              "MONTHLY", //item plan
+                              "button1" //button id
                           )
                         }
                         disabled={choosePlanLoading === "button1"}
@@ -482,7 +503,13 @@ function Pricing() {
                           //   "button2"
                           // )
                           goToInputCustomerData(
-                            "ITEM002",37000000,1,"Pena Quarterly Subscription paid Monthly","button2"
+                            "ITEM002", //item name
+                            37000000*3, // item amount
+                            3, //item interval
+                            1, //item quantity
+                            "Pena Quarterly Subscription", //item name
+                            "QUARTERLY", //item plan
+                            "button2" //button id
                           )
                         }
                         disabled={choosePlanLoading === "button2"}
@@ -596,7 +623,13 @@ function Pricing() {
                           //   "button3"
                           // )
                           goToInputCustomerData(
-                            "ITEM003",30000000,1,"Pena Yearly Subscription paid Monthly","button3"
+                            "ITEM003", //item name
+                            30000000*12, // item amount
+                            12, //item interval
+                            1, //item quantity
+                            "Pena Yearly Subscription", //item name
+                            "YEARLY", //item plan
+                            "button3" //button id
                           )
                         }
                         disabled={choosePlanLoading === "button3"}

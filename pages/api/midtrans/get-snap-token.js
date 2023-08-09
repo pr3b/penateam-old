@@ -68,7 +68,13 @@ export default async function handler(req, res) {
         console.log(responseData); // Optional: Log the response data for debugging
 
         const apiUrlSub = 'https://api.sandbox.midtrans.com/v1/subscriptions';
-        const sub_data = MonthlySubscribtionObject(responseData.token, amount, order_id);
+        const sub_data = MonthlySubscribtionObject(
+            responseData.token, 
+            amount, 
+            order_id, 
+            item_details.interval, 
+            item_details.itemPlan
+        );
         const responseSub = await fetch(apiUrlSub, {
             method: 'POST',
             headers: headers,

@@ -18,7 +18,14 @@ const LoadingPlaceholder = () => {
 
 const CustomerDetailForm = () => {
   const router = useRouter();
-  const { idItem, amount, quantity, name } = router.query;
+  const { 
+    idItem, 
+    amount, 
+    intervalUnit, 
+    quantity, 
+    name, 
+    itemPlan 
+  } = router.query;
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -32,6 +39,8 @@ const CustomerDetailForm = () => {
     price: amount,
     quantity: quantity,
     name: name,
+    interval: intervalUnit,
+    itemPlan: itemPlan
   }
 
   const handleProductClickMidtrans = async (subsObject, itemDetail, buttonId) => {
@@ -91,6 +100,8 @@ const CustomerDetailForm = () => {
             price: itemDetail.price,
             quantity: itemDetail.quantity,
             name: itemDetail.name,
+            interval: itemDetail.interval,
+            itemPlan: itemDetail.itemPlan
           }
         }),
       });

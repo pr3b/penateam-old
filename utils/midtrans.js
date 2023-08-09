@@ -2,6 +2,8 @@ export function MonthlySubscribtionObject(
     snapToken, 
     amount, 
     order_id = "",
+    interval_unit,
+    itemPlan,
     paymentType = 'credit_card', 
     description = 'Pena Subscription Plan Payment'
     ) {
@@ -15,15 +17,15 @@ export function MonthlySubscribtionObject(
   const Seconds = (date.getSeconds() < 9 ? '0' + date.getSeconds() : date.getSeconds());
 
   return {
-      "name": "PENA_MONTHLY_SUBSCRIPTION",
+      "name": `PENA_${itemPlan}_SUBSCRIPTION`,
       "amount": amount,
       "currency": "IDR",
       "payment_type": paymentType,
       "token": snapToken,
       "schedule": {
-        "interval": 1,
+        "interval": interval_unit,
         "interval_unit": "month",
-        "max_interval": 12,
+        "max_interval": 36,
         "start_time":  `${FullYear}-${Month}-${DateNow+1} ${Hours}:${Minutes}:${Seconds} +0700`
       },      
       "metadata": {
