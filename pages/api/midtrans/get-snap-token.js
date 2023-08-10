@@ -1,19 +1,29 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import {MonthlySubscribtionObject} from "../../../utils/midtrans";
-import { prismaData } from '../auth/[...nextauth]';
+import { authOptions, adapterData,prismaData } from '../auth/[...nextauth]';
 import { AUTH_STRING } from '../../../utils/midtrans';
+import { getServerSession } from 'next-auth';
+import crypto from "crypto";
 
 export default async function handler(req, res) {
     const { order_id, amount, redirect_url, subscription, customer_details, item_details } = req.body;
     // order_id max 50, Unique transaction ID. A single ID could be used only once by a Merchant.
     // NOTE: Allowed Symbols are dash(-), underscore(_), tilde (~), and dot (.)
 
+    const paramsLogin = await checkSessionAndUserAccount(req, res, customer_details);
+    if(!paramsLogin){
+        res.status(500).json({error: "Failed to create or get User Account"});
+        return;
+    }
+    const redirect_login = redirect_url + "?" + paramsLogin ?? redirect_url;
+    console.log("redirect_login", redirect_login);
+
     const apiUrl = 'https://app.sandbox.midtrans.com/snap/v1/transactions';
     const headers = {
         Authorization: `Basic ${AUTH_STRING}`,
         'Content-Type': 'application/json',
         Accept: 'application/json',
-        "X-Append-Notification": "https://pena.vercel.app/api/log/log",
+        "X-Append-Notification": "https://penateam.vercel.app/api/log/log",
     };
     const data = {
         credit_card: { secure: true },
@@ -97,6 +107,7 @@ export default async function handler(req, res) {
             responseDataSub.payment_type,
             order_id,
             amount,
+            customer_details.email,
         );
 
         return res.status(200).json(responseData);
@@ -107,9 +118,52 @@ export default async function handler(req, res) {
     }
 }
 
-async function createSubscriptionAndTransactions(subscription_id, schedule_next_execution_at, status, payment_type, orderId, gross_amount){
+async function checkSessionAndUserAccount(req, res, customer_details){
     try {
-        const subscription = await prismaData.subscription.create({
+        const session = await getServerSession(req, res, authOptions);
+        const provider = authOptions.providers.find((item) => item.type == "email");
+        if(typeof provider == "undefined"){
+            return res.status(500).json({error: "Email provider not found"});
+        }
+        const identifier = customer_details.email;
+        const token = (await provider.generateVerificationToken?.()) ?? randomString(32);
+        const ONE_DAY_IN_SECONDS = 86400;
+        const expires = new Date(Date.now() + provider.maxAge * ONE_DAY_IN_SECONDS * 1000);
+        const paramsLogin = `&provider=${provider.id}&token=${token}`;
+        const secret = provider.secret ?? authOptions.secret;
+
+        //has been loggedin?
+        // if(session){
+        if(session?.user?.email == identifier){
+            return paramsLogin;
+        }
+
+        let user = await prismaData.user.findUnique({where: {email: customer_details.email}});
+        if(!user){
+            user = await prismaData.user.create({
+                data: {
+                    email: customer_details.email,
+                    emailVerified: null,
+                }
+            }); //create user
+        }
+
+        adapterData.createVerificationToken?.({
+            identifier,
+            token: await createHash(`${token}${secret}`),
+            expires: expires,
+        })
+
+        return paramsLogin;
+    } catch (error) {
+        console.log("Error validating account", error);
+        return false;
+    }
+}
+
+async function createSubscriptionAndTransactions(subscription_id, schedule_next_execution_at, status, payment_type, orderId, gross_amount, email){
+    try {
+        const subscription = await prismaData.midtransSubscription.create({
             data: {
                 id: subscription_id,
                 schedule_next_execution_at: schedule_next_execution_at,
@@ -120,6 +174,11 @@ async function createSubscriptionAndTransactions(subscription_id, schedule_next_
                         {orderId: orderId, gross_amount: gross_amount},
                     ],
                 },
+                user: {
+                    connect: {
+                        email: email,
+                    }
+                }
             },
         });
        console.log('subscription', subscription); 
@@ -129,3 +188,20 @@ async function createSubscriptionAndTransactions(subscription_id, schedule_next_
         await prismaData.$disconnect();
     }
 }
+
+// It could be need to make separate file
+export async function createHash(message) {
+    const data = new TextEncoder().encode(message);
+    const hash = await crypto.subtle.digest("SHA-256", data)
+    return Array.from(new Uint8Array(hash))
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("")
+      .toString()
+}
+
+export function randomString(size){
+    const i2Hex = (i) => ("0" + i.toString(16)).slice(-2)
+    const r = (a, i) => a + i2Hex(i)
+    const bytes = crypto.getRandomValues(new Uint8Array(size))
+    return Array.from(bytes).reduce(r, "")
+  }
