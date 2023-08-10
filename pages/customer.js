@@ -43,6 +43,8 @@ const CustomerDetailForm = () => {
     itemPlan: itemPlan
   }
 
+  
+
   const handleProductClickMidtrans = async (subsObject, itemDetail, buttonId) => {
     if (!firstName || !lastName || !email || !phone) {
       return; // Abort if any required field is empty
@@ -77,7 +79,7 @@ const CustomerDetailForm = () => {
       const order_id = `ORDER_${yyyy}-${mm}-${dd}_${hours}${minutes}${seconds}`;
       const callback_success_url = `${window.location.origin}/`;
 
-      console.log(callback_success_url, "origint url")
+      console.log(callback_success_url, "origin url")
 
       const response = await fetch('/api/midtrans/get-snap-token', {
         method: 'POST',
@@ -322,7 +324,7 @@ const CustomerDetailForm = () => {
             {chooseLoading === "button" ? (
               <LoadingPlaceholder />
             ) : (
-              "Checkout"
+              "Checkout Debit/Credit Card"
             )}
           </button>
         </div>
