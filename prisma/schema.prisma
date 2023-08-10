@@ -81,6 +81,6 @@ model MidtransSubscription {
 model MidransTransaction {
   subscription_id String
   orderId         String               @unique
-  gross_amount    Int
+  gross_amount    String
   subscription    MidtransSubscription @relation(fields: [subscription_id], references: [id], onDelete: Cascade)
 }
