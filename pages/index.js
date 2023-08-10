@@ -26,9 +26,8 @@ export default function Home() {
   const router = useRouter();
   const isPaymentSuccess = router.query.session_id != null;
   const isMidtransSuccess = router.query.order_id != null
-    && router.query.transaction_status === 'capture'
     && router.query.transaction_status != null
-    && router.query.payment_type != null;
+    && router.query.status_code == 200;
 
   useEffect(() => {
     AOS.init();
@@ -42,7 +41,7 @@ export default function Home() {
           <PaymentSuccessX id={isPaymentSuccess} />
         ) : (
           <>
-            ({isMidtransSuccess ? <MidtransSuccess /> : null})
+            {/* ({isMidtransSuccess ? <MidtransSuccess /> : null}) */}
             <CustomCursor customCursor={CursorSVG} />
             <Hero />
             <Logo />
