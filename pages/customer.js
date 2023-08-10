@@ -42,6 +42,7 @@ const CustomerDetailForm = () => {
   const [paypalPlanId, setPaypalPlanId] = useState("")
   const paypalPlanName = "P-6RC646561P732130MMTKICNA"
   const paypalClientId = "ARFeeQFeiJMReL7kH3Zzz0ZNf8zSbQ0V3cyfiULCeVM6x_TlyReA8bWKet552Wzp3JaLTtN6kCgL2aUu"
+  const [paypalReady, setPaypalReady] = useState(false)
 
   const itemDetail = {
     id: idItem,
@@ -56,20 +57,28 @@ const CustomerDetailForm = () => {
     // Load PayPal script and create button
     const script = document.createElement('script');
     script.src = `https://www.paypal.com/sdk/js?client-id=${paypalClientId}&vault=true&intent=subscription`;
-    script.onload = () => {
-      paypal.Buttons({
-        createSubscription: function (data, actions) {
-          return actions.subscription.create({
-            'plan_id': paypalPlanName,
-          });
-        },
-        onApprove: function (data, actions) {
-          alert('You have successfully subscribed to ' + data.subscriptionID);
-        },
-      }).render(paypalButtonRef.current);
-    };
+    script.onload = () => setPaypalReady(true);
     document.body.appendChild(script);
   }, []);
+
+  // console.log(paypalReady, "data ready ndak")
+
+  const handlePaypalCheckout = () => {
+    if(!paypalReady) return;
+
+    // Disable the button and show a loading message
+    paypal.Buttons({
+      createSubscription: function(data, actions) {
+        return actions.subscription.create({
+          "plan_id": paypalPlanName
+        });
+      },
+      onApprove: function(data, actions) {
+        alert("You have successfully subscribed to ", data.subscriptionID);
+      },
+    }).render("#paypal-button-container")
+    // })
+  };
 
   //Paypal Function
   const createProductAndSubscriptionPaypal = async () => {
@@ -360,25 +369,6 @@ const CustomerDetailForm = () => {
               itemDetail, 
               "button"
             )}
-            disabled={
-              !firstName || 
-              !lastName || 
-              !email || 
-              !phone || 
-              !(isEmailValid(email) && isPhoneNumberValid(phone)) ||
-              chooseLoading === "button"}
-          >
-            {chooseLoading === "button" ? (
-              <LoadingPlaceholder />
-            ) : (
-              "Checkout Debit/Credit Card"
-            )}
-          </button>
-          <div
-            ref={paypalButtonRef}
-            className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-500 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
-            onClick={createProductAndSubscriptionPaypal}
-            disabled={paypalLoading || paypalSuccess}
             // disabled={
             //   !firstName || 
             //   !lastName || 
@@ -387,7 +377,26 @@ const CustomerDetailForm = () => {
             //   !(isEmailValid(email) && isPhoneNumberValid(phone)) ||
             //   chooseLoading === "button"}
           >
-            {paypalLoading ? "Creating..." : "Checkout Paypal"}
+            {chooseLoading === "button" ? (
+              <LoadingPlaceholder />
+            ) : (
+              "Checkout Debit/Credit Card"
+            )}
+          </button>
+          <div
+            id="paypal-button-container"
+            className="mt-4 w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-500 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+            onClick={handlePaypalCheckout}
+            // disabled={!paypalReady}
+            // disabled={
+            //   !firstName || 
+            //   !lastName || 
+            //   !email || 
+            //   !phone || 
+            //   !(isEmailValid(email) && isPhoneNumberValid(phone)) ||
+            //   chooseLoading === "button"}
+          >
+            {paypalLoading ? "Creating..." : "Checkout with Paypal Button"}
           </div>
           {paypalLoading && <p>Product and subscription created successfully</p>}
           {paypalError && <p>Error: {paypalError}</p>}
