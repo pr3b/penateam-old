@@ -28,7 +28,7 @@ const DashboardSidebar = ({ activeNavItem, onNavItemClick }) => {
   }, []);
 
   return (
-    <div className="md:block md:flex md:flex-shrink-0">
+    <div className="absolute z-50 md:relative md:flex md:flex-shrink-0">
       {showComponent ? (
         <SidebarMobile activeNavItem={activeNavItem} onNavItemClick={onNavItemClick}/>
       ) : (

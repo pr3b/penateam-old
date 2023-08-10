@@ -6,7 +6,7 @@ const DashboardMainNav = () => {
     <div className="relative flex-shrink-0 flex h-16 bg-white shadow-sm">
       <div className="flex-1 px-4 flex justify-between">
         <div className="flex-1 flex"></div>
-        <div className="ml-4 flex items-center md:ml-6">
+        <div className="flex items-center md:ml-6">
           {/* Notification Komponen */}
           <div className="inline-flex items-center mr-3"> 
             {/* Masih deaktif - pointer-events-none */}

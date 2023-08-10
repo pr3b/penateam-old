@@ -136,7 +136,7 @@ const KanbanBoard = () => {
         </div>
       </div>
       <div className="flex w-100vw h-screen p-3 space-x-4 overflow-auto text-gray-700 bg-none">
-        <div className="flex flex-col flex-shrink-0 w-72 bg-white p-4 rounded-xl">
+        <div className="flex flex-col flex-shrink-0 w-[250px] md:w-72 bg-white p-4 rounded-xl">
           <div className="flex items-center justify-between flex-shrink-0 h-10 p-4 bg-gray-100 rounded-md">
             <span className="block text-sm text-gray-400 font-medium">Requests</span>
             <button className="flex items-center justify-center w-6 h-6">
@@ -187,7 +187,7 @@ const KanbanBoard = () => {
           </div>
         </div>
 
-        <div className="flex flex-col flex-shrink-0 w-72 bg-white p-4 rounded-xl">
+        <div className="flex flex-col flex-shrink-0 w-[250px] md:w-72 bg-white p-4 rounded-xl">
           <div className="flex items-center justify-between flex-shrink-0 h-10 px-2 bg-gray-100 rounded-md">
             <span className="block text-sm text-gray-400 font-medium">In Progress</span>
             <button className="flex items-center justify-center w-6 h-6">
@@ -229,7 +229,7 @@ const KanbanBoard = () => {
           </div>
         </div>
 
-        <div className="flex flex-col flex-shrink-0 w-72 bg-white p-4 rounded-xl">
+        <div className="flex flex-col flex-shrink-0 w-[250px] md:w-72 bg-white p-4 rounded-xl">
           <div className="flex items-center justify-between flex-shrink-0 h-10 px-2 bg-gray-100 rounded-md">
             <span className="block text-sm text-gray-400 font-medium">Done</span>
             <button className="flex items-center justify-center w-6 h-6">

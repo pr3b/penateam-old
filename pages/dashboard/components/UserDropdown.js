@@ -38,7 +38,7 @@ const UserDropdown = () => {
   }, [])
 
   return (
-    <div className="ml-3 relative z-50" ref={dropdownRef}>
+    <div className="ml-3 relative z-10" ref={dropdownRef}>
       <div>
         <button
           onClick={toggleDropdown}
