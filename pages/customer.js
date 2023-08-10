@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import {MonthlySubscribtionObject} from "../utils/midtrans";
 import Image from 'next/image';
@@ -34,6 +34,15 @@ const CustomerDetailForm = () => {
   const [phoneError, setPhoneError] = useState("");
   const [chooseLoading, setChooseLoading] = useState(null);
 
+  //Paypal stuff
+  const paypalButtonRef = useRef(null);
+  const [paypalSuccess, setPaypalSuccess] = useState(false);
+  const [paypalLoading, setPaypalLoading] = useState(false);
+  const [paypalError, setPaypalError] = useState(null);
+  const [paypalPlanId, setPaypalPlanId] = useState("")
+  const paypalPlanName = "P-6RC646561P732130MMTKICNA"
+  const paypalClientId = "ARFeeQFeiJMReL7kH3Zzz0ZNf8zSbQ0V3cyfiULCeVM6x_TlyReA8bWKet552Wzp3JaLTtN6kCgL2aUu"
+
   const itemDetail = {
     id: idItem,
     price: amount,
@@ -43,7 +52,45 @@ const CustomerDetailForm = () => {
     itemPlan: itemPlan
   }
 
-  
+  useEffect(() => {
+    // Load PayPal script and create button
+    const script = document.createElement('script');
+    script.src = `https://www.paypal.com/sdk/js?client-id=${paypalClientId}&vault=true&intent=subscription`;
+    script.onload = () => {
+      paypal.Buttons({
+        createSubscription: function (data, actions) {
+          return actions.subscription.create({
+            'plan_id': paypalPlanName,
+          });
+        },
+        onApprove: function (data, actions) {
+          alert('You have successfully subscribed to ' + data.subscriptionID);
+        },
+      }).render(paypalButtonRef.current);
+    };
+    document.body.appendChild(script);
+  }, []);
+
+  //Paypal Function
+  const createProductAndSubscriptionPaypal = async () => {
+    setPaypalLoading(true);
+    setPaypalError(null);
+
+    try {
+      const response = await fetch('/api/paypal/subscription');
+      if(response.status === 200){
+        setPaypalSuccess(true);
+      } else {
+        setPaypalError("An error occured, failed to create subs");
+      }
+      setPaypalPlanId(response.id)
+    } catch (error) {
+      setPaypalError('An error occurred while creating product and subscription.');
+      console.error(error);
+    } finally {
+      setPaypalLoading(false);
+    }
+  }
 
   const handleProductClickMidtrans = async (subsObject, itemDetail, buttonId) => {
     if (!firstName || !lastName || !email || !phone) {
@@ -327,6 +374,23 @@ const CustomerDetailForm = () => {
               "Checkout Debit/Credit Card"
             )}
           </button>
+          <div
+            ref={paypalButtonRef}
+            className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-500 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+            onClick={createProductAndSubscriptionPaypal}
+            disabled={paypalLoading || paypalSuccess}
+            // disabled={
+            //   !firstName || 
+            //   !lastName || 
+            //   !email || 
+            //   !phone || 
+            //   !(isEmailValid(email) && isPhoneNumberValid(phone)) ||
+            //   chooseLoading === "button"}
+          >
+            {paypalLoading ? "Creating..." : "Checkout Paypal"}
+          </div>
+          {paypalLoading && <p>Product and subscription created successfully</p>}
+          {paypalError && <p>Error: {paypalError}</p>}
         </div>
         <Image src={PenaLogo} alt="Pena Logo" width={75} height={75} />
       </div>
