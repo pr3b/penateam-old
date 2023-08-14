@@ -40,8 +40,11 @@ const CustomerDetailForm = () => {
   const [paypalLoading, setPaypalLoading] = useState(false);
   const [paypalError, setPaypalError] = useState(null);
   const [paypalPlanId, setPaypalPlanId] = useState("")
+  // const paypalPlanName = "P-6RC646561P732130MMTKICNA"
   const paypalPlanName = "P-6RC646561P732130MMTKICNA"
-  const paypalClientId = "ARFeeQFeiJMReL7kH3Zzz0ZNf8zSbQ0V3cyfiULCeVM6x_TlyReA8bWKet552Wzp3JaLTtN6kCgL2aUu"
+  const paypalPlanNameYearly = "P-9XH65159LY748625TMTMVSMA"
+  const paypalPlanNameQuarterly = "P-12D86387AY157442NMTMW2TA"
+  const paypalClientId = "AY4YcnLxGXFkx7Veaka051nez6BTshDpva8dj8p7YImNhmH2y4oNRWNqwDLlZY_x-qkR4D03QRxBe72h"
   const [paypalReady, setPaypalReady] = useState(false)
 
   const itemDetail = {
@@ -61,16 +64,27 @@ const CustomerDetailForm = () => {
     document.body.appendChild(script);
   }, []);
 
+  console.log(paypalPlanId, "data paypal plan Id")
+
   // console.log(paypalReady, "data ready ndak")
 
   const handlePaypalCheckout = () => {
+    let planId;
     if(!paypalReady) return;
+    if(idItem === "ITEM003"){
+      planId = paypalPlanNameYearly
+    } else if(idItem === "ITEM002") {
+      planId = paypalPlanNameQuarterly
+    } else {
+      planId = paypalPlanName
+    };
 
     // Disable the button and show a loading message
     paypal.Buttons({
+      fundingSource: paypal.FUNDING.PAYPAL,
       createSubscription: function(data, actions) {
         return actions.subscription.create({
-          "plan_id": paypalPlanName
+          "plan_id": planId
         });
       },
       onApprove: function(data, actions) {
@@ -92,7 +106,7 @@ const CustomerDetailForm = () => {
       } else {
         setPaypalError("An error occured, failed to create subs");
       }
-      setPaypalPlanId(response.id)
+      setPaypalPlanId(response)
     } catch (error) {
       setPaypalError('An error occurred while creating product and subscription.');
       console.error(error);
@@ -387,6 +401,7 @@ const CustomerDetailForm = () => {
             id="paypal-button-container"
             className="mt-4 w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-500 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
             onClick={handlePaypalCheckout}
+            // onClick={createProductAndSubscriptionPaypal}
             // disabled={!paypalReady}
             // disabled={
             //   !firstName || 
@@ -409,3 +424,5 @@ const CustomerDetailForm = () => {
 };
 
 export default CustomerDetailForm;
+
+

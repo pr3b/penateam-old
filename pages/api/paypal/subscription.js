@@ -3,8 +3,8 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 const qs = require('qs')
 const PAYPAL_API_BASE_URL = 'https://api-m.sandbox.paypal.com'; // Use the appropriate base URL for your environment
-const CLIENT_ID = 'ARFeeQFeiJMReL7kH3Zzz0ZNf8zSbQ0V3cyfiULCeVM6x_TlyReA8bWKet552Wzp3JaLTtN6kCgL2aUu'; // Replace with your client ID
-const SECRET = "EDVICl06G8CllzJu8hi6S9uHLd25UhMk1fibx-biuEVo4DYFEcyaWDe-Vj-NYA_grEUtpdgzvhoPaftg"; // Replace with your actual access token
+const CLIENT_ID = "AY4YcnLxGXFkx7Veaka051nez6BTshDpva8dj8p7YImNhmH2y4oNRWNqwDLlZY_x-qkR4D03QRxBe72h"
+const SECRET = process.env.PAYPAL_SECRET; // Replace with your actual secret
 
 const getToken = async () => {
   try {
@@ -34,8 +34,8 @@ async function createSubscription(productId) {
   const ACCESS_TOKEN = await getToken(); // Get access token from PayPal
   const requestData = {
     product_id: productId, // Use the passed product ID
-    name: 'PENA_SUBSCRIPTION',
-    description: 'Pena Subscription Plan Payment',
+    name: 'PENA_SUBSCRIPTION_QUARTERLY',
+    description: 'Pena Quarterly Subscription Plan Payment',
     status: 'ACTIVE',
     billing_cycles: [
       {
@@ -48,7 +48,7 @@ async function createSubscription(productId) {
         total_cycles: 12,
         pricing_scheme: {
           fixed_price: {
-            value: '10',
+            value: '25',
             currency_code: 'USD',
           }
         }
@@ -57,14 +57,14 @@ async function createSubscription(productId) {
     payment_preferences: {
       auto_bill_outstanding: true,
       setup_fee: {
-        value: '10',
+        value: '25',
         currency_code: 'USD',
       },
       setup_fee_failure_action: 'CONTINUE',
       payment_failure_threshold: 3,
     },
     taxes: {
-      percentage: '10',
+      percentage: '2',
       inclusive: false,
     },
   };
@@ -88,8 +88,8 @@ async function createSubscription(productId) {
 export default async function handler(req, res) {
   const ACCESS_TOKEN = await getToken(); // Get access token from PayPal
   const requestData = {
-    name: 'PENA_SUBSCRIPTION',
-    description: 'Pena Subscription Plan Payment',
+    name: 'PENA_SUBSCRIPTION_QUARTERLY',
+    description: 'Pena Quarterly Subscription Plan Payment',
     type: 'SERVICE',
     category: 'SOFTWARE',
     image_url: "https://images.unsplash.com/photo-1553877522-43269d4ea984",
