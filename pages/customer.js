@@ -47,6 +47,7 @@ const CustomerDetailForm = () => {
   const paypalPlanNameMonthly = "P-4MU44400T0697762VMTMZNBI"
   const paypalClientId = "AY4YcnLxGXFkx7Veaka051nez6BTshDpva8dj8p7YImNhmH2y4oNRWNqwDLlZY_x-qkR4D03QRxBe72h"
   const [paypalReady, setPaypalReady] = useState(false)
+  const [buttonPaypalClicked, setButtonPaypalClicked] = useState(false)
 
   const itemDetail = {
     id: idItem,
@@ -70,6 +71,9 @@ const CustomerDetailForm = () => {
   // console.log(paypalReady, "data ready ndak")
 
   const handlePaypalCheckout = () => {
+    if (buttonPaypalClicked) return;
+    setButtonPaypalClicked(true);
+
     let planId;
     if(!paypalReady) return;
     if(idItem === "ITEM003"){
@@ -94,6 +98,44 @@ const CustomerDetailForm = () => {
     }).render("#paypal-button-container")
     // })
   };
+
+  const paypalClickedButton = () => {
+    if (!phone || !firstName) return;
+    setButtonPaypalClicked(true);
+  }
+
+  useEffect(() => {
+    if (buttonPaypalClicked && phone && firstName) {
+      let planId;
+      if (!paypalReady) return;
+      if (idItem === "ITEM003") {
+        planId = paypalPlanNameYearly;
+      } else if (idItem === "ITEM002") {
+        planId = paypalPlanNameQuarterly;
+      } else {
+        planId = paypalPlanNameMonthly;
+      }
+
+      paypal.Buttons({
+        fundingSource: paypal.FUNDING.PAYPAL,
+        createSubscription: function (data, actions) {
+          return actions.subscription.create({
+            "plan_id": planId
+          });
+        },
+        onApprove: function (data, actions) {
+          alert(`You have successfully subscribed to ${data.subscriptionID}`);
+        },
+      }).render("#paypal-button-container");
+
+      return () => {
+        const container = document.getElementById("paypal-button-container");
+        if (phone && firstName) {
+          container.innerHTML = 'Checkout with Paypal Button'; // Clear the PayPal button
+        }
+      };
+    }
+  }, [buttonPaypalClicked, firstName, idItem, paypalReady, phone]);
 
   //Paypal Function
   const createProductAndSubscriptionPaypal = async () => {
@@ -227,6 +269,8 @@ const CustomerDetailForm = () => {
       setLastName(value);
     }
   };
+
+  const buttonClass = `mt-4 w-full py-2 px-12 text-center border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-500 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 ${!phone ? 'opacity-50 cursor-not-allowed' : ''}`
 
   return (
   <>
@@ -400,10 +444,9 @@ const CustomerDetailForm = () => {
           </button>
           <div
             id="paypal-button-container"
-            className="mt-4 w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-500 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
-            onClick={handlePaypalCheckout}
+            className={buttonClass}
+            onClick={paypalClickedButton}
             // onClick={createProductAndSubscriptionPaypal}
-            // disabled={!paypalReady}
             // disabled={
             //   !firstName || 
             //   !lastName || 
