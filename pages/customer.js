@@ -44,6 +44,7 @@ const CustomerDetailForm = () => {
   const paypalPlanName = "P-6RC646561P732130MMTKICNA"
   const paypalPlanNameYearly = "P-9XH65159LY748625TMTMVSMA"
   const paypalPlanNameQuarterly = "P-12D86387AY157442NMTMW2TA"
+  const paypalPlanNameMonthly = "P-4MU44400T0697762VMTMZNBI"
   const paypalClientId = "AY4YcnLxGXFkx7Veaka051nez6BTshDpva8dj8p7YImNhmH2y4oNRWNqwDLlZY_x-qkR4D03QRxBe72h"
   const [paypalReady, setPaypalReady] = useState(false)
 
@@ -76,7 +77,7 @@ const CustomerDetailForm = () => {
     } else if(idItem === "ITEM002") {
       planId = paypalPlanNameQuarterly
     } else {
-      planId = paypalPlanName
+      planId = paypalPlanNameMonthly
     };
 
     // Disable the button and show a loading message
