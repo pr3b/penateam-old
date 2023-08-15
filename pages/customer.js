@@ -44,8 +44,10 @@ const CustomerDetailForm = () => {
   const paypalPlanName = "P-6RC646561P732130MMTKICNA"
   const paypalPlanNameYearly = "P-9XH65159LY748625TMTMVSMA"
   const paypalPlanNameQuarterly = "P-12D86387AY157442NMTMW2TA"
+  const paypalPlanNameMonthly = "P-4MU44400T0697762VMTMZNBI"
   const paypalClientId = "AY4YcnLxGXFkx7Veaka051nez6BTshDpva8dj8p7YImNhmH2y4oNRWNqwDLlZY_x-qkR4D03QRxBe72h"
   const [paypalReady, setPaypalReady] = useState(false)
+  const [buttonPaypalClicked, setButtonPaypalClicked] = useState(false)
 
   const itemDetail = {
     id: idItem,
@@ -69,6 +71,9 @@ const CustomerDetailForm = () => {
   // console.log(paypalReady, "data ready ndak")
 
   const handlePaypalCheckout = () => {
+    if (buttonPaypalClicked) return;
+    setButtonPaypalClicked(true);
+
     let planId;
     if(!paypalReady) return;
     if(idItem === "ITEM003"){
@@ -76,7 +81,7 @@ const CustomerDetailForm = () => {
     } else if(idItem === "ITEM002") {
       planId = paypalPlanNameQuarterly
     } else {
-      planId = paypalPlanName
+      planId = paypalPlanNameMonthly
     };
 
     // Disable the button and show a loading message
@@ -93,6 +98,50 @@ const CustomerDetailForm = () => {
     }).render("#paypal-button-container")
     // })
   };
+
+  const paypalClickedButton = () => {
+    if (!phone || !firstName) return;
+    setButtonPaypalClicked(true);
+  }
+
+  // Paypal Button render -> and Checkout function
+  useEffect(() => {
+    if (buttonPaypalClicked && phone && firstName) {
+      let planId;
+      if (!paypalReady) return;
+      if (idItem === "ITEM003") {
+        planId = paypalPlanNameYearly;
+      } else if (idItem === "ITEM002") {
+        planId = paypalPlanNameQuarterly;
+      } else {
+        planId = paypalPlanNameMonthly;
+      }
+
+      paypal.Buttons({
+        style: {
+          shape: 'rect',
+          color: 'black',
+        },
+        // fundingSource: paypal.FUNDING.CREDIT,
+        fundingSource: paypal.FUNDING.CARD,
+        createSubscription: function (data, actions) {
+          return actions.subscription.create({
+            "plan_id": planId
+          });
+        },
+        onApprove: function (data, actions) {
+          alert(`You have successfully subscribed to ${data.subscriptionID}`);
+        },
+      }).render("#paypal-button-container");
+
+      return () => {
+        const container = document.getElementById("paypal-button-container");
+        if (phone && firstName) {
+          container.innerHTML = 'Checkout with Paypal Button'; // Clear the PayPal button
+        }
+      };
+    }
+  }, [buttonPaypalClicked, firstName, idItem, paypalReady, phone]);
 
   //Paypal Function
   const createProductAndSubscriptionPaypal = async () => {
@@ -226,6 +275,8 @@ const CustomerDetailForm = () => {
       setLastName(value);
     }
   };
+
+  const buttonClass = `mt-4 w-full py-2 px-12 text-center border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-500 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 ${!phone ? 'opacity-50 cursor-not-allowed' : ''}`
 
   return (
   <>
@@ -376,7 +427,7 @@ const CustomerDetailForm = () => {
           </div>
 
           {/* Submit button */}
-          <button
+          {/* <button
             className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-500 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
             onClick={() => 
               handleProductClickMidtrans(MonthlySubscribtionObject, 
@@ -396,13 +447,12 @@ const CustomerDetailForm = () => {
             ) : (
               "Checkout Debit/Credit Card"
             )}
-          </button>
+          </button> */}
           <div
             id="paypal-button-container"
-            className="mt-4 w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-500 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
-            onClick={handlePaypalCheckout}
+            className={buttonClass}
+            onClick={paypalClickedButton}
             // onClick={createProductAndSubscriptionPaypal}
-            // disabled={!paypalReady}
             // disabled={
             //   !firstName || 
             //   !lastName || 
@@ -413,8 +463,8 @@ const CustomerDetailForm = () => {
           >
             {paypalLoading ? "Creating..." : "Checkout with Paypal Button"}
           </div>
-          {paypalLoading && <p>Product and subscription created successfully</p>}
-          {paypalError && <p>Error: {paypalError}</p>}
+          {/* {paypalLoading && <p>Product and subscription created successfully</p>}
+          {paypalError && <p>Error: {paypalError}</p>} */}
         </div>
         <Image src={PenaLogo} alt="Pena Logo" width={75} height={75} />
       </div>
@@ -424,5 +474,3 @@ const CustomerDetailForm = () => {
 };
 
 export default CustomerDetailForm;
-
-
