@@ -121,6 +121,7 @@ const CustomerDetailForm = () => {
         style: {
           shape: 'rect',
           color: 'black',
+          width: "100%",
         },
         // fundingSource: paypal.FUNDING.CREDIT,
         fundingSource: paypal.FUNDING.CARD,
@@ -448,21 +449,25 @@ const CustomerDetailForm = () => {
               "Checkout Debit/Credit Card"
             )}
           </button> */}
-          <div
-            id="paypal-button-container"
-            className={buttonClass}
-            onClick={paypalClickedButton}
-            // onClick={createProductAndSubscriptionPaypal}
-            // disabled={
-            //   !firstName || 
-            //   !lastName || 
-            //   !email || 
-            //   !phone || 
-            //   !(isEmailValid(email) && isPhoneNumberValid(phone)) ||
-            //   chooseLoading === "button"}
-          >
-            {paypalLoading ? "Creating..." : "Checkout with Paypal Button"}
-          </div>
+          {buttonPaypalClicked ? (
+            <div id="paypal-button-container" className="w-full px-10"></div>
+          ) : (
+            <div
+              // id="paypal-button-container"
+              className={buttonClass}
+              onClick={paypalClickedButton}
+              // onClick={createProductAndSubscriptionPaypal}
+              // disabled={
+              //   !firstName || 
+              //   !lastName || 
+              //   !email || 
+              //   !phone || 
+              //   !(isEmailValid(email) && isPhoneNumberValid(phone)) ||
+              //   chooseLoading === "button"}
+            >
+              {paypalLoading ? "Creating..." : "Checkout with Paypal Button"}
+            </div>
+          )}
           {/* {paypalLoading && <p>Product and subscription created successfully</p>}
           {paypalError && <p>Error: {paypalError}</p>} */}
         </div>
