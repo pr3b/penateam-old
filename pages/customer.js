@@ -104,6 +104,7 @@ const CustomerDetailForm = () => {
     setButtonPaypalClicked(true);
   }
 
+  // Paypal Button render -> and Checkout function
   useEffect(() => {
     if (buttonPaypalClicked && phone && firstName) {
       let planId;
@@ -117,7 +118,12 @@ const CustomerDetailForm = () => {
       }
 
       paypal.Buttons({
-        fundingSource: paypal.FUNDING.PAYPAL,
+        style: {
+          shape: 'rect',
+          color: 'black',
+        },
+        // fundingSource: paypal.FUNDING.CREDIT,
+        fundingSource: paypal.FUNDING.CARD,
         createSubscription: function (data, actions) {
           return actions.subscription.create({
             "plan_id": planId
@@ -421,7 +427,7 @@ const CustomerDetailForm = () => {
           </div>
 
           {/* Submit button */}
-          <button
+          {/* <button
             className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-500 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
             onClick={() => 
               handleProductClickMidtrans(MonthlySubscribtionObject, 
@@ -441,7 +447,7 @@ const CustomerDetailForm = () => {
             ) : (
               "Checkout Debit/Credit Card"
             )}
-          </button>
+          </button> */}
           <div
             id="paypal-button-container"
             className={buttonClass}
@@ -457,8 +463,8 @@ const CustomerDetailForm = () => {
           >
             {paypalLoading ? "Creating..." : "Checkout with Paypal Button"}
           </div>
-          {paypalLoading && <p>Product and subscription created successfully</p>}
-          {paypalError && <p>Error: {paypalError}</p>}
+          {/* {paypalLoading && <p>Product and subscription created successfully</p>}
+          {paypalError && <p>Error: {paypalError}</p>} */}
         </div>
         <Image src={PenaLogo} alt="Pena Logo" width={75} height={75} />
       </div>
@@ -468,5 +474,3 @@ const CustomerDetailForm = () => {
 };
 
 export default CustomerDetailForm;
-
-
