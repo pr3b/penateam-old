@@ -12,7 +12,6 @@ import Certification from "./components/Certification";
 import Webflow from "./components/Webflow";
 import Benefit from "./components/Benefit";
 import Developing from "./components/Developing";
-import PaymentSuccessX from "./PaymentSuccess";
 import AOS from "aos";
 import "aos/dist/aos.css"; // You can also use <link> for styles
 import { useEffect } from "react";
@@ -20,9 +19,16 @@ import FloatingNav from "./components/FloatingNav";
 import CustomCursor from "./components/CustomCursor";
 import CursorSVG from "../public/assets/images/icons/cursor-pena-01.svg";
 
+//Sucess page
+import PaymentSuccessX from "./PaymentSuccess";
+import MidtransSuccess from "./MidtransSuccess";
+
 export default function Home() {
   const router = useRouter();
   const isPaymentSuccess = router.query.session_id != null;
+  const isMidtransSuccess = router.query.order_id != null
+    && router.query.transaction_status != null
+    && router.query.status_code == 200;
 
   useEffect(() => {
     AOS.init();
@@ -36,6 +42,7 @@ export default function Home() {
           <PaymentSuccessX id={isPaymentSuccess} />
         ) : (
           <>
+            {/* ({isMidtransSuccess ? <MidtransSuccess /> : null}) */}
             <CustomCursor customCursor={CursorSVG} />
             <Hero />
             {/* <Logo /> */}
