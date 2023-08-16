@@ -278,6 +278,7 @@ const CustomerDetailForm = () => {
   };
 
   const buttonClass = `mt-4 w-full py-2 px-12 text-center border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-500 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 ${!phone ? 'opacity-50 cursor-not-allowed' : ''}`
+  const paypalButton = `w-[50%] bg-white`
 
   return (
   <>
@@ -350,9 +351,9 @@ const CustomerDetailForm = () => {
         <h3 className="font-bold text-3xl mb-8 text-white md:text-4xl">Payment Form</h3>
       </div>
       <div className="max-w-4xl mx-auto">
-        <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col items-center">
           {/* First Name */}
-          <div className="mb-4">
+          <div className="mb-4 w-full">
             <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
               First Name
             </label>
@@ -367,7 +368,7 @@ const CustomerDetailForm = () => {
           </div>
 
           {/* Last Name */}
-          <div className="mb-4">
+          <div className="mb-4 w-full">
             <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
               Last Name
             </label>
@@ -382,7 +383,7 @@ const CustomerDetailForm = () => {
           </div>
 
           {/* Email */}
-          <div className="mb-4">
+          <div className="mb-4 w-full">
             <label
               htmlFor="email"
               className="block text-sm font-medium text-gray-700"
@@ -405,7 +406,7 @@ const CustomerDetailForm = () => {
           </div>
 
           {/* Phone */}
-          <div className="mb-6">
+          <div className="mb-6 w-full">
             <label
               htmlFor="phone"
               className="block text-sm font-medium text-gray-700"
@@ -450,8 +451,9 @@ const CustomerDetailForm = () => {
             )}
           </button> */}
           {buttonPaypalClicked ? (
-            <div id="paypal-button-container" className="w-full px-10"></div>
+            <div id="paypal-button-container" className={`${paypalButton}`}></div>
           ) : (
+            <div className="w-full">
             <div
               // id="paypal-button-container"
               className={buttonClass}
@@ -466,6 +468,7 @@ const CustomerDetailForm = () => {
               //   chooseLoading === "button"}
             >
               {paypalLoading ? "Creating..." : "Checkout with Paypal Button"}
+            </div>
             </div>
           )}
           {/* {paypalLoading && <p>Product and subscription created successfully</p>}
