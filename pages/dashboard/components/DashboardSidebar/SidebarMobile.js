@@ -8,8 +8,13 @@ const SidebarMobile = ({ activeNavItem, onNavItemClick }) => {
     setIsSidebarOpen(true);
   };
 
+  const closeSidebar = () => {
+    setIsSidebarOpen(false);
+  };
+
   const handleItemClick = (navItem) => {
     onNavItemClick(navItem);
+    closeSidebar();
   };
 
 
@@ -37,23 +42,23 @@ const SidebarMobile = ({ activeNavItem, onNavItemClick }) => {
       </div>
       {isSidebarOpen && (
         <div
-          onClick={() => setIsSidebarOpen(false)}
+          onClick={closeSidebar} // Close the sidebar when the overlay is clicked
           className="fixed inset-0 z-30 bg-gray-600 opacity-75 pointer-events-auto transition-opacity ease-linear duration-300"
         ></div>
       )}
       <div
-        className={`fixed inset-y-0 left-0 flex flex-col z-40 max-w-xs w-full bg-white transform ease-in-out duration-300 ${
+        className={`fixed inset-y-0 left-0 flex flex-col z-40 w-full bg-white transform ease-in-out duration-300 ${
           isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
-        <div className="absolute top-0 right-0 -mr-14 p-1">
+        <div className="absolute top-0 right-0 p-1">
           {isSidebarOpen && (
             <button
               onClick={() => setIsSidebarOpen(false)}
               className="flex items-center justify-center h-12 w-12 rounded-full focus:outline-none focus:bg-gray-600"
             >
               <svg
-                className="h-6 w-6 text-white"
+                className="h-6 w-6 text-black"
                 stroke="currentColor"
                 fill="none"
                 viewBox="0 0 24 24"

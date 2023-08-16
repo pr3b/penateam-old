@@ -13,7 +13,7 @@ const DashboardMainContent = ({activeNavItem}) => {
   return (
     <main
       className="flex-1 relative z-0 overflow-y-auto focus:outline-none py-6"
-      tabIndex="0"
+      tabIndex="3"
       x-init="$el.focus()"
       id="scrollable-main"
       ref={mainRef}
